@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPORYSH — Premium Herbal Raw Materials</title>
+<meta name="description" content="SPORYSH LLC — Ukrainian supplier of premium herbal raw materials for pharmaceutical, cosmetic, and food industries. Herbs, leaves, flowers, roots, berries for the European market.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="SPORYSH — Premium Herbal Raw Materials">
+<meta property="og:description" content="Ukrainian supplier of premium herbal raw materials for B2B partners. European quality standards.">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js" defer></script>
+
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <a href="#home" class="header__logo" aria-label="SPORYSH Home">
+      <img src="./assets/logo.png" alt="SPORYSH" class="header__logo-img">
+      <span class="header__logo-text">SPORYSH</span>
+    </a>
+    <nav class="header__nav" id="mainNav" aria-label="Main navigation">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#products" class="nav-link" data-section="products">Products</a>
+      <a href="#about" class="nav-link" data-section="about">About Us</a>
+      <a href="#contacts" class="nav-link" data-section="contacts">Contacts</a>
+    </nav>
+    <div class="header__actions">
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <span class="lang-switch__active">EN</span>
+        <span class="lang-switch__divider">/</span>
+        <span class="lang-switch__inactive">UA</span>
+      </button>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
+        <i data-lucide="menu" class="icon-menu"></i>
+        <i data-lucide="x" class="icon-close"></i>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home" class="mobile-nav__link" data-section="home">Home</a>
+    <a href="#products" class="mobile-nav__link" data-section="products">Products</a>
+    <a href="#about" class="mobile-nav__link" data-section="about">About Us</a>
+    <a href="#contacts" class="mobile-nav__link" data-section="contacts">Contacts</a>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="home">
+  <div class="hero__bg">
+    <div class="hero__overlay"></div>
+    <video class="hero__video" autoplay muted loop playsinline poster="./assets/hero-bg.webp">
+      <source src="https://videos.pexels.com/video-files/5765958/5765958-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero__content">
+    <div class="hero__badge">Premium B2B Supplier</div>
+    <h1 class="hero__title">
+      <span class="hero__title-line">Premium Herbal</span>
+      <span class="hero__title-line hero__title-line--accent">Raw Materials</span>
+    </h1>
+    <p class="hero__subtitle">SPORYSH offers a curated range of plant raw materials for B2B partners. Our products undergo careful selection and meet European quality standards.</p>
+    <div class="hero__actions">
+      <a href="#products" class="btn btn--primary">Explore Catalog</a>
+      <a href="#contacts" class="btn btn--outline">Contact Us</a>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <span>Scroll to explore</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CATEGORIES ==================== -->
+<section class="categories" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Range</span>
+      <h2 class="section-title">Product Categories</h2>
+      <p class="section-desc">Six directions of premium herbal raw materials, carefully sourced from ecologically clean regions of Ukraine.</p>
+    </div>
+    <div class="categories__grid">
+      <a href="#products" class="category-card" data-filter="herbs" onclick="filterProducts('herbs')">
+        <div class="category-card__icon">
+          <i data-lucide="leaf"></i>
+        </div>
+        <h3 class="category-card__title">Herbs</h3>
+        <p class="category-card__desc">Medicinal and aromatic herbs, dried and processed to pharmaceutical standards.</p>
+      </a>
+      <a href="#products" class="category-card" data-filter="leaves" onclick="filterProducts('leaves')">
+        <div class="category-card__icon">
+          <i data-lucide="trees"></i>
+        </div>
+        <h3 class="category-card__title">Leaves</h3>
+        <p class="category-card__desc">Carefully harvested and dried leaves from various medicinal plants.</p>
+      </a>
+      <a href="#products" class="category-card" data-filter="flowers" onclick="filterProducts('flowers')">
+        <div class="category-card__icon">
+          <i data-lucide="flower-2"></i>
+        </div>
+        <h3 class="category-card__title">Flowers</h3>
+        <p class="category-card__desc">Dried flower heads and petals for tea blends, extracts, and cosmetic uses.</p>
+      </a>
+      <a href="#products" class="category-card" data-filter="roots" onclick="filterProducts('roots')">
+        <div class="category-card__icon">
+          <i data-lucide="git-branch"></i>
+        </div>
+        <h3 class="category-card__title">Roots</h3>
+        <p class="category-card__desc">Root stocks and rhizomes, cleaned, dried, and cut to specification.</p>
+      </a>
+      <a href="#products" class="category-card" data-filter="berries" onclick="filterProducts('berries')">
+        <div class="category-card__icon">
+          <i data-lucide="cherry"></i>
+        </div>
+        <h3 class="category-card__title">Berries</h3>
+        <p class="category-card__desc">Dried berries and fruits, whole or processed, rich in natural compounds.</p>
+      </a>
+      <a href="#products" class="category-card category-card--wide" data-filter="others" onclick="filterProducts('others')">
+        <div class="category-card__icon">
+          <i data-lucide="sprout"></i>
+        </div>
+        <h3 class="category-card__title">Others</h3>
+        <p class="category-card__desc">Barks, buds, shoots, and other plant-based raw materials.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRODUCTS ==================== -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Catalog</span>
+      <h2 class="section-title">Products</h2>
+      <p class="section-desc">Browse our selection of premium herbal raw materials. Hover over each card to see the product in its natural form.</p>
+    </div>
+    
+    <!-- Filters -->
+    <div class="products__filters">
+      <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">All</button>
+      <button class="filter-btn" data-filter="herbs" onclick="filterProducts('herbs')">Herbs</button>
+      <button class="filter-btn" data-filter="leaves" onclick="filterProducts('leaves')">Leaves</button>
+      <button class="filter-btn" data-filter="flowers" onclick="filterProducts('flowers')">Flowers</button>
+      <button class="filter-btn" data-filter="berries" onclick="filterProducts('berries')">Berries</button>
+      <button class="filter-btn" data-filter="others" onclick="filterProducts('others')">Others</button>
+    </div>
+
+    <!-- Search -->
+    <div class="products__search">
+      <i data-lucide="search" class="products__search-icon"></i>
+      <input type="text" class="products__search-input" id="productSearch" placeholder="Search by name or Latin name..." autocomplete="off">
+    </div>
+
+    <!-- Product Grid -->
+    <div class="products__grid" id="productsGrid">
+      
+      <!-- Peppermint -->
+      <div class="product-card" data-category="herbs" data-name="peppermint mentha piperita м'ята перцева">
+        <div class="product-card__flip">
+          <div class="product-card__front">
+            <img src="./assets/products/peppermint-front.jpg" alt="Peppermint — dried raw material" loading="lazy" width="400" height="400">
+            <div class="product-card__label">
+              <span class="product-card__category">Herbs</span>
+            </div>
+          </div>
+          <div class="product-card__back">
+            <img src="./assets/products/peppermint-back.jpg" alt="Peppermint growing in the garden" loading="lazy" width="400" height="400">
+            <div class="product-card__info">
+              <h3>Peppermint</h3>
+              <p class="product-card__latin">Mentha piperita</p>
+              <p class="product-card__origin">Origin: Ukraine, Zhytomyr region</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__title-bar">
+          <h3>Peppermint</h3>
+          <span class="product-card__latin-small">Mentha piperita</span>
+        </div>
+      </div>
+
+      <!-- Sage officinalis -->
+      <div class="product-card" data-category="leaves" data-name="sage officinalis salvia officinalis шавлія лікарська">
+        <div class="product-card__flip">
+          <div class="product-card__front">
+            <img src="./assets/products/sage-front.jpg" alt="Sage — dried leaves" loading="lazy" width="400" height="400">
+            <div class="product-card__label">
+              <span class="product-card__category">Leaves</span>
+            </div>
+          </div>
+          <div class="product-card__back">
+            <img src="./assets/products/sage-back.jpg" alt="Sage growing in bloom" loading="lazy" width="400" height="400">
+            <div class="product-card__info">
+              <h3>Sage officinalis</h3>
+              <p class="product-card__latin">Salvia officinalis</p>
+              <p class="product-card__origin">Origin: Ukraine, Zhytomyr region</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__title-bar">
+          <h3>Sage officinalis</h3>
+          <span class="product-card__latin-small">Salvia officinalis</span>
+        </div>
+      </div>
+
+      <!-- Medicinal chamomile -->
+      <div class="product-card" data-category="flowers" data-name="medicinal chamomile matricaria chamomilla ромашка лікарська">
+        <div class="product-card__flip">
+          <div class="product-card__front">
+            <img src="./assets/products/chamomile-front.jpg" alt="Chamomile — dried flowers" loading="lazy" width="400" height="400">
+            <div class="product-card__label">
+              <span class="product-card__category">Flowers</span>
+            </div>
+          </div>
+          <div class="product-card__back">
+            <img src="./assets/products/chamomile-back.jpg" alt="Chamomile field in spring" loading="lazy" width="400" height="400">
+            <div class="product-card__info">
+              <h3>Medicinal Chamomile</h3>
+              <p class="product-card__latin">Matricaria chamomilla</p>
+              <p class="product-card__origin">Origin: Ukraine, Zhytomyr region</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__title-bar">
+          <h3>Medicinal Chamomile</h3>
+          <span class="product-card__latin-small">Matricaria chamomilla</span>
+        </div>
+      </div>
+
+      <!-- Rosehip (fruit) -->
+      <div class="product-card" data-category="berries" data-name="rosehip fruit rosa canina шипшина плоди">
+        <div class="product-card__flip">
+          <div class="product-card__front">
+            <img src="./assets/products/rosehip-front.jpg" alt="Rosehip — dried berries" loading="lazy" width="400" height="400">
+            <div class="product-card__label">
+              <span class="product-card__category">Berries</span>
+            </div>
+          </div>
+          <div class="product-card__back">
+            <img src="./assets/products/rosehip-back.jpg" alt="Rosehip berries on the bush" loading="lazy" width="400" height="400">
+            <div class="product-card__info">
+              <h3>Rosehip (fruit)</h3>
+              <p class="product-card__latin">Rosa canina</p>
+              <p class="product-card__origin">Origin: Ukraine, Zhytomyr region</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__title-bar">
+          <h3>Rosehip (fruit)</h3>
+          <span class="product-card__latin-small">Rosa canina</span>
+        </div>
+      </div>
+
+      <!-- Common Oak (bark) -->
+      <div class="product-card" data-category="others" data-name="common oak bark quercus robur дуб звичайний кора">
+        <div class="product-card__flip">
+          <div class="product-card__front">
+            <img src="./assets/products/oak-bark-front.jpg" alt="Oak bark — chips" loading="lazy" width="400" height="400">
+            <div class="product-card__label">
+              <span class="product-card__category">Others</span>
+            </div>
+          </div>
+          <div class="product-card__back">
+            <img src="./assets/products/oak-bark-back.jpg" alt="Oak tree bark in nature" loading="lazy" width="400" height="400">
+            <div class="product-card__info">
+              <h3>Common Oak (bark)</h3>
+              <p class="product-card__latin">Quercus robur</p>
+              <p class="product-card__origin">Origin: Ukraine, Zhytomyr region</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__title-bar">
+          <h3>Common Oak (bark)</h3>
+          <span class="product-card__latin-small">Quercus robur</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- No results message -->
+    <div class="products__empty" id="productsEmpty" style="display:none;">
+      <i data-lucide="search-x"></i>
+      <p>No products found matching your search.</p>
+    </div>
+
+    <!-- Explore Catalog button -->
+    <div class="products__cta">
+      <a href="#contacts" class="btn btn--primary btn--lg">
+        <i data-lucide="file-text"></i>
+        Request Full PDF Catalog
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CERTIFICATIONS ==================== -->
+<section class="certifications" id="certifications">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Quality Assurance</span>
+      <h2 class="section-title">Our Certifications</h2>
+      <p class="section-desc">We comply with international standards to ensure the highest quality of our products for the European market.</p>
+    </div>
+    <div class="certifications__grid">
+      <div class="cert-card">
+        <div class="cert-card__icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
+            <text x="40" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">ISO</text>
+            <text x="40" y="50" text-anchor="middle" font-size="9" fill="currentColor" font-family="Inter,sans-serif">22000</text>
+          </svg>
+        </div>
+        <h3>ISO 22000</h3>
+        <p>Food Safety Management</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card__icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
+            <text x="40" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">GMP</text>
+            <text x="40" y="50" text-anchor="middle" font-size="8" fill="currentColor" font-family="Inter,sans-serif">Certified</text>
+          </svg>
+        </div>
+        <h3>GMP</h3>
+        <p>Good Manufacturing Practice</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card__icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
+            <path d="M30 40 C30 30, 40 25, 40 35 C40 25, 50 30, 50 40 C50 50, 40 55, 40 55 C40 55, 30 50, 30 40Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <text x="40" y="65" text-anchor="middle" font-size="7" fill="currentColor" font-family="Inter,sans-serif">ORGANIC EU</text>
+          </svg>
+        </div>
+        <h3>Organic EU</h3>
+        <p>European Organic Certification</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card__icon">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
+            <text x="40" y="36" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">HACCP</text>
+            <text x="40" y="50" text-anchor="middle" font-size="7" fill="currentColor" font-family="Inter,sans-serif">Compliant</text>
+          </svg>
+        </div>
+        <h3>HACCP</h3>
+        <p>Hazard Analysis Critical Control Points</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about__layout">
+      <div class="about__image">
+        <img src="./assets/about-hero.webp" alt="SPORYSH team at work" loading="lazy" width="600" height="400">
+      </div>
+      <div class="about__content">
+        <span class="section-tag">About SPORYSH</span>
+        <h2 class="section-title">At a Glance</h2>
+        <p>SPORYSH LLC is a Ukrainian supplier of premium herbal raw materials, specializing in dried herbs, leaves, flowers, roots, berries, and plant-based products for the European B2B market.</p>
+        <p>From precision agriculture and climate-smart practices to market access and quality assurance, our work spans the entire agricultural value chain. We partner with farms, agribusinesses, and distributors to deliver measurable, lasting quality in natural products.</p>
+        <p>With a passion for sustainable farming communities, we work across regions to implement practical solutions that improve productivity, enhance resilience, and promote environmental stewardship.</p>
+        <div class="about__stats">
+          <div class="stat">
+            <span class="stat__number" data-target="30">0</span><span class="stat__suffix">K+</span>
+            <span class="stat__label">Acres Managed</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" data-target="3">0</span><span class="stat__suffix">+</span>
+            <span class="stat__label">Years of Innovation</span>
+          </div>
+          <div class="stat">
+            <span class="stat__number" data-target="98">0</span><span class="stat__suffix">%</span>
+            <span class="stat__label">Client Satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LOCATION ==================== -->
+<section class="location" id="location">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Where We Are</span>
+      <h2 class="section-title">Our Location</h2>
+      <p class="section-desc">Based in Zhytomyr, Ukraine — at the heart of one of Europe's richest botanical regions.</p>
+    </div>
+    <div class="location__map-wrapper">
+      <div class="location__map">
+        <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" class="location__world-map">
+          <!-- Simplified world map outline -->
+          <rect width="1200" height="600" fill="none"/>
+          <!-- Europe region highlighted -->
+          <ellipse cx="580" cy="220" rx="120" ry="80" fill="rgba(46,93,58,0.08)" stroke="rgba(46,93,58,0.15)" stroke-width="1"/>
+          <!-- Ukraine pin -->
+          <circle cx="610" cy="210" r="8" fill="#2E5D3A" class="location__pin">
+            <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="610" cy="210" r="16" fill="none" stroke="#2E5D3A" stroke-width="1" opacity="0.4">
+            <animate attributeName="r" values="12;24;12" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Continents simplified paths -->
+          <path d="M100,180 Q140,140 180,160 Q220,140 260,170 Q280,190 260,220 Q240,250 200,240 Q160,260 120,230 Q90,210 100,180Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+          <path d="M150,280 Q180,260 220,270 Q260,290 280,330 Q300,370 280,400 Q260,430 220,420 Q180,430 160,400 Q140,360 150,320Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+          <path d="M480,140 Q520,120 560,130 Q600,120 640,140 Q680,130 720,150 Q700,180 680,200 Q640,220 600,210 Q560,230 520,210 Q490,200 480,170Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+          <path d="M480,240 Q520,220 560,240 Q580,260 560,300 Q540,340 520,360 Q500,380 480,360 Q460,330 460,290Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+          <path d="M740,150 Q800,130 860,140 Q920,130 980,160 Q1020,180 1040,220 Q1060,260 1040,300 Q1000,320 960,310 Q920,330 880,300 Q840,280 800,290 Q760,270 740,240 Q720,200 740,150Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+          <path d="M920,380 Q960,360 1000,370 Q1040,380 1060,420 Q1080,460 1060,490 Q1020,510 980,500 Q940,490 920,460 Q900,430 920,380Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
+        </svg>
+        <div class="location__label">
+          <i data-lucide="map-pin"></i>
+          <div>
+            <strong>Ukraine, Zhytomyr region</strong>
+            <span>Prospekt Nezalezhnosti 106-b, 10029</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">Common Questions</h2>
+    </div>
+    <div class="faq__list">
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>What types of herbal raw materials do you supply?</span>
+          <i data-lucide="chevron-down" class="faq__chevron"></i>
+        </summary>
+        <div class="faq__answer">
+          <p>We supply a wide range of dried herbal raw materials including herbs (peppermint, oregano, thyme), leaves (sage, nettle, birch), flowers (chamomile, calendula, linden), roots (valerian, echinacea), berries (rosehip, hawthorn, elder), and other plant parts such as barks, buds, and shoots. All products are sourced from ecologically clean regions of Ukraine.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>Do you work with small-volume orders?</span>
+          <i data-lucide="chevron-down" class="faq__chevron"></i>
+        </summary>
+        <div class="faq__answer">
+          <p>We are a B2B supplier focused on wholesale volumes. Minimum order quantities depend on the specific product. Please contact our export department to discuss your requirements and we'll find the best solution for your needs.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>What quality certifications do your products have?</span>
+          <i data-lucide="chevron-down" class="faq__chevron"></i>
+        </summary>
+        <div class="faq__answer">
+          <p>Our products comply with ISO 22000 (Food Safety), GMP (Good Manufacturing Practice), HACCP standards, and European Organic certification. We continuously maintain and improve our quality management systems to meet the highest European market requirements.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>Can you provide custom cut fractions?</span>
+          <i data-lucide="chevron-down" class="faq__chevron"></i>
+        </summary>
+        <div class="faq__answer">
+          <p>Yes, we offer various cut fractions depending on the product and customer requirements. Common options include whole, coarse cut (TBC 1), medium cut, and fine cut. Specific fraction sizes can be discussed with our team to match your processing needs.</p>
+        </div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__question">
+          <span>Which countries do you export to?</span>
+          <i data-lucide="chevron-down" class="faq__chevron"></i>
+        </summary>
+        <div class="faq__answer">
+          <p>We primarily export to European Union countries. Our products meet all EU import requirements including phytosanitary certificates, GDPR-compliant documentation, and proper labeling. We handle all export logistics and documentation.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACTS ==================== -->
+<section class="contacts" id="contacts">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Contacts</h2>
+      <p class="section-desc">Reach out to our export department for inquiries, pricing, and partnership opportunities.</p>
+    </div>
+    <div class="contacts__layout">
+      <div class="contacts__info">
+        <div class="contact-block">
+          <h3>Export Department</h3>
+          <div class="contact-item">
+            <i data-lucide="mail"></i>
+            <a href="mailto:info@sporysh.com" target="_blank" rel="noopener noreferrer">info@sporysh.com</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="phone"></i>
+            <a href="tel:+380974964423">+380 97 496 4423</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="phone"></i>
+            <a href="tel:+080023367811">+0800 2336 7811</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <h3>Address</h3>
+          <div class="contact-item">
+            <i data-lucide="map-pin"></i>
+            <span>Prospekt Nezalezhnosti 106-b,<br>Zhytomyr, Ukraine, 10029</span>
+          </div>
+        </div>
+        <div class="contact-block">
+          <h3>Follow Us</h3>
+          <div class="contacts__social">
+            <a href="https://www.instagram.com/sporysh_tm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://www.facebook.com/share/1MCBSfD9iV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/sporysh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="contacts__map">
+        <iframe 
+          src="https://maps.google.com/maps?q=%D0%BC.%20%D0%96%D0%B8%D1%82%D0%BE%D0%BC%D0%B8%D1%80%2C%20%D0%A3%D0%BA%D1%80%D0%B0%D1%97%D0%BD%D0%B0%2C%2010029%20%D0%9F%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9D%D0%B5%D0%B7%D0%B0%D0%BB%D0%B5%D0%B6%D0%BD%D0%BE%D1%81%D1%82%D1%96%20106-%D0%B1&t=m&z=13&output=embed&iwloc=near"
+          width="100%" height="400" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="SPORYSH location on map">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#home" class="footer__logo">
+          <img src="./assets/logo.png" alt="SPORYSH" class="footer__logo-img">
+          <span>SPORYSH LLC</span>
+        </a>
+        <p class="footer__tagline">Premium herbal raw materials supplier from Ukraine for the European B2B market.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About Us</a>
+          <a href="#contacts">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <h4>Categories</h4>
+          <a href="#products" onclick="filterProducts('herbs')">Herbs</a>
+          <a href="#products" onclick="filterProducts('leaves')">Leaves</a>
+          <a href="#products" onclick="filterProducts('flowers')">Flowers</a>
+          <a href="#products" onclick="filterProducts('berries')">Berries</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contacts</h4>
+          <a href="mailto:info@sporysh.com" target="_blank" rel="noopener noreferrer">info@sporysh.com</a>
+          <a href="tel:+380974964423">+380 97 496 4423</a>
+          <span>Zhytomyr, Ukraine, 10029</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 SPORYSH LLC — All Rights Reserved</span>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/sporysh_tm" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/share/1MCBSfD9iV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/sporysh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">
+        Created with Perplexity Computer
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i data-lucide="arrow-up"></i>
+</button>
+
+<!-- GDPR Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-banner__inner">
+    <p>We use cookies to improve your experience. By continuing to browse, you agree to our <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</p>
+    <div class="cookie-banner__actions">
+      <button class="btn btn--sm btn--primary" onclick="acceptCookies()">Accept</button>
+      <button class="btn btn--sm btn--ghost" onclick="rejectCookies()">Reject</button>
+    </div>
+  </div>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
