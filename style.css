@@ -305,6 +305,16 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   background: #162e20;
 }
 
+.hero__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
 .hero__video {
   position: absolute;
   top: 0;
