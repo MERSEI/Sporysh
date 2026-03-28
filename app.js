@@ -125,6 +125,34 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
+  // --- Hero video: force load + play ---
+  const heroVideo = document.querySelector('.hero__video');
+  if (heroVideo) {
+    // Ensure correct attributes
+    heroVideo.muted = true;
+    heroVideo.loop = true;
+    heroVideo.playsInline = true;
+
+    // If src not set yet (some browsers skip <source> parsing), set it manually
+    if (!heroVideo.currentSrc || heroVideo.readyState === 0) {
+      const source = heroVideo.querySelector('source');
+      if (source) {
+        heroVideo.src = source.src;
+      }
+    }
+
+    // Force load, then play
+    heroVideo.load();
+    heroVideo.play().catch(() => {
+      // Autoplay blocked — play on first user interaction
+      const playOnInteract = () => {
+        heroVideo.play();
+      };
+      document.addEventListener('click', playOnInteract, { once: true });
+      document.addEventListener('touchstart', playOnInteract, { once: true });
+    });
+  }
+
   // --- Header scroll effect ---
   const header = document.getElementById('header');
   const backToTop = document.getElementById('backToTop');
