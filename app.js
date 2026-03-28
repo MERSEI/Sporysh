@@ -2,6 +2,123 @@
 // SPORYSH — App Logic
 // ============================================
 
+/**
+ * TRANSLATIONS CONFIG
+ * Structure for easy WordPress migration: extract to theme options
+ */
+const translations = {
+  en: {
+    // Navigation
+    'nav-home': 'Home',
+    'nav-products': 'Products',
+    'nav-about': 'About Us',
+    'nav-contacts': 'Contacts',
+
+    // Header
+    'header-phone': '+380 97 496 4423',
+    'header-email': 'info@sporysh.com',
+
+    // Hero
+    'hero-badge': 'Premium B2B Supplier',
+    'hero-title-1': 'Premium Herbal',
+    'hero-title-2': 'Raw Materials',
+    'hero-subtitle': 'SPORYSH offers a curated range of plant raw materials for B2B partners. Our products undergo careful selection and meet European quality standards.',
+    'btn-explore': 'Explore Catalog',
+    'btn-contact': 'Contact Us',
+
+    // Categories section
+    'section-tag-range': 'Our Range',
+    'section-title-categories': 'Product Categories',
+    'section-desc-categories': 'Six directions of premium herbal raw materials, carefully sourced from ecologically clean regions of Ukraine.',
+  },
+  ua: {
+    // Navigation
+    'nav-home': 'Головна',
+    'nav-products': 'Продукти',
+    'nav-about': 'Про нас',
+    'nav-contacts': 'Контакти',
+
+    // Header
+    'header-phone': '+380 97 496 4423',
+    'header-email': 'info@sporysh.com',
+
+    // Hero
+    'hero-badge': 'Преміум B2B Постачальник',
+    'hero-title-1': 'Преміум Рослинні',
+    'hero-title-2': 'Сировини',
+    'hero-subtitle': 'SPORYSH пропонує відібраний асортимент рослинних сировин для B2B партнерів. Наші продукти проходять ретельний відбір і відповідають європейським стандартам якості.',
+    'btn-explore': 'Переглянути Каталог',
+    'btn-contact': 'Зв\'язатися',
+
+    // Categories section
+    'section-tag-range': 'Наш асортимент',
+    'section-title-categories': 'Категорії продуктів',
+    'section-desc-categories': 'Шість напрямків преміум рослинних сировин, ретельно відібраних з екологічно чистих регіонів України.',
+  }
+};
+
+/**
+ * LANGUAGE MANAGER
+ */
+class LanguageManager {
+  constructor() {
+    this.currentLang = this.getSavedLanguage() || 'en';
+    this.init();
+  }
+
+  getSavedLanguage() {
+    return localStorage.getItem('sporysh-lang');
+  }
+
+  saveLang(lang) {
+    localStorage.setItem('sporysh-lang', lang);
+  }
+
+  init() {
+    this.applyLanguage(this.currentLang);
+    this.updateLangButton();
+  }
+
+  applyLanguage(lang) {
+    this.currentLang = lang;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+  }
+
+  updateLangButton() {
+    const langSwitch = document.getElementById('langSwitch');
+    if (!langSwitch) return;
+
+    const active = langSwitch.querySelector('.lang-switch__active');
+    const inactive = langSwitch.querySelector('.lang-switch__inactive');
+
+    if (this.currentLang === 'en') {
+      active.textContent = 'EN';
+      inactive.textContent = 'UA';
+    } else {
+      active.textContent = 'UA';
+      inactive.textContent = 'EN';
+    }
+  }
+
+  toggle() {
+    const newLang = this.currentLang === 'en' ? 'ua' : 'en';
+    this.applyLanguage(newLang);
+    this.saveLang(newLang);
+    this.updateLangButton();
+  }
+}
+
+// Initialize language manager
+const langManager = new LanguageManager();
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide icons
   if (typeof lucide !== 'undefined') {
@@ -103,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Scroll reveal ---
+  // --- Scroll reveal (без hero__scroll) ---
   const revealElements = document.querySelectorAll('.section-header, .category-card, .product-card, .cert-card, .about__image, .about__content, .contact-block, .faq__item, .location__map');
 
   revealElements.forEach(el => el.classList.add('reveal'));
@@ -172,16 +289,11 @@ document.addEventListener('DOMContentLoaded', () => {
     cookieBanner.classList.add('show');
   }, 2000);
 
-  // --- Language switch placeholder ---
+  // --- Language switch ---
   const langSwitch = document.getElementById('langSwitch');
   if (langSwitch) {
     langSwitch.addEventListener('click', () => {
-      const active = langSwitch.querySelector('.lang-switch__active');
-      const inactive = langSwitch.querySelector('.lang-switch__inactive');
-      const tempText = active.textContent;
-      active.textContent = inactive.textContent;
-      inactive.textContent = tempText;
-      // In production, this would switch site language
+      langManager.toggle();
     });
   }
 });
