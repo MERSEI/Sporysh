@@ -125,21 +125,31 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
-  // --- Hero video: force play (bypass autoplay policy) ---
+  // --- Hero video: force load + play ---
   const heroVideo = document.querySelector('.hero__video');
   if (heroVideo) {
+    // Ensure correct attributes
     heroVideo.muted = true;
+    heroVideo.loop = true;
+    heroVideo.playsInline = true;
+
+    // If src not set yet (some browsers skip <source> parsing), set it manually
+    if (!heroVideo.currentSrc || heroVideo.readyState === 0) {
+      const source = heroVideo.querySelector('source');
+      if (source) {
+        heroVideo.src = source.src;
+      }
+    }
+
+    // Force load, then play
+    heroVideo.load();
     heroVideo.play().catch(() => {
       // Autoplay blocked — play on first user interaction
       const playOnInteract = () => {
         heroVideo.play();
-        document.removeEventListener('click', playOnInteract);
-        document.removeEventListener('touchstart', playOnInteract);
-        document.removeEventListener('keydown', playOnInteract);
       };
       document.addEventListener('click', playOnInteract, { once: true });
       document.addEventListener('touchstart', playOnInteract, { once: true });
-      document.addEventListener('keydown', playOnInteract, { once: true });
     });
   }
 
