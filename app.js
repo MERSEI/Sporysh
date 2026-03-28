@@ -125,6 +125,24 @@ document.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
 
+  // --- Hero video: force play (bypass autoplay policy) ---
+  const heroVideo = document.querySelector('.hero__video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.play().catch(() => {
+      // Autoplay blocked — play on first user interaction
+      const playOnInteract = () => {
+        heroVideo.play();
+        document.removeEventListener('click', playOnInteract);
+        document.removeEventListener('touchstart', playOnInteract);
+        document.removeEventListener('keydown', playOnInteract);
+      };
+      document.addEventListener('click', playOnInteract, { once: true });
+      document.addEventListener('touchstart', playOnInteract, { once: true });
+      document.addEventListener('keydown', playOnInteract, { once: true });
+    });
+  }
+
   // --- Header scroll effect ---
   const header = document.getElementById('header');
   const backToTop = document.getElementById('backToTop');

@@ -303,13 +303,6 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   overflow: hidden;
 }
 
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
 .hero__video {
   position: absolute;
   inset: 0;
