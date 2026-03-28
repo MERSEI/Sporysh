@@ -801,6 +801,12 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   gap: 24px;
 }
 
+.certifications__grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .cert-card {
   background: white;
   border: 1px solid var(--border-light);
@@ -813,6 +819,47 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 .cert-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
+}
+
+.cert-card__badge {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+}
+
+.cert-card__badge svg { width: 100%; height: 100%; }
+
+/* Organic Standard horizontal layout */
+.cert-card--organic .cert-card__badge {
+  width: auto;
+  height: auto;
+}
+
+.cert-card__badge--organic {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+  padding: 12px 0 8px;
+}
+
+.cert-organic__icon {
+  width: 80px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.cert-organic__icon svg { width: 100%; height: 100%; }
+
+.cert-organic__text {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #4A5568;
+  line-height: 1.2;
+  text-align: left;
 }
 
 .cert-card__icon {
@@ -835,14 +882,54 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   color: var(--text-muted);
 }
 
+/* Europe map */
+.location__europe-map {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.location__address {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 16px 20px;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  width: fit-content;
+}
+
+.location__address svg {
+  width: 20px;
+  height: 20px;
+  color: var(--green-primary);
+  flex-shrink: 0;
+}
+
+.location__address strong {
+  display: block;
+  font-size: 0.9375rem;
+  color: var(--charcoal);
+}
+
+.location__address span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
 @media (max-width: 768px) {
-  .certifications__grid {
+  .certifications__grid,
+  .certifications__grid--3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .certifications__grid {
+  .certifications__grid,
+  .certifications__grid--3 {
     grid-template-columns: 1fr;
   }
 }

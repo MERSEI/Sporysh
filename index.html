@@ -46,7 +46,7 @@
     <!-- LEFT: Logo + Language Switch -->
     <div class="header__left">
       <a href="#home" class="header__logo" aria-label="SPORYSH Home">
-        <img src="./assets/logo.png" alt="SPORYSH" class="header__logo-img">
+        <img src="./assets/logo.svg" alt="SPORYSH" class="header__logo-img">
         <span class="header__logo-text">SPORYSH</span>
       </a>
       <button class="lang-switch" id="langSwitch" aria-label="Switch language">
@@ -114,60 +114,6 @@
   </div>
 </section>
 
-<!-- ==================== CATEGORIES ==================== -->
-<section class="categories" id="categories">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag" data-i18n="section-tag-range">Our Range</span>
-      <h2 class="section-title" data-i18n="section-title-categories">Product Categories</h2>
-      <p class="section-desc" data-i18n="section-desc-categories">Six directions of premium herbal raw materials, carefully sourced from ecologically clean regions of Ukraine.</p>
-    </div>
-    <div class="categories__grid">
-      <a href="#products" class="category-card" data-filter="herbs" onclick="filterProducts('herbs')">
-        <div class="category-card__icon">
-          <i data-lucide="leaf"></i>
-        </div>
-        <h3 class="category-card__title">Herbs</h3>
-        <p class="category-card__desc">Medicinal and aromatic herbs, dried and processed to pharmaceutical standards.</p>
-      </a>
-      <a href="#products" class="category-card" data-filter="leaves" onclick="filterProducts('leaves')">
-        <div class="category-card__icon">
-          <i data-lucide="trees"></i>
-        </div>
-        <h3 class="category-card__title">Leaves</h3>
-        <p class="category-card__desc">Carefully harvested and dried leaves from various medicinal plants.</p>
-      </a>
-      <a href="#products" class="category-card" data-filter="flowers" onclick="filterProducts('flowers')">
-        <div class="category-card__icon">
-          <i data-lucide="flower-2"></i>
-        </div>
-        <h3 class="category-card__title">Flowers</h3>
-        <p class="category-card__desc">Dried flower heads and petals for tea blends, extracts, and cosmetic uses.</p>
-      </a>
-      <a href="#products" class="category-card" data-filter="roots" onclick="filterProducts('roots')">
-        <div class="category-card__icon">
-          <i data-lucide="git-branch"></i>
-        </div>
-        <h3 class="category-card__title">Roots</h3>
-        <p class="category-card__desc">Root stocks and rhizomes, cleaned, dried, and cut to specification.</p>
-      </a>
-      <a href="#products" class="category-card" data-filter="berries" onclick="filterProducts('berries')">
-        <div class="category-card__icon">
-          <i data-lucide="cherry"></i>
-        </div>
-        <h3 class="category-card__title">Berries</h3>
-        <p class="category-card__desc">Dried berries and fruits, whole or processed, rich in natural compounds.</p>
-      </a>
-      <a href="#products" class="category-card category-card--wide" data-filter="others" onclick="filterProducts('others')">
-        <div class="category-card__icon">
-          <i data-lucide="sprout"></i>
-        </div>
-        <h3 class="category-card__title">Others</h3>
-        <p class="category-card__desc">Barks, buds, shoots, and other plant-based raw materials.</p>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- ==================== PRODUCTS ==================== -->
 <section class="products" id="products">
@@ -343,51 +289,87 @@
       <h2 class="section-title">Our Certifications</h2>
       <p class="section-desc">We comply with international standards to ensure the highest quality of our products for the European market.</p>
     </div>
-    <div class="certifications__grid">
+    <div class="certifications__grid certifications__grid--3">
+
+      <!-- ISO 22000 -->
       <div class="cert-card">
-        <div class="cert-card__icon">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
-            <text x="40" y="36" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">ISO</text>
-            <text x="40" y="50" text-anchor="middle" font-size="9" fill="currentColor" font-family="Inter,sans-serif">22000</text>
+        <div class="cert-card__badge">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="76" fill="none" stroke="#111827" stroke-width="3"/>
+            <circle cx="80" cy="80" r="68" fill="none" stroke="#111827" stroke-width="1.5"/>
+            <rect x="18" y="65" width="124" height="30" fill="#111827" rx="2"/>
+            <text x="80" y="85" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="white" letter-spacing="1">ISO 22000</text>
+            <path id="iso-top" d="M 20,80 A 60,60 0 0,1 140,80" fill="none"/>
+            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="3">
+              <textPath href="#iso-top" startOffset="15%">CERTIFIED</textPath>
+            </text>
+            <path id="iso-bot" d="M 20,80 A 60,60 0 0,0 140,80" fill="none"/>
+            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="3">
+              <textPath href="#iso-bot" startOffset="15%">CERTIFIED</textPath>
+            </text>
+            <text x="80" y="42" text-anchor="middle" font-size="11" fill="#111827">★ ★ ★ ★ ★</text>
+            <text x="80" y="128" text-anchor="middle" font-size="11" fill="#111827">★ ★ ★ ★ ★</text>
           </svg>
         </div>
         <h3>ISO 22000</h3>
-        <p>Food Safety Management</p>
+        <p>Food Safety Management System</p>
       </div>
+
+      <!-- Organic Standard -->
+      <div class="cert-card cert-card--organic">
+        <div class="cert-card__badge cert-card__badge--organic">
+          <div class="cert-organic__icon">
+            <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="50" cy="60" rx="48" ry="58" fill="#4A5568"/>
+              <ellipse cx="50" cy="60" rx="42" ry="52" fill="none" stroke="#9CA3AF" stroke-width="2"/>
+              <!-- Tree trunk -->
+              <path d="M50,105 L50,72 L42,85 L50,72 L58,85 L50,72" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Roots -->
+              <path d="M50,105 C44,108 38,112 32,110 M50,105 C56,108 62,112 68,110" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Branches with leaves -->
+              <path d="M50,72 C45,65 36,60 30,52 C38,56 46,64 50,72Z" fill="white"/>
+              <path d="M50,72 C55,65 64,60 70,52 C62,56 54,64 50,72Z" fill="white"/>
+              <path d="M50,60 C43,53 35,47 32,38 C40,44 47,55 50,60Z" fill="white"/>
+              <path d="M50,60 C57,53 65,47 68,38 C60,44 53,55 50,60Z" fill="white"/>
+              <path d="M50,48 C45,41 41,33 44,25 C47,33 49,42 50,48Z" fill="white"/>
+              <path d="M50,48 C55,41 59,33 56,25 C53,33 51,42 50,48Z" fill="white"/>
+              <ellipse cx="50" cy="22" rx="5" ry="7" fill="white"/>
+            </svg>
+          </div>
+          <div class="cert-organic__text">
+            <span>Organic</span>
+            <span>Standard</span>
+          </div>
+        </div>
+        <h3>Organic Standard</h3>
+        <p>Certified Organic Production</p>
+      </div>
+
+      <!-- FDA Approved -->
       <div class="cert-card">
-        <div class="cert-card__icon">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
-            <text x="40" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">GMP</text>
-            <text x="40" y="50" text-anchor="middle" font-size="8" fill="currentColor" font-family="Inter,sans-serif">Certified</text>
+        <div class="cert-card__badge">
+          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="76" fill="none" stroke="#111827" stroke-width="3"/>
+            <circle cx="80" cy="80" r="68" fill="none" stroke="#111827" stroke-width="1.5"/>
+            <circle cx="18" cy="80" r="5" fill="#111827"/>
+            <circle cx="142" cy="80" r="5" fill="#111827"/>
+            <!-- FDA letters, art-deco style with inner lines -->
+            <text x="80" y="92" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="38" fill="#111827" letter-spacing="-1">FDA</text>
+            <text x="80" y="92" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="38" fill="none" stroke="white" stroke-width="1.5" letter-spacing="-1">FDA</text>
+            <path id="fda-top" d="M 22,80 A 58,58 0 0,1 138,80" fill="none"/>
+            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="4">
+              <textPath href="#fda-top" startOffset="12%">APPROVED</textPath>
+            </text>
+            <path id="fda-bot" d="M 22,80 A 58,58 0 0,0 138,80" fill="none"/>
+            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="4">
+              <textPath href="#fda-bot" startOffset="12%">APPROVED</textPath>
+            </text>
           </svg>
         </div>
-        <h3>GMP</h3>
-        <p>Good Manufacturing Practice</p>
+        <h3>FDA Approved</h3>
+        <p>Food &amp; Drug Administration Standards</p>
       </div>
-      <div class="cert-card">
-        <div class="cert-card__icon">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
-            <path d="M30 40 C30 30, 40 25, 40 35 C40 25, 50 30, 50 40 C50 50, 40 55, 40 55 C40 55, 30 50, 30 40Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            <text x="40" y="65" text-anchor="middle" font-size="7" fill="currentColor" font-family="Inter,sans-serif">ORGANIC EU</text>
-          </svg>
-        </div>
-        <h3>Organic EU</h3>
-        <p>European Organic Certification</p>
-      </div>
-      <div class="cert-card">
-        <div class="cert-card__icon">
-          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="40" r="36" stroke="currentColor" stroke-width="2"/>
-            <text x="40" y="36" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="Inter,sans-serif">HACCP</text>
-            <text x="40" y="50" text-anchor="middle" font-size="7" fill="currentColor" font-family="Inter,sans-serif">Compliant</text>
-          </svg>
-        </div>
-        <h3>HACCP</h3>
-        <p>Hazard Analysis Critical Control Points</p>
-      </div>
+
     </div>
   </div>
 </section>
@@ -428,39 +410,131 @@
 <section class="location" id="location">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">Where We Are</span>
-      <h2 class="section-title">Our Location</h2>
-      <p class="section-desc">Based in Zhytomyr, Ukraine — at the heart of one of Europe's richest botanical regions.</p>
+      <span class="section-tag">Export Markets</span>
+      <h2 class="section-title">From Ukraine to Europe</h2>
+      <p class="section-desc">Based in Zhytomyr, Ukraine — supplying premium herbal raw materials to partners across Europe.</p>
     </div>
     <div class="location__map-wrapper">
-      <div class="location__map">
-        <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" class="location__world-map">
-          <!-- Simplified world map outline -->
-          <rect width="1200" height="600" fill="none"/>
-          <!-- Europe region highlighted -->
-          <ellipse cx="580" cy="220" rx="120" ry="80" fill="rgba(46,93,58,0.08)" stroke="rgba(46,93,58,0.15)" stroke-width="1"/>
-          <!-- Ukraine pin -->
-          <circle cx="610" cy="210" r="8" fill="#2E5D3A" class="location__pin">
-            <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="610" cy="210" r="16" fill="none" stroke="#2E5D3A" stroke-width="1" opacity="0.4">
-            <animate attributeName="r" values="12;24;12" dur="2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <!-- Continents simplified paths -->
-          <path d="M100,180 Q140,140 180,160 Q220,140 260,170 Q280,190 260,220 Q240,250 200,240 Q160,260 120,230 Q90,210 100,180Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-          <path d="M150,280 Q180,260 220,270 Q260,290 280,330 Q300,370 280,400 Q260,430 220,420 Q180,430 160,400 Q140,360 150,320Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-          <path d="M480,140 Q520,120 560,130 Q600,120 640,140 Q680,130 720,150 Q700,180 680,200 Q640,220 600,210 Q560,230 520,210 Q490,200 480,170Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-          <path d="M480,240 Q520,220 560,240 Q580,260 560,300 Q540,340 520,360 Q500,380 480,360 Q460,330 460,290Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-          <path d="M740,150 Q800,130 860,140 Q920,130 980,160 Q1020,180 1040,220 Q1060,260 1040,300 Q1000,320 960,310 Q920,330 880,300 Q840,280 800,290 Q760,270 740,240 Q720,200 740,150Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-          <path d="M920,380 Q960,360 1000,370 Q1040,380 1060,420 Q1080,460 1060,490 Q1020,510 980,500 Q940,490 920,460 Q900,430 920,380Z" fill="rgba(46,93,58,0.12)" stroke="rgba(46,93,58,0.2)" stroke-width="1"/>
-        </svg>
-        <div class="location__label">
-          <i data-lucide="map-pin"></i>
-          <div>
-            <strong>Ukraine, Zhytomyr region</strong>
-            <span>Prospekt Nezalezhnosti 106-b, 10029</span>
-          </div>
+      <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" class="location__europe-map" aria-label="Map of Europe showing export routes from Ukraine">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Sea background -->
+        <rect width="900" height="520" fill="#E4EEE8" rx="12"/>
+
+        <!-- ===== COUNTRY SHAPES ===== -->
+        <!-- Scandinavia (Norway + Sweden) -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M390,195 L370,175 L355,155 L340,120 L330,90 L335,65 L345,40 L360,22 L375,10 L395,8 L415,12 L435,8 L455,5 L475,12 L490,30 L500,55 L505,80 L500,110 L490,135 L480,155 L465,170 L450,185 L435,195 L415,200 Z"/>
+        <!-- Denmark -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M390,195 L395,205 L385,215 L375,210 L370,200 L380,195 Z M400,200 L415,198 L420,210 L405,215 L398,208 Z"/>
+        <!-- Finland -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M500,55 L520,45 L545,38 L570,30 L595,20 L615,15 L635,20 L650,35 L655,55 L645,80 L630,100 L610,118 L590,130 L570,138 L545,140 L520,138 L505,130 L500,110 Z"/>
+        <!-- Baltic States (Estonia, Latvia, Lithuania) -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M520,138 L545,140 L570,138 L580,150 L575,168 L560,180 L540,185 L520,182 L510,168 L515,152 Z"/>
+        <!-- UK mainland -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M168,165 L180,175 L195,185 L205,200 L215,220 L220,240 L215,265 L205,280 L188,292 L172,298 L158,292 L145,275 L140,255 L142,232 L148,210 L155,190 L162,175 Z"/>
+        <!-- Ireland -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M118,220 L130,215 L142,220 L148,235 L142,252 L128,260 L115,255 L108,240 Z"/>
+        <!-- France -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M175,278 L195,270 L215,265 L245,260 L268,255 L285,262 L305,270 L322,268 L338,275 L348,290 L350,308 L340,328 L325,345 L305,358 L285,365 L265,362 L245,350 L228,338 L210,325 L195,310 L180,298 Z"/>
+        <!-- Iberian Peninsula -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M178,300 L195,310 L210,325 L228,338 L245,350 L260,362 L268,380 L265,400 L255,420 L238,440 L215,455 L188,462 L162,460 L138,452 L115,438 L100,418 L90,395 L88,370 L95,348 L108,330 L125,315 L148,305 Z"/>
+        <!-- BeNeLux -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M268,255 L290,248 L308,250 L318,260 L315,272 L305,270 L285,262 Z"/>
+        <!-- Germany -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M322,268 L348,260 L375,255 L405,252 L428,255 L445,265 L452,280 L448,298 L435,312 L418,322 L400,328 L380,330 L360,325 L342,315 L330,300 L322,285 Z"/>
+        <!-- Switzerland -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M338,325 L358,320 L380,322 L390,332 L382,345 L362,348 L342,342 Z"/>
+        <!-- Austria -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M400,328 L435,322 L462,320 L478,328 L472,342 L450,348 L425,348 L405,342 Z"/>
+        <!-- Italy (boot shape) -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M338,345 L358,340 L380,335 L398,338 L415,348 L428,360 L432,378 L428,398 L420,418 L408,435 L395,448 L382,452 L370,445 L362,430 L358,412 L355,390 L352,368 L342,350 Z"/>
+        <!-- Poland -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M448,255 L478,248 L510,242 L540,238 L565,242 L575,255 L572,270 L560,280 L538,288 L515,292 L492,290 L470,282 L452,272 Z"/>
+        <!-- Czech Republic + Slovakia -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M448,275 L470,268 L492,265 L515,268 L540,270 L555,278 L555,290 L540,298 L515,302 L490,302 L465,298 L448,290 Z"/>
+        <!-- Hungary -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M462,302 L490,298 L518,298 L542,300 L555,310 L552,325 L538,335 L515,340 L490,338 L468,330 L458,318 Z"/>
+        <!-- Romania -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M538,295 L565,288 L592,282 L618,278 L642,280 L658,292 L662,308 L655,328 L640,348 L618,362 L592,370 L568,368 L548,358 L535,342 L530,322 L532,308 Z"/>
+        <!-- Balkans (Serbia, Croatia, Bulgaria, Greece area) -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M462,330 L490,340 L518,342 L540,345 L555,358 L552,375 L540,392 L520,408 L498,418 L475,422 L452,415 L435,400 L428,380 L432,362 L445,348 Z"/>
+        <!-- Greece -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M475,422 L495,418 L512,425 L520,442 L510,458 L492,462 L475,455 L465,440 Z"/>
+        <!-- Moldova -->
+        <path fill="#C5D9CC" stroke="#A8C4B0" stroke-width="0.7" d="M642,300 L655,295 L665,305 L660,320 L648,328 L638,318 L638,308 Z"/>
+        <!-- Belarus (partial) -->
+        <path fill="#D8E8DC" stroke="#A8C4B0" stroke-width="0.7" d="M568,242 L595,235 L625,230 L655,228 L678,235 L692,248 L688,265 L670,275 L645,280 L618,278 L592,270 L572,262 Z"/>
+
+        <!-- ===== UKRAINE (highlighted) ===== -->
+        <path fill="#2E5D3A" stroke="#1E3D27" stroke-width="1.5" opacity="0.92" d="
+          M572,248 L598,240 L628,234 L658,230 L684,238
+          L710,248 L738,252 L765,255 L792,258 L820,262
+          L848,270 L868,280 L880,295
+          L875,312 L860,325 L840,335 L818,340
+          L798,342 L778,345 L762,358 L748,368 L732,372
+          L715,368 L700,352 L688,338 L672,332
+          L658,348 L645,362 L630,368
+          L610,365 L590,362 L568,355 L550,342 L538,328
+          L535,312 L540,298 L552,285 L565,270 L572,258 Z
+        "/>
+        <!-- Crimea -->
+        <path fill="#2E5D3A" stroke="#1E3D27" stroke-width="1" opacity="0.85" d="M715,368 L732,372 L748,375 L755,390 L748,405 L730,412 L710,408 L698,395 L698,380 L708,370 Z"/>
+
+        <!-- ===== DOTTED EXPORT LINES from Zhytomyr (≈ 686, 285) ===== -->
+        <!-- To Germany (Berlin ≈ 415, 254) -->
+        <path d="M686,285 Q550,218 415,254" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.9"/>
+        <!-- To France (Paris ≈ 218, 308) -->
+        <path d="M686,285 Q452,220 218,308" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.9"/>
+        <!-- To UK (London ≈ 178, 272) -->
+        <path d="M686,285 Q432,195 178,272" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.9"/>
+        <!-- To Netherlands (Amsterdam ≈ 268, 252) -->
+        <path d="M686,285 Q477,202 268,252" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.9"/>
+        <!-- To Poland (Warsaw ≈ 524, 252) -->
+        <path d="M686,285 Q605,245 524,252" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.85"/>
+        <!-- To Austria (Vienna ≈ 452, 328) -->
+        <path d="M686,285 Q569,278 452,328" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.85"/>
+        <!-- To Italy (Rome ≈ 408, 408) -->
+        <path d="M686,285 Q547,318 408,408" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.85"/>
+        <!-- To Spain (Madrid ≈ 118, 418) -->
+        <path d="M686,285 Q402,268 118,418" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.8"/>
+        <!-- To Sweden (Stockholm ≈ 470,155) -->
+        <path d="M686,285 Q578,178 470,155" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.85"/>
+        <!-- To Romania (Bucharest ≈ 620,348) -->
+        <path d="M686,285 Q653,308 620,348" fill="none" stroke="#C4805A" stroke-width="2" stroke-dasharray="6,5" stroke-linecap="round" opacity="0.85"/>
+
+        <!-- ===== DESTINATION DOTS ===== -->
+        <circle cx="415" cy="254" r="5.5" fill="#C4805A"/><text x="425" y="252" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Germany</text>
+        <circle cx="218" cy="308" r="5.5" fill="#C4805A"/><text x="225" y="306" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">France</text>
+        <circle cx="178" cy="272" r="5.5" fill="#C4805A"/><text x="138" y="265" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">UK</text>
+        <circle cx="268" cy="252" r="5.5" fill="#C4805A"/><text x="275" y="248" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Netherlands</text>
+        <circle cx="524" cy="252" r="5.5" fill="#C4805A"/><text x="530" y="248" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Poland</text>
+        <circle cx="452" cy="328" r="5.5" fill="#C4805A"/><text x="458" y="324" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Austria</text>
+        <circle cx="408" cy="408" r="5.5" fill="#C4805A"/><text x="415" y="406" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Italy</text>
+        <circle cx="118" cy="418" r="5.5" fill="#C4805A"/><text x="80" y="414" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Spain</text>
+        <circle cx="470" cy="155" r="5.5" fill="#C4805A"/><text x="478" y="152" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Sweden</text>
+        <circle cx="620" cy="348" r="5.5" fill="#C4805A"/><text x="628" y="346" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="#2E5D3A">Romania</text>
+
+        <!-- ===== ZHYTOMYR ORIGIN ===== -->
+        <circle cx="686" cy="285" r="9" fill="#FAFAF7"/>
+        <circle cx="686" cy="285" r="6" fill="#2E5D3A"/>
+        <circle cx="686" cy="285" r="18" fill="none" stroke="#2E5D3A" stroke-width="1.5">
+          <animate attributeName="r" values="10;22;10" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="640" y="258" width="95" height="20" rx="4" fill="#2E5D3A" opacity="0.88"/>
+        <text x="687" y="272" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" font-weight="700" fill="white">Zhytomyr, Ukraine</text>
+      </svg>
+
+      <div class="location__address">
+        <i data-lucide="map-pin"></i>
+        <div>
+          <strong>Ukraine, Zhytomyr region</strong>
+          <span>Prospekt Nezalezhnosti 106-b, 10029</span>
         </div>
       </div>
     </div>
