@@ -478,46 +478,44 @@
           <span class="location__map-route">Ukraine — Zhytomyr</span>
         </div>
         <div class="location__world-container">
-          <svg class="location__ukraine-svg" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- Sea/land background -->
-            <rect width="200" height="120" fill="#e8f0f5"/>
-            <!-- Ukraine outline -->
-            <path d="M23,18 L57,8 L79,7 L107,5 L125,3 L135,8 L148,13 L157,27 L170,26 L183,40 L189,49 L191,60 L169,70 L154,76 L140,70 L120,70 L101,75 L93,70 L87,80 L83,82 L68,72 L55,75 L45,62 L30,55 L21,36 Z"
-                  fill="#c8dfc8" stroke="#2E5D3A" stroke-width="1.2" stroke-linejoin="round"/>
+          <img src="./assets/ukraine-map.png" alt="Ukraine map with SPORYSH distribution points" class="location__world-img">
+          <!-- viewBox 0 0 100 66.7 (соотношение 1000x667) -->
+          <svg class="location__map-overlay" viewBox="0 0 100 66.7" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <!-- Координаты: Житомир ~(37.2, 50.25) → x=(lon+180)/360*100, y=(90-lat)/180*66.7 -->
+            <!-- Житомир: lon=28.67 lat=50.25 → x=57.97 y=29.5 -->
+            <!-- Київ: lon=30.52 lat=50.45 → x=58.48 y=29.3 -->
+            <!-- Львів: lon=24.03 lat=49.84 → x=56.68 y=29.7 -->
+            <!-- Харків: lon=36.23 lat=49.99 → x=60.06 y=29.6 -->
+            <!-- Одеса: lon=30.72 lat=46.49 → x=58.53 y=32.0 -->
+            <!-- Дніпро: lon=35.04 lat=48.47 → x=59.73 y=30.7 -->
+            <!-- Вінниця: lon=28.47 lat=49.23 → x=57.91 y=30.2 -->
 
-            <!-- Lines from Zhytomyr to cities — white shadow -->
-            <line x1="78" y1="32" x2="92" y2="29" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="22" y2="38" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="154" y2="35" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="94" y2="85" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="141" y2="57" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="70" y2="46" stroke="rgba(255,255,255,0.7)" stroke-width="0.9" stroke-dasharray="2,2"/>
-            <!-- Lines — orange -->
-            <line x1="78" y1="32" x2="92" y2="29" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="22" y2="38" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="154" y2="35" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="94" y2="85" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="141" y2="57" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-            <line x1="78" y1="32" x2="70" y2="46" stroke="#E8924A" stroke-width="0.6" stroke-dasharray="2,2"/>
-
-            <!-- City dots: Kyiv -->
-            <circle cx="92" cy="29" r="3" fill="white"/><circle cx="92" cy="29" r="2" fill="#E8924A"/>
-            <!-- Lviv -->
-            <circle cx="22" cy="38" r="3" fill="white"/><circle cx="22" cy="38" r="2" fill="#E8924A"/>
-            <!-- Kharkiv -->
-            <circle cx="154" cy="35" r="3" fill="white"/><circle cx="154" cy="35" r="2" fill="#E8924A"/>
-            <!-- Odesa -->
-            <circle cx="94" cy="85" r="3" fill="white"/><circle cx="94" cy="85" r="2" fill="#E8924A"/>
-            <!-- Dnipro -->
-            <circle cx="141" cy="57" r="3" fill="white"/><circle cx="141" cy="57" r="2" fill="#E8924A"/>
-            <!-- Vinnytsia -->
-            <circle cx="70" cy="46" r="3" fill="white"/><circle cx="70" cy="46" r="2" fill="#E8924A"/>
-
-            <!-- Zhytomyr origin — pulsing green -->
-            <circle cx="78" cy="32" r="5" fill="white"/>
-            <circle cx="78" cy="32" r="3.5" fill="#2E5D3A"/>
-            <circle cx="78" cy="32" r="8" fill="none" stroke="#2E5D3A" stroke-width="1">
-              <animate attributeName="r" values="5;10;5" dur="2.5s" repeatCount="indefinite"/>
+            <!-- Линии — белая тень -->
+            <line x1="57.97" y1="29.5" x2="58.48" y2="29.3" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="56.68" y2="29.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="60.06" y2="29.6" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="58.53" y2="32.0" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="59.73" y2="30.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="57.91" y2="30.2" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
+            <!-- Линии — оранжевые -->
+            <line x1="57.97" y1="29.5" x2="58.48" y2="29.3" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="56.68" y2="29.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="60.06" y2="29.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="58.53" y2="32.0" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="59.73" y2="30.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <line x1="57.97" y1="29.5" x2="57.91" y2="30.2" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
+            <!-- Точки городов -->
+            <circle cx="58.48" cy="29.3" r="0.55" fill="white"/><circle cx="58.48" cy="29.3" r="0.35" fill="#E8924A"/>
+            <circle cx="56.68" cy="29.7" r="0.55" fill="white"/><circle cx="56.68" cy="29.7" r="0.35" fill="#E8924A"/>
+            <circle cx="60.06" cy="29.6" r="0.55" fill="white"/><circle cx="60.06" cy="29.6" r="0.35" fill="#E8924A"/>
+            <circle cx="58.53" cy="32.0" r="0.55" fill="white"/><circle cx="58.53" cy="32.0" r="0.35" fill="#E8924A"/>
+            <circle cx="59.73" cy="30.7" r="0.55" fill="white"/><circle cx="59.73" cy="30.7" r="0.35" fill="#E8924A"/>
+            <circle cx="57.91" cy="30.2" r="0.55" fill="white"/><circle cx="57.91" cy="30.2" r="0.35" fill="#E8924A"/>
+            <!-- Житомир — пульсирующая зелёная -->
+            <circle cx="57.97" cy="29.5" r="0.85" fill="white"/>
+            <circle cx="57.97" cy="29.5" r="0.55" fill="#2E5D3A"/>
+            <circle cx="57.97" cy="29.5" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
+              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>
           </svg>
