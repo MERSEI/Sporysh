@@ -440,78 +440,52 @@
   </div>
   <div class="location__map-wrapper">
       <div class="location__world-container">
-        <div class="location__map-inner" id="mapInner">
-          <img src="./assets/world-map.png" alt="World map showing SPORYSH export routes from Ukraine to Europe" class="location__world-img">
-          <!-- SVG overlay: Google Maps style round-dot routes from Zhytomyr, Ukraine -->
-          <!-- Equirectangular projection: x=(lon+180)/360*100, y=(90-lat)/180*50 -->
+        <img src="./assets/world-map.png" alt="World map showing SPORYSH export routes from Ukraine to Europe" class="location__world-img">
           <svg class="location__map-overlay" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
 
-            <!-- ===== LAYER 1: white shadow dots (underneath, for border effect) ===== -->
-            <path d="M57.97,11.03 Q55.85,9.5 53.72,10.42"  fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q54.3,9.6 50.64,11.42"   fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q53.99,9.2 50.0,10.69"   fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q54.67,9.3 51.36,10.44"  fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q56.9,9.8 55.83,10.5"    fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q56.27,10.5 54.56,11.61" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q55.72,11.5 53.47,13.36" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q53.47,10.5 48.97,13.78" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q56.5,8.2 55.03,8.53"    fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q57.33,11.5 56.69,12.67" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="0.48" stroke-dasharray="0.001,1.15" stroke-linecap="round"/>
+            <!-- Дотированные линии: белая тень + оранжевые точки -->
+            <path d="M57.97,11.03 Q55.85,9.5 53.72,10.42"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q54.3,9.6 50.64,11.42"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q53.99,9.2 50.0,10.69"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q54.67,9.3 51.36,10.44"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.9,9.8 55.83,10.5"    fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.27,10.5 54.56,11.61" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q55.72,11.5 53.47,13.36" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q53.47,10.5 48.97,13.78" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.5,8.2 55.03,8.53"    fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q57.33,11.5 56.69,12.67" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
 
-            <!-- ===== LAYER 2: colored dots (Google Maps round-dot style) ===== -->
-            <path d="M57.97,11.03 Q55.85,9.5 53.72,10.42"  fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.95"/>
-            <path d="M57.97,11.03 Q54.3,9.6 50.64,11.42"   fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.95"/>
-            <path d="M57.97,11.03 Q53.99,9.2 50.0,10.69"   fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q54.67,9.3 51.36,10.44"  fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q56.9,9.8 55.83,10.5"    fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q56.27,10.5 54.56,11.61" fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q55.72,11.5 53.47,13.36" fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q53.47,10.5 48.97,13.78" fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.85"/>
-            <path d="M57.97,11.03 Q56.5,8.2 55.03,8.53"    fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
-            <path d="M57.97,11.03 Q57.33,11.5 56.69,12.67" fill="none" stroke="#E8924A" stroke-width="0.32" stroke-dasharray="0.001,1.15" stroke-linecap="round" opacity="0.9"/>
+            <path d="M57.97,11.03 Q55.85,9.5 53.72,10.42"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q54.3,9.6 50.64,11.42"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q53.99,9.2 50.0,10.69"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q54.67,9.3 51.36,10.44"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.9,9.8 55.83,10.5"    fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.27,10.5 54.56,11.61" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q55.72,11.5 53.47,13.36" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q53.47,10.5 48.97,13.78" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q56.5,8.2 55.03,8.53"    fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q57.33,11.5 56.69,12.67" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
 
-            <!-- ===== DESTINATION DOTS (white border + colored fill) ===== -->
-            <circle cx="53.72" cy="10.42" r="0.7" fill="white"/><circle cx="53.72" cy="10.42" r="0.45" fill="#E8924A"/>
-            <circle cx="50.64" cy="11.42" r="0.7" fill="white"/><circle cx="50.64" cy="11.42" r="0.45" fill="#E8924A"/>
-            <circle cx="50.0"  cy="10.69" r="0.7" fill="white"/><circle cx="50.0"  cy="10.69" r="0.45" fill="#E8924A"/>
-            <circle cx="51.36" cy="10.44" r="0.7" fill="white"/><circle cx="51.36" cy="10.44" r="0.45" fill="#E8924A"/>
-            <circle cx="55.83" cy="10.5"  r="0.7" fill="white"/><circle cx="55.83" cy="10.5"  r="0.45" fill="#E8924A"/>
-            <circle cx="54.56" cy="11.61" r="0.7" fill="white"/><circle cx="54.56" cy="11.61" r="0.45" fill="#E8924A"/>
-            <circle cx="53.47" cy="13.36" r="0.7" fill="white"/><circle cx="53.47" cy="13.36" r="0.45" fill="#E8924A"/>
-            <circle cx="48.97" cy="13.78" r="0.7" fill="white"/><circle cx="48.97" cy="13.78" r="0.45" fill="#E8924A"/>
-            <circle cx="55.03" cy="8.53"  r="0.7" fill="white"/><circle cx="55.03" cy="8.53"  r="0.45" fill="#E8924A"/>
-            <circle cx="56.69" cy="12.67" r="0.7" fill="white"/><circle cx="56.69" cy="12.67" r="0.45" fill="#E8924A"/>
+            <!-- Точки назначения -->
+            <circle cx="53.72" cy="10.42" r="0.55" fill="white"/><circle cx="53.72" cy="10.42" r="0.35" fill="#E8924A"/>
+            <circle cx="50.64" cy="11.42" r="0.55" fill="white"/><circle cx="50.64" cy="11.42" r="0.35" fill="#E8924A"/>
+            <circle cx="50.0"  cy="10.69" r="0.55" fill="white"/><circle cx="50.0"  cy="10.69" r="0.35" fill="#E8924A"/>
+            <circle cx="51.36" cy="10.44" r="0.55" fill="white"/><circle cx="51.36" cy="10.44" r="0.35" fill="#E8924A"/>
+            <circle cx="55.83" cy="10.5"  r="0.55" fill="white"/><circle cx="55.83" cy="10.5"  r="0.35" fill="#E8924A"/>
+            <circle cx="54.56" cy="11.61" r="0.55" fill="white"/><circle cx="54.56" cy="11.61" r="0.35" fill="#E8924A"/>
+            <circle cx="53.47" cy="13.36" r="0.55" fill="white"/><circle cx="53.47" cy="13.36" r="0.35" fill="#E8924A"/>
+            <circle cx="48.97" cy="13.78" r="0.55" fill="white"/><circle cx="48.97" cy="13.78" r="0.35" fill="#E8924A"/>
+            <circle cx="55.03" cy="8.53"  r="0.55" fill="white"/><circle cx="55.03" cy="8.53"  r="0.35" fill="#E8924A"/>
+            <circle cx="56.69" cy="12.67" r="0.55" fill="white"/><circle cx="56.69" cy="12.67" r="0.35" fill="#E8924A"/>
 
-            <!-- City labels (small text shadow + white text) -->
-            <text x="54.4"  y="9.7"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="#111" stroke="#111" stroke-width="0.3" paint-order="stroke">Germany</text>
-            <text x="50.2"  y="11.95" font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">France</text>
-            <text x="48.0"  y="10.3"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">UK</text>
-            <text x="49.7"  y="9.75"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">NL</text>
-            <text x="55.5"  y="9.75"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Poland</text>
-            <text x="52.8"  y="12.2"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Austria</text>
-            <text x="53.7"  y="14.1"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Italy</text>
-            <text x="47.2"  y="14.4"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Spain</text>
-            <text x="53.6"  y="7.9"   font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Sweden</text>
-            <text x="56.9"  y="13.3"  font-family="Inter,sans-serif" font-size="1.05" font-weight="700" fill="white" stroke="#111" stroke-width="0.25" paint-order="stroke">Romania</text>
-
-            <!-- ===== ZHYTOMYR ORIGIN MARKER ===== -->
-            <circle cx="57.97" cy="11.03" r="1.1" fill="white" opacity="0.9"/>
-            <circle cx="57.97" cy="11.03" r="0.7" fill="#2E5D3A"/>
-            <circle cx="57.97" cy="11.03" r="2.2" fill="none" stroke="#2E5D3A" stroke-width="0.2">
-              <animate attributeName="r" values="1.2;2.8;1.2" dur="2.5s" repeatCount="indefinite"/>
+            <!-- Точка происхождения — Житомир -->
+            <circle cx="57.97" cy="11.03" r="0.85" fill="white"/>
+            <circle cx="57.97" cy="11.03" r="0.55" fill="#2E5D3A"/>
+            <circle cx="57.97" cy="11.03" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
+              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>
-            <rect x="55.2" y="9.3" width="10.2" height="2.2" rx="0.5" fill="#2E5D3A" opacity="0.92"/>
-            <text x="60.3" y="10.75" text-anchor="middle" font-family="Inter,sans-serif" font-size="1.1" font-weight="700" fill="white">Zhytomyr, Ukraine</text>
           </svg>
-        </div>
-
-        <!-- Map controls (zoom in/out/reset) -->
-        <div class="location__map-controls">
-          <button class="map-ctrl map-ctrl--zoom-in" aria-label="Zoom in">+</button>
-          <button class="map-ctrl map-ctrl--zoom-out" aria-label="Zoom out">−</button>
-          <button class="map-ctrl map-ctrl--reset" aria-label="Reset zoom" title="Reset">⌖</button>
-        </div>
       </div>
 
     <div class="container">
