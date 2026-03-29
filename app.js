@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Scroll reveal (без hero__scroll) ---
-  const revealElements = document.querySelectorAll('.section-header, .category-card, .product-card, .cert-card, .about__image, .about__content, .contact-block, .faq__item, .location__map, .manager-card');
+  const revealElements = document.querySelectorAll('.section-header, .category-card, .product-card, .cert-card, .about__image, .about__content, .contact-block, .faq__item, .location__map, .location__map-panel, .export-story__media, .export-story__info, .export-story__maps-header, .manager-card');
 
   revealElements.forEach(el => el.classList.add('reveal'));
 
