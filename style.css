@@ -1439,6 +1439,35 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 }
 
 /* ============================================
+   UKRAINIAN CYRILLIC TYPOGRAPHY
+   ============================================ */
+[lang="ua"] body,
+[lang="ua"] p,
+[lang="ua"] span,
+[lang="ua"] a,
+[lang="ua"] button,
+[lang="ua"] input,
+[lang="ua"] .nav-link,
+[lang="ua"] .mobile-nav__link,
+[lang="ua"] .btn,
+[lang="ua"] .section-tag,
+[lang="ua"] .section-desc,
+[lang="ua"] .hero__subtitle,
+[lang="ua"] .header__contact-item span {
+  font-family: 'Raleway', 'Helvetica Neue', sans-serif;
+}
+
+[lang="ua"] h1,
+[lang="ua"] h2,
+[lang="ua"] h3,
+[lang="ua"] h4,
+[lang="ua"] .hero__title,
+[lang="ua"] .hero__title-line,
+[lang="ua"] .section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ============================================
    SCROLL REVEAL
    ============================================ */
 .reveal {
