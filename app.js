@@ -366,3 +366,24 @@ function acceptCookies() {
 function rejectCookies() {
   document.getElementById('cookieBanner').classList.remove('show');
 }
+
+// --- Contact form ---
+function handleContactForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('.contact-form__submit');
+  const success = document.getElementById('contactSuccess');
+
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+
+  // Simulate send (replace with real endpoint if needed)
+  setTimeout(() => {
+    form.reset();
+    btn.disabled = false;
+    btn.style.opacity = '';
+    success.style.display = 'flex';
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    setTimeout(() => { success.style.display = 'none'; }, 5000);
+  }, 800);
+}
