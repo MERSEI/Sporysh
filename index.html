@@ -31,7 +31,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&subset=latin,cyrillic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&subset=latin,cyrillic&display=swap" rel="stylesheet">
 
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js" defer></script>
@@ -39,6 +39,9 @@
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
+<div id="page-progress"></div>
+<div id="cursor"></div>
 
 <!-- ==================== HEADER ==================== -->
 <header class="header" id="header">
@@ -397,19 +400,14 @@
   </div>
 </section>
 
-<!-- ==================== ABOUT ==================== -->
-<section class="about" id="about">
+<!-- ==================== ABOUT + EXPORT ==================== -->
+<section class="export-story" id="about">
   <div class="container">
-    <div class="about__layout">
-      <div class="about__image">
+
+    <!-- Top: Company info + Export countries -->
+    <div class="export-story__top">
+      <div class="export-story__media reveal">
         <img src="./assets/about-hero.webp" alt="SPORYSH team at work" loading="lazy" width="600" height="400">
-      </div>
-      <div class="about__content">
-        <span class="section-tag">About SPORYSH</span>
-        <h2 class="section-title">At a Glance</h2>
-        <p>SPORYSH LLC is a Ukrainian supplier of premium herbal raw materials, specializing in dried herbs, leaves, flowers, roots, berries, and plant-based products for the European B2B market.</p>
-        <p>From precision agriculture and climate-smart practices to market access and quality assurance, our work spans the entire agricultural value chain. We partner with farms, agribusinesses, and distributors to deliver measurable, lasting quality in natural products.</p>
-        <p>With a passion for sustainable farming communities, we work across regions to implement practical solutions that improve productivity, enhance resilience, and promote environmental stewardship.</p>
         <div class="about__stats">
           <div class="stat">
             <span class="stat__number" data-target="30">0</span><span class="stat__suffix">K+</span>
@@ -425,149 +423,224 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ==================== LOCATION ==================== -->
-<section class="location" id="location">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Global Routes</span>
-      <h2 class="section-title">Import & Export</h2>
-      <p class="section-desc">Importing raw materials from the USA, exporting premium herbal products to partners across Europe — from Zhytomyr, Ukraine.</p>
+      <div class="export-story__info reveal">
+        <span class="section-tag">About &amp; Export</span>
+        <h2 class="section-title">From Ukraine to the World</h2>
+        <p>SPORYSH LLC is a Ukrainian supplier of premium herbal raw materials — dried herbs, leaves, flowers, roots and berries — collected across Ukraine's cleanest regions and exported to B2B partners worldwide.</p>
+        <p>We source from 11 collection regions across western and central Ukraine, process to European quality standards, and deliver to partners in Europe, Asia and North America.</p>
+
+        <div class="export-destinations">
+          <div class="export-destinations__group">
+            <h4 class="export-destinations__label">
+              <span class="export-destinations__icon">🌍</span> Europe
+            </h4>
+            <div class="export-tags">
+              <span>Poland</span><span>Germany</span><span>France</span>
+              <span>Czech Rep.</span><span>Austria</span><span>Hungary</span>
+              <span>Switzerland</span><span>Italy</span><span>Spain</span>
+              <span>Portugal</span><span>UK</span><span>Lithuania</span>
+              <span>Croatia</span><span>Slovenia</span><span>Serbia</span>
+              <span>Bulgaria</span><span>Albania</span><span>Macedonia</span>
+            </div>
+          </div>
+          <div class="export-destinations__group">
+            <h4 class="export-destinations__label">
+              <span class="export-destinations__icon">🌏</span> Asia &amp; Americas
+            </h4>
+            <div class="export-tags export-tags--asia">
+              <span>China</span><span>India</span><span>USA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maps -->
+    <div class="export-story__maps-header reveal">
+      <h3 class="export-story__maps-title">Our Geographic Network</h3>
     </div>
 
     <div class="location__maps-grid">
 
-      <!-- MAP 1: World — Import USA → Ukraine -->
-      <div class="location__map-panel">
+      <!-- MAP 1: Ukraine — Collection Regions -->
+      <div class="location__map-panel reveal">
         <div class="location__map-header">
-          <span class="location__map-tag location__map-tag--import">↓ Import</span>
-          <span class="location__map-route">USA → Ukraine</span>
+          <span class="location__map-tag location__map-tag--ukraine">⊙ Collection</span>
+          <span class="location__map-route">Ukraine — Source Regions</span>
         </div>
         <div class="location__world-container">
-          <img src="./assets/world-map.png" alt="World map: import route from USA to Ukraine" class="location__world-img">
-          <svg class="location__map-overlay" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-            <!-- USA → Ukraine arc (white shadow) -->
-            <path d="M28.1,14.2 Q38,3.5 57.97,11.03" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <!-- USA → Ukraine arc (orange) -->
-            <path d="M28.1,14.2 Q38,3.5 57.97,11.03" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <!-- USA origin dot — pulsing orange -->
-            <circle cx="28.1" cy="14.2" r="0.85" fill="white"/>
-            <circle cx="28.1" cy="14.2" r="0.55" fill="#E8924A"/>
-            <circle cx="28.1" cy="14.2" r="1.8" fill="none" stroke="#E8924A" stroke-width="0.18">
+          <img src="./assets/ukraine-map.png" alt="Ukraine map with SPORYSH collection regions" class="location__world-img">
+          <!-- viewBox matches 1000x667 image ratio -->
+          <svg class="location__map-overlay" viewBox="0 0 100 66.7" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <!-- x=(lon-22)/18*100, y=(52.4-lat)/8.1*66.7 -->
+            <!-- Lines from Zhytomyr (37.1,17.7) — white shadow -->
+            <line x1="37.1" y1="17.7" x2="25.7" y2="8.8"  stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="18.4" y2="13.6" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="11.2" y2="21.1" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="4.0"  y2="32.6" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="16.8" y2="32.0" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="21.0" y2="22.5" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="20.7" y2="34.8" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="27.7" y2="24.5" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="41.1" y2="29.4" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="54.8" y2="26.2" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="57.1" y2="32.0" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
+            <!-- Lines — orange -->
+            <line x1="37.1" y1="17.7" x2="25.7" y2="8.8"  stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="18.4" y2="13.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="11.2" y2="21.1" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="4.0"  y2="32.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="16.8" y2="32.0" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="21.0" y2="22.5" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="20.7" y2="34.8" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="27.7" y2="24.5" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="41.1" y2="29.4" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="54.8" y2="26.2" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <line x1="37.1" y1="17.7" x2="57.1" y2="32.0" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
+            <!-- Collection region dots -->
+            <circle cx="25.7" cy="8.8"  r="0.65" fill="white"/><circle cx="25.7" cy="8.8"  r="0.42" fill="#E8924A"/>
+            <circle cx="18.4" cy="13.6" r="0.65" fill="white"/><circle cx="18.4" cy="13.6" r="0.42" fill="#E8924A"/>
+            <circle cx="11.2" cy="21.1" r="0.65" fill="white"/><circle cx="11.2" cy="21.1" r="0.42" fill="#E8924A"/>
+            <circle cx="4.0"  cy="32.6" r="0.65" fill="white"/><circle cx="4.0"  cy="32.6" r="0.42" fill="#E8924A"/>
+            <circle cx="16.8" cy="32.0" r="0.65" fill="white"/><circle cx="16.8" cy="32.0" r="0.42" fill="#E8924A"/>
+            <circle cx="21.0" cy="22.5" r="0.65" fill="white"/><circle cx="21.0" cy="22.5" r="0.42" fill="#E8924A"/>
+            <circle cx="20.7" cy="34.8" r="0.65" fill="white"/><circle cx="20.7" cy="34.8" r="0.42" fill="#E8924A"/>
+            <circle cx="27.7" cy="24.5" r="0.65" fill="white"/><circle cx="27.7" cy="24.5" r="0.42" fill="#E8924A"/>
+            <circle cx="41.1" cy="29.4" r="0.65" fill="white"/><circle cx="41.1" cy="29.4" r="0.42" fill="#E8924A"/>
+            <circle cx="54.8" cy="26.2" r="0.65" fill="white"/><circle cx="54.8" cy="26.2" r="0.42" fill="#E8924A"/>
+            <circle cx="57.1" cy="32.0" r="0.65" fill="white"/><circle cx="57.1" cy="32.0" r="0.42" fill="#E8924A"/>
+            <!-- Zhytomyr — pulsing green -->
+            <circle cx="37.1" cy="17.7" r="0.9" fill="white"/>
+            <circle cx="37.1" cy="17.7" r="0.58" fill="#2E5D3A"/>
+            <circle cx="37.1" cy="17.7" r="2" fill="none" stroke="#2E5D3A" stroke-width="0.2">
+              <animate attributeName="r" values="1.0;2.4;1.0" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+      <!-- MAP 2: Europe — Export destinations -->
+      <div class="location__map-panel reveal">
+        <div class="location__map-header">
+          <span class="location__map-tag location__map-tag--export">↑ Export</span>
+          <span class="location__map-route">Ukraine → Europe (18 countries)</span>
+        </div>
+        <div class="location__world-container">
+          <img src="./assets/europe-map.png" alt="Europe map: SPORYSH export destinations" class="location__world-img">
+          <!-- viewBox matches 1000x841 image. Extent: lon -15..55 (70°), lat 30..72 (42°) -->
+          <!-- x=(lon+15)/70*100, y=(72-lat)/42*84.1 -->
+          <svg class="location__map-overlay" viewBox="0 0 100 84.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <!-- Zhytomyr origin: lon=28.68 lat=50.25 → x=62.4, y=43.7 -->
+            <!-- Lines — white shadow -->
+            <line x1="62.4" y1="43.7" x2="51.4" y2="39.6" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="57.5" y2="34.6" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="42.0" y2="44.1" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="40.6" y2="38.9" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="24.8" y2="46.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="21.3" y2="40.7" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="16.1" y2="63.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="44.3" y2="52.8" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="38.5" y2="60.7" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="54.7" y2="58.8" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="44.8" y2="48.1" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="49.7" y2="61.8" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="8.4"  y2="66.7" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="32.1" y2="50.6" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="50.7" y2="54.3" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="52.0" y2="60.2" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="48.6" y2="51.5" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="42.2" y2="52.8" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <!-- Lines — orange -->
+            <line x1="62.4" y1="43.7" x2="51.4" y2="39.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="57.5" y2="34.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="42.0" y2="44.1" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="40.6" y2="38.9" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="24.8" y2="46.5" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="21.3" y2="40.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="16.1" y2="63.5" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="44.3" y2="52.8" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="38.5" y2="60.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="54.7" y2="58.8" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="44.8" y2="48.1" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="49.7" y2="61.8" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="8.4"  y2="66.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="32.1" y2="50.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="50.7" y2="54.3" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="52.0" y2="60.2" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="48.6" y2="51.5" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <line x1="62.4" y1="43.7" x2="42.2" y2="52.8" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.2" stroke-linecap="round"/>
+            <!-- Destination dots -->
+            <circle cx="51.4" cy="39.6" r="0.55" fill="white"/><circle cx="51.4" cy="39.6" r="0.35" fill="#E8924A"/>
+            <circle cx="57.5" cy="34.6" r="0.55" fill="white"/><circle cx="57.5" cy="34.6" r="0.35" fill="#E8924A"/>
+            <circle cx="42.0" cy="44.1" r="0.55" fill="white"/><circle cx="42.0" cy="44.1" r="0.35" fill="#E8924A"/>
+            <circle cx="40.6" cy="38.9" r="0.55" fill="white"/><circle cx="40.6" cy="38.9" r="0.35" fill="#E8924A"/>
+            <circle cx="24.8" cy="46.5" r="0.55" fill="white"/><circle cx="24.8" cy="46.5" r="0.35" fill="#E8924A"/>
+            <circle cx="21.3" cy="40.7" r="0.55" fill="white"/><circle cx="21.3" cy="40.7" r="0.35" fill="#E8924A"/>
+            <circle cx="16.1" cy="63.5" r="0.55" fill="white"/><circle cx="16.1" cy="63.5" r="0.35" fill="#E8924A"/>
+            <circle cx="44.3" cy="52.8" r="0.55" fill="white"/><circle cx="44.3" cy="52.8" r="0.35" fill="#E8924A"/>
+            <circle cx="38.5" cy="60.7" r="0.55" fill="white"/><circle cx="38.5" cy="60.7" r="0.35" fill="#E8924A"/>
+            <circle cx="54.7" cy="58.8" r="0.55" fill="white"/><circle cx="54.7" cy="58.8" r="0.35" fill="#E8924A"/>
+            <circle cx="44.8" cy="48.1" r="0.55" fill="white"/><circle cx="44.8" cy="48.1" r="0.35" fill="#E8924A"/>
+            <circle cx="49.7" cy="61.8" r="0.55" fill="white"/><circle cx="49.7" cy="61.8" r="0.35" fill="#E8924A"/>
+            <circle cx="8.4"  cy="66.7" r="0.55" fill="white"/><circle cx="8.4"  cy="66.7" r="0.35" fill="#E8924A"/>
+            <circle cx="32.1" cy="50.6" r="0.55" fill="white"/><circle cx="32.1" cy="50.6" r="0.35" fill="#E8924A"/>
+            <circle cx="50.7" cy="54.3" r="0.55" fill="white"/><circle cx="50.7" cy="54.3" r="0.35" fill="#E8924A"/>
+            <circle cx="52.0" cy="60.2" r="0.55" fill="white"/><circle cx="52.0" cy="60.2" r="0.35" fill="#E8924A"/>
+            <circle cx="48.6" cy="51.5" r="0.55" fill="white"/><circle cx="48.6" cy="51.5" r="0.35" fill="#E8924A"/>
+            <circle cx="42.2" cy="52.8" r="0.55" fill="white"/><circle cx="42.2" cy="52.8" r="0.35" fill="#E8924A"/>
+            <!-- Zhytomyr origin — pulsing green -->
+            <circle cx="62.4" cy="43.7" r="0.85" fill="white"/>
+            <circle cx="62.4" cy="43.7" r="0.55" fill="#2E5D3A"/>
+            <circle cx="62.4" cy="43.7" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
               <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>
-            <!-- Ukraine/Zhytomyr destination dot — pulsing green -->
+          </svg>
+        </div>
+      </div>
+
+      <!-- MAP 3: World — Global routes (USA import + China/India export) -->
+      <div class="location__map-panel reveal">
+        <div class="location__map-header">
+          <span class="location__map-tag location__map-tag--import">⇄ Global</span>
+          <span class="location__map-route">USA · China · India</span>
+        </div>
+        <div class="location__world-container">
+          <img src="./assets/world-map.png" alt="World map: SPORYSH global import and export routes" class="location__world-img">
+          <!-- viewBox 0 0 100 50, x=(lon+180)/360*100, y=(90-lat)/180*50 -->
+          <svg class="location__map-overlay" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <!-- Zhytomyr: lon=28.68 lat=50.25 → x=57.97, y=11.03 -->
+            <!-- USA (Kansas City): lon=-94.6 lat=39.1 → x=23.7, y=14.1 — import -->
+            <!-- China (Shanghai): lon=121.47 lat=31.23 → x=83.7, y=16.3 — export -->
+            <!-- India (Mumbai): lon=72.83 lat=18.96 → x=70.2, y=19.7 — export -->
+
+            <!-- USA → Ukraine (import) — white shadow -->
+            <path d="M23.7,14.1 Q37,2 57.97,11.03" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <!-- Ukraine → China (export) -->
+            <path d="M57.97,11.03 Q72,6 83.7,16.3" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <!-- Ukraine → India (export) -->
+            <path d="M57.97,11.03 Q66,15 70.2,19.7" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <!-- Orange lines -->
+            <path d="M23.7,14.1 Q37,2 57.97,11.03" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q72,6 83.7,16.3" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M57.97,11.03 Q66,15 70.2,19.7" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <!-- USA dot — pulsing orange (import) -->
+            <circle cx="23.7" cy="14.1" r="0.85" fill="white"/>
+            <circle cx="23.7" cy="14.1" r="0.55" fill="#E8924A"/>
+            <circle cx="23.7" cy="14.1" r="1.8" fill="none" stroke="#E8924A" stroke-width="0.18">
+              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <!-- China dest -->
+            <circle cx="83.7" cy="16.3" r="0.55" fill="white"/><circle cx="83.7" cy="16.3" r="0.35" fill="#E8924A"/>
+            <!-- India dest -->
+            <circle cx="70.2" cy="19.7" r="0.55" fill="white"/><circle cx="70.2" cy="19.7" r="0.35" fill="#E8924A"/>
+            <!-- Zhytomyr — pulsing green origin/hub -->
             <circle cx="57.97" cy="11.03" r="0.85" fill="white"/>
             <circle cx="57.97" cy="11.03" r="0.55" fill="#2E5D3A"/>
             <circle cx="57.97" cy="11.03" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
-              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-      </div>
-
-      <!-- MAP 2: Ukraine — Domestic distribution / cities -->
-      <div class="location__map-panel">
-        <div class="location__map-header">
-          <span class="location__map-tag location__map-tag--ukraine">⊙ Origin</span>
-          <span class="location__map-route">Ukraine — Zhytomyr</span>
-        </div>
-        <div class="location__world-container">
-          <img src="./assets/ukraine-map.png" alt="Ukraine map with SPORYSH distribution points" class="location__world-img">
-          <!-- viewBox 0 0 100 66.7 (соотношение 1000x667) -->
-          <svg class="location__map-overlay" viewBox="0 0 100 66.7" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-            <!-- Координаты: Житомир ~(37.2, 50.25) → x=(lon+180)/360*100, y=(90-lat)/180*66.7 -->
-            <!-- Житомир: lon=28.67 lat=50.25 → x=57.97 y=29.5 -->
-            <!-- Київ: lon=30.52 lat=50.45 → x=58.48 y=29.3 -->
-            <!-- Львів: lon=24.03 lat=49.84 → x=56.68 y=29.7 -->
-            <!-- Харків: lon=36.23 lat=49.99 → x=60.06 y=29.6 -->
-            <!-- Одеса: lon=30.72 lat=46.49 → x=58.53 y=32.0 -->
-            <!-- Дніпро: lon=35.04 lat=48.47 → x=59.73 y=30.7 -->
-            <!-- Вінниця: lon=28.47 lat=49.23 → x=57.91 y=30.2 -->
-
-            <!-- Линии — белая тень -->
-            <line x1="57.97" y1="29.5" x2="58.48" y2="29.3" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="56.68" y2="29.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="60.06" y2="29.6" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="58.53" y2="32.0" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="59.73" y2="30.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="57.91" y2="30.2" stroke="rgba(255,255,255,0.7)" stroke-width="0.42" stroke-dasharray="0.8,0.8"/>
-            <!-- Линии — оранжевые -->
-            <line x1="57.97" y1="29.5" x2="58.48" y2="29.3" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="56.68" y2="29.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="60.06" y2="29.6" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="58.53" y2="32.0" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="59.73" y2="30.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <line x1="57.97" y1="29.5" x2="57.91" y2="30.2" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.8,0.8"/>
-            <!-- Точки городов -->
-            <circle cx="58.48" cy="29.3" r="0.55" fill="white"/><circle cx="58.48" cy="29.3" r="0.35" fill="#E8924A"/>
-            <circle cx="56.68" cy="29.7" r="0.55" fill="white"/><circle cx="56.68" cy="29.7" r="0.35" fill="#E8924A"/>
-            <circle cx="60.06" cy="29.6" r="0.55" fill="white"/><circle cx="60.06" cy="29.6" r="0.35" fill="#E8924A"/>
-            <circle cx="58.53" cy="32.0" r="0.55" fill="white"/><circle cx="58.53" cy="32.0" r="0.35" fill="#E8924A"/>
-            <circle cx="59.73" cy="30.7" r="0.55" fill="white"/><circle cx="59.73" cy="30.7" r="0.35" fill="#E8924A"/>
-            <circle cx="57.91" cy="30.2" r="0.55" fill="white"/><circle cx="57.91" cy="30.2" r="0.35" fill="#E8924A"/>
-            <!-- Житомир — пульсирующая зелёная -->
-            <circle cx="57.97" cy="29.5" r="0.85" fill="white"/>
-            <circle cx="57.97" cy="29.5" r="0.55" fill="#2E5D3A"/>
-            <circle cx="57.97" cy="29.5" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
-              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-        </div>
-      </div>
-
-      <!-- MAP 3: Europe — Export Ukraine → Europe -->
-      <div class="location__map-panel">
-        <div class="location__map-header">
-          <span class="location__map-tag location__map-tag--export">↑ Export</span>
-          <span class="location__map-route">Ukraine → Europe</span>
-        </div>
-        <div class="location__world-container">
-          <img src="./assets/europe-map.png" alt="Europe map: export routes from Ukraine to European partners" class="location__world-img">
-          <svg class="location__map-overlay" viewBox="0 0 100 86" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-            <!-- Routes: Zhytomyr (59,41) → European cities — white shadow -->
-            <path d="M59,41 Q55.5,37 52,33"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q51,35 43,31"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q48,29 37,28"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q45.5,35 32,36"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q41,40 23,51"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q52,46 45,47"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q54,38.5 49,37"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q52.5,37.5 46,34" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q55.5,40 52,40"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q58.5,43.5 58,46" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <!-- Routes — orange dots -->
-            <path d="M59,41 Q55.5,37 52,33"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q51,35 43,31"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q48,29 37,28"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q45.5,35 32,36"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q41,40 23,51"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q52,46 45,47"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q54,38.5 49,37"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q52.5,37.5 46,34" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q55.5,40 52,40"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <path d="M59,41 Q58.5,43.5 58,46" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
-            <!-- Destination dots -->
-            <circle cx="52" cy="33" r="0.55" fill="white"/><circle cx="52" cy="33" r="0.35" fill="#E8924A"/>
-            <circle cx="43" cy="31" r="0.55" fill="white"/><circle cx="43" cy="31" r="0.35" fill="#E8924A"/>
-            <circle cx="37" cy="28" r="0.55" fill="white"/><circle cx="37" cy="28" r="0.35" fill="#E8924A"/>
-            <circle cx="32" cy="36" r="0.55" fill="white"/><circle cx="32" cy="36" r="0.35" fill="#E8924A"/>
-            <circle cx="23" cy="51" r="0.55" fill="white"/><circle cx="23" cy="51" r="0.35" fill="#E8924A"/>
-            <circle cx="45" cy="47" r="0.55" fill="white"/><circle cx="45" cy="47" r="0.35" fill="#E8924A"/>
-            <circle cx="49" cy="37" r="0.55" fill="white"/><circle cx="49" cy="37" r="0.35" fill="#E8924A"/>
-            <circle cx="46" cy="34" r="0.55" fill="white"/><circle cx="46" cy="34" r="0.35" fill="#E8924A"/>
-            <circle cx="52" cy="40" r="0.55" fill="white"/><circle cx="52" cy="40" r="0.35" fill="#E8924A"/>
-            <circle cx="58" cy="46" r="0.55" fill="white"/><circle cx="58" cy="46" r="0.35" fill="#E8924A"/>
-            <!-- Zhytomyr origin — pulsing green -->
-            <circle cx="59" cy="41" r="0.85" fill="white"/>
-            <circle cx="59" cy="41" r="0.55" fill="#2E5D3A"/>
-            <circle cx="59" cy="41" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
               <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>

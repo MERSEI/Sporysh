@@ -119,6 +119,31 @@ class LanguageManager {
 const langManager = new LanguageManager();
 
 
+// --- Page progress bar ---
+const progressBar = document.getElementById('page-progress');
+if (progressBar) {
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }, { passive: true });
+}
+
+// --- Custom cursor ---
+const cursor = document.getElementById('cursor');
+if (cursor && window.matchMedia('(pointer: fine)').matches) {
+  let cx = -100, cy = -100;
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+  });
+  document.querySelectorAll('a, button, .filter-btn, .product-card, .category-card, .cert-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide icons
   if (typeof lucide !== 'undefined') {
