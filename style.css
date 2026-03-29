@@ -1085,7 +1085,11 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 }
 
 .location__map-wrapper {
-  position: relative;
+  width: 100%;
+}
+
+.location__map-wrapper .container {
+  padding-top: 20px;
 }
 
 .location__map {
