@@ -299,6 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(update);
   }
 
+  // --- Map zoom/pan (Google Maps style) ---
+  initMapZoom();
+
   // --- Mobile tap-to-flip product cards ---
   if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.querySelectorAll('.product-card').forEach(card => {
@@ -325,6 +328,132 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// --- Map zoom/pan ---
+function initMapZoom() {
+  const container = document.querySelector('.location__world-container');
+  const inner = document.getElementById('mapInner');
+  if (!container || !inner) return;
+
+  const MIN_SCALE = 1;
+  const MAX_SCALE = 6;
+  let scale = 1;
+  let tx = 0; // translation x
+  let ty = 0; // translation y
+  let isDragging = false;
+  let dragStartX, dragStartY, dragTx, dragTy;
+
+  function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
+  function clampTranslation() {
+    const w = container.clientWidth;
+    const h = container.clientHeight;
+    tx = clamp(tx, w - w * scale, 0);
+    ty = clamp(ty, h - h * scale, 0);
+  }
+
+  function applyTransform(animated) {
+    inner.style.transition = animated ? 'transform 0.22s ease' : 'none';
+    inner.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
+  }
+
+  function zoomAt(cx, cy, factor) {
+    const newScale = clamp(scale * factor, MIN_SCALE, MAX_SCALE);
+    const ratio = newScale / scale;
+    tx = cx - ratio * (cx - tx);
+    ty = cy - ratio * (cy - ty);
+    scale = newScale;
+    if (scale <= MIN_SCALE) { tx = 0; ty = 0; }
+    clampTranslation();
+    applyTransform(false);
+  }
+
+  // --- Wheel zoom (zoom towards cursor) ---
+  container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const rect = container.getBoundingClientRect();
+    zoomAt(e.clientX - rect.left, e.clientY - rect.top, e.deltaY < 0 ? 1.18 : 0.847);
+  }, { passive: false });
+
+  // --- Mouse drag ---
+  container.addEventListener('mousedown', (e) => {
+    if (scale <= MIN_SCALE) return;
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+    dragTx = tx;
+    dragTy = ty;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    tx = dragTx + (e.clientX - dragStartX);
+    ty = dragTy + (e.clientY - dragStartY);
+    clampTranslation();
+    applyTransform(false);
+  });
+
+  window.addEventListener('mouseup', () => { isDragging = false; });
+
+  // --- Touch: single finger pan + pinch zoom ---
+  let lastTouchDist = 0;
+  let lastMidX = 0, lastMidY = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      const t1 = e.touches[0], t2 = e.touches[1];
+      lastTouchDist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+      lastMidX = (t1.clientX + t2.clientX) / 2;
+      lastMidY = (t1.clientY + t2.clientY) / 2;
+    } else if (e.touches.length === 1 && scale > MIN_SCALE) {
+      isDragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      dragTx = tx; dragTy = ty;
+    }
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      const t1 = e.touches[0], t2 = e.touches[1];
+      const dist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+      const rect = container.getBoundingClientRect();
+      const midX = (t1.clientX + t2.clientX) / 2 - rect.left;
+      const midY = (t1.clientY + t2.clientY) / 2 - rect.top;
+      zoomAt(midX, midY, dist / lastTouchDist);
+      lastTouchDist = dist;
+    } else if (e.touches.length === 1 && isDragging) {
+      tx = dragTx + (e.touches[0].clientX - dragStartX);
+      ty = dragTy + (e.touches[0].clientY - dragStartY);
+      clampTranslation();
+      applyTransform(false);
+    }
+  }, { passive: false });
+
+  container.addEventListener('touchend', () => { isDragging = false; });
+
+  // --- Buttons ---
+  container.querySelector('.map-ctrl--zoom-in').addEventListener('click', () => {
+    const cx = container.clientWidth / 2;
+    const cy = container.clientHeight / 2;
+    zoomAt(cx, cy, 1.6);
+    applyTransform(true);
+  });
+
+  container.querySelector('.map-ctrl--zoom-out').addEventListener('click', () => {
+    const cx = container.clientWidth / 2;
+    const cy = container.clientHeight / 2;
+    zoomAt(cx, cy, 0.625);
+    applyTransform(true);
+  });
+
+  container.querySelector('.map-ctrl--reset').addEventListener('click', () => {
+    scale = 1; tx = 0; ty = 0;
+    applyTransform(true);
+  });
+}
 
 // --- Global filter function ---
 function filterProducts(category) {
