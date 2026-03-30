@@ -46,17 +46,12 @@
 <!-- ==================== HEADER ==================== -->
 <header class="header" id="header">
   <div class="header__inner">
-    <!-- LEFT: Logo + Language Switch -->
+    <!-- LEFT: Logo -->
     <div class="header__left">
       <a href="#home" class="header__logo" aria-label="SPORYSH Home">
         <img src="./assets/logo.svg" alt="SPORYSH" class="header__logo-img">
         <span class="header__logo-text">SPORYSH</span>
       </a>
-      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
-        <span class="lang-switch__active">EN</span>
-        <span class="lang-switch__divider">/</span>
-        <span class="lang-switch__inactive">UA</span>
-      </button>
     </div>
 
     <!-- CENTER: Navigation -->
@@ -67,7 +62,7 @@
       <a href="#contacts" class="nav-link" data-section="contacts" data-i18n="nav-contacts">Contacts</a>
     </nav>
 
-    <!-- RIGHT: Contacts + Mobile Toggle -->
+    <!-- RIGHT: Contacts + Language Switch + Mobile Toggle -->
     <div class="header__right">
       <div class="header__contacts">
         <a href="tel:+380974964423" class="header__contact-item" data-i18n="header-phone">
@@ -79,6 +74,11 @@
           <span>info@sporysh.com</span>
         </a>
       </div>
+      <button class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <span class="lang-switch__active">EN</span>
+        <span class="lang-switch__divider">/</span>
+        <span class="lang-switch__inactive">UA</span>
+      </button>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
         <i data-lucide="menu" class="icon-menu"></i>
         <i data-lucide="x" class="icon-close"></i>
