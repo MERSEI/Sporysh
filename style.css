@@ -278,7 +278,7 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 .mobile-nav__link:last-child { border-bottom: none; }
 .mobile-nav__link:hover { color: var(--green-primary); }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .header__inner {
     grid-template-columns: auto 1fr auto;
     gap: 16px;
