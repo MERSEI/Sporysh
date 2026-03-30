@@ -305,6 +305,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
   stats.forEach(stat => counterObserver.observe(stat));
 
+  // --- Map draw-in animation ---
+  initMapDrawAnimation();
+
+  function initMapDrawAnimation() {
+    const panels = document.querySelectorAll('.location__map-panel');
+    if (!panels.length) return;
+
+    // Mark overlays as JS-ready and pre-hide all lines/paths
+    panels.forEach(panel => {
+      const overlay = panel.querySelector('.location__map-overlay');
+      if (!overlay) return;
+      overlay.classList.add('js-ready');
+      overlay.querySelectorAll('line, path').forEach(el => {
+        const len = el.getTotalLength();
+        const isPath = el.tagName.toLowerCase() === 'path';
+        el.style.strokeDasharray = `${isPath ? 2 : 1.5} ${isPath ? 2 : 1.5}`;
+        el.style.strokeDashoffset = String(len + (isPath ? 2 : 1.5));
+        el.style.transition = 'none';
+      });
+    });
+
+    const mapObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        drawMapPanel(entry.target);
+        mapObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+
+    panels.forEach(p => mapObserver.observe(p));
+  }
+
+  function drawMapPanel(panel) {
+    const overlay = panel.querySelector('.location__map-overlay');
+    if (!overlay) return;
+
+    const lines = Array.from(overlay.querySelectorAll('line'));
+    const paths = Array.from(overlay.querySelectorAll('path'));
+
+    function drawEl(el, delay, duration) {
+      const isPath = el.tagName.toLowerCase() === 'path';
+      const marchAnim = isPath ? 'map-march-path 2.5s linear infinite' : 'map-march 1.8s linear infinite';
+      setTimeout(() => {
+        el.style.transition = `stroke-dashoffset ${duration}ms cubic-bezier(0.25, 1, 0.5, 1)`;
+        el.style.strokeDashoffset = '0';
+        setTimeout(() => {
+          el.style.transition = '';
+          el.style.strokeDashoffset = '';
+          el.style.animation = marchAnim;
+        }, duration + 60);
+      }, delay);
+    }
+
+    // Lines: first half = white shadows, second half = orange — animate as pairs
+    const halfL = Math.floor(lines.length / 2);
+    for (let i = 0; i < halfL; i++) {
+      const delay = 80 + i * 55;
+      drawEl(lines[i], delay, 480);
+      drawEl(lines[i + halfL], delay, 480);
+    }
+
+    // Paths: first half = white shadows, second half = orange
+    const halfP = Math.floor(paths.length / 2);
+    for (let i = 0; i < halfP; i++) {
+      const delay = 120 + i * 160;
+      drawEl(paths[i], delay, 650);
+      drawEl(paths[i + halfP], delay, 650);
+    }
+  }
+
   function animateCounter(el, target) {
     const duration = 1500;
     const start = performance.now();
