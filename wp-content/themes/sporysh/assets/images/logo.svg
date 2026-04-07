@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="78" fill="#2E5D3A"/>
+  <!-- Main stem -->
+  <line x1="80" y1="148" x2="80" y2="28" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+  <!-- Leaf pair 1 (bottom, large) -->
+  <path d="M80,130 C68,118 50,110 42,94 C55,103 70,116 80,130Z" fill="white"/>
+  <path d="M80,130 C92,118 110,110 118,94 C105,103 90,116 80,130Z" fill="white"/>
+  <!-- Leaf pair 2 -->
+  <path d="M80,110 C66,98 48,89 42,72 C56,81 72,95 80,110Z" fill="white"/>
+  <path d="M80,110 C94,98 112,89 118,72 C104,81 88,95 80,110Z" fill="white"/>
+  <!-- Leaf pair 3 -->
+  <path d="M80,89 C68,79 56,70 54,56 C63,65 74,78 80,89Z" fill="white"/>
+  <path d="M80,89 C92,79 104,70 106,56 C97,65 86,78 80,89Z" fill="white"/>
+  <!-- Leaf pair 4 (small, top) -->
+  <path d="M80,68 C73,59 68,50 71,40 C74,48 77,59 80,68Z" fill="white"/>
+  <path d="M80,68 C87,59 92,50 89,40 C86,48 83,59 80,68Z" fill="white"/>
+  <!-- Tip bud -->
+  <ellipse cx="80" cy="32" rx="4" ry="6" fill="white"/>
+</svg>
