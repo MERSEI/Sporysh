@@ -88,30 +88,6 @@
         <p>Food &amp; Drug Administration Standards</p>
       </div>
 
-      <!-- GMP Certified -->
-      <div class="cert-card">
-        <div class="cert-card__badge">
-          <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="80" cy="80" r="76" fill="none" stroke="#111827" stroke-width="3"/>
-            <circle cx="80" cy="80" r="68" fill="none" stroke="#111827" stroke-width="1.5"/>
-            <rect x="18" y="65" width="124" height="30" fill="#111827" rx="2"/>
-            <text x="80" y="85" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="20" fill="white" letter-spacing="1">GMP</text>
-            <path id="gmp-top" d="M 20,80 A 60,60 0 0,1 140,80" fill="none"/>
-            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="3">
-              <textPath href="#gmp-top" startOffset="15%">CERTIFIED</textPath>
-            </text>
-            <path id="gmp-bot" d="M 20,80 A 60,60 0 0,0 140,80" fill="none"/>
-            <text font-family="Arial,sans-serif" font-weight="700" font-size="12" fill="#111827" letter-spacing="3">
-              <textPath href="#gmp-bot" startOffset="15%">CERTIFIED</textPath>
-            </text>
-            <text x="80" y="42" text-anchor="middle" font-size="11" fill="#111827">&#9733; &#9733; &#9733; &#9733; &#9733;</text>
-            <text x="80" y="128" text-anchor="middle" font-size="11" fill="#111827">&#9733; &#9733; &#9733; &#9733; &#9733;</text>
-          </svg>
-        </div>
-        <h3>GMP Certified</h3>
-        <p>Good Manufacturing Practice</p>
-      </div>
-
     </div>
   </div>
 </section>

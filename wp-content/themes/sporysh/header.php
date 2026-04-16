@@ -16,7 +16,6 @@
 <?php wp_body_open(); ?>
 
 <div id="page-progress"></div>
-<div id="cursor"></div>
 
 <!-- ==================== HEADER ==================== -->
 <header class="header" id="header">

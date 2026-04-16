@@ -22,25 +22,21 @@
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('herbs')"><?php echo esc_html( sporysh_t( 'filter-herbs', 'Herbs' ) ); ?></a>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('leaves')"><?php echo esc_html( sporysh_t( 'filter-leaves', 'Leaves' ) ); ?></a>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('flowers')"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('roots')"><?php echo esc_html( sporysh_t( 'filter-roots', 'Roots' ) ); ?></a>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('berries')"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('others')"><?php echo esc_html( sporysh_t( 'filter-others', 'Others' ) ); ?></a>
         </div>
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-contacts-title', 'Contacts' ) ); ?></h4>
-          <a href="mailto:info@sporysh.com" target="_blank" rel="noopener noreferrer">info@sporysh.com</a>
+          <a href="tel:+380971813631">+380 97 181 3631</a>
           <a href="tel:+380974964423">+380 97 496 4423</a>
-          <span>Zhytomyr, Ukraine, 10029</span>
+          <span>Nezalezhnosti Avenue 106-B,<br>Zhytomyr, Ukraine, 10029</span>
         </div>
       </div>
     </div>
     <div class="footer__bottom">
       <span><?php echo wp_kses_post( sporysh_t( 'footer-copyright', '&copy; 2026 SPORYSH LLC — All Rights Reserved' ) ); ?></span>
       <div class="footer__social">
-        <a href="https://www.instagram.com/sporysh_tm" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-        </a>
-        <a href="https://www.facebook.com/share/1MCBSfD9iV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
         <a href="https://www.linkedin.com/company/sporysh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>

@@ -13,20 +13,6 @@ if (progressBar) {
   }, { passive: true });
 }
 
-// --- Custom cursor ---
-const cursor = document.getElementById('cursor');
-if (cursor && window.matchMedia('(pointer: fine)').matches) {
-  let cx = -100, cy = -100;
-  document.addEventListener('mousemove', e => {
-    cx = e.clientX; cy = e.clientY;
-    cursor.style.left = cx + 'px';
-    cursor.style.top  = cy + 'px';
-  });
-  document.querySelectorAll('a, button, .filter-btn, .product-card, .category-card, .cert-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Lucide icons

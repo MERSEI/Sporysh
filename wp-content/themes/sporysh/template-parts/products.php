@@ -10,6 +10,7 @@ $category_labels = [
     'herbs'   => sporysh_t( 'filter-herbs',   'Herbs' ),
     'leaves'  => sporysh_t( 'filter-leaves',  'Leaves' ),
     'flowers' => sporysh_t( 'filter-flowers', 'Flowers' ),
+    'roots'   => sporysh_t( 'filter-roots',   'Roots' ),
     'berries' => sporysh_t( 'filter-berries', 'Berries' ),
     'others'  => sporysh_t( 'filter-others',  'Others' ),
 ];
@@ -18,8 +19,8 @@ $category_labels = [
 <section class="products" id="products">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag"><?php echo esc_html( sporysh_t( 'section-tag-catalog', 'Our Catalog' ) ); ?></span>
-      <h2 class="section-title"><?php echo esc_html( sporysh_t( 'section-title-products', 'Products' ) ); ?></h2>
+      <span class="section-tag"><?php echo esc_html( sporysh_t( 'section-tag-catalog', 'Our Products' ) ); ?></span>
+      <h2 class="section-title"><?php echo esc_html( sporysh_t( 'section-title-products', 'Product Catalog' ) ); ?></h2>
       <p class="section-desc"><?php echo esc_html( sporysh_t( 'section-desc-products', 'Browse our selection of premium herbal raw materials. Hover over each card to see the product in its natural form.' ) ); ?></p>
     </div>
 
@@ -29,6 +30,7 @@ $category_labels = [
       <button class="filter-btn" data-filter="herbs"   onclick="filterProducts('herbs')"><?php echo esc_html( sporysh_t( 'filter-herbs',   'Herbs' ) ); ?></button>
       <button class="filter-btn" data-filter="leaves"  onclick="filterProducts('leaves')"><?php echo esc_html( sporysh_t( 'filter-leaves',  'Leaves' ) ); ?></button>
       <button class="filter-btn" data-filter="flowers" onclick="filterProducts('flowers')"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></button>
+      <button class="filter-btn" data-filter="roots"   onclick="filterProducts('roots')"><?php echo esc_html( sporysh_t( 'filter-roots',   'Roots' ) ); ?></button>
       <button class="filter-btn" data-filter="berries" onclick="filterProducts('berries')"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></button>
       <button class="filter-btn" data-filter="others"  onclick="filterProducts('others')"><?php echo esc_html( sporysh_t( 'filter-others',  'Others' ) ); ?></button>
     </div>
@@ -82,9 +84,12 @@ $category_labels = [
               ?>
               <div class="product-card" data-category="<?php echo esc_attr( $cat_slug ); ?>" data-name="<?php echo esc_attr( $data_name ); ?>">
                 <div class="product-card__flip">
+                  <!-- Front: nature/plant image (_back_image_id in WP) -->
                   <div class="product-card__front">
-                    <?php if ( $front_url ) : ?>
-                      <img src="<?php echo esc_url( $front_url ); ?>" alt="<?php echo esc_attr( $title ); ?> — dried raw material" loading="lazy" width="400" height="400">
+                    <?php if ( $back_url ) : ?>
+                      <img src="<?php echo esc_url( $back_url ); ?>" alt="<?php echo esc_attr( $title ); ?> — growing in nature" loading="lazy" width="400" height="400">
+                    <?php elseif ( $front_url ) : ?>
+                      <img src="<?php echo esc_url( $front_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" loading="lazy" width="400" height="400">
                     <?php else : ?>
                       <div style="width:400px;height:400px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;color:#9ca3af;">No image</div>
                     <?php endif; ?>
@@ -92,11 +97,10 @@ $category_labels = [
                       <span class="product-card__category"><?php echo esc_html( $cat_label ); ?></span>
                     </div>
                   </div>
+                  <!-- Back: cut/dried image (_front_image_id in WP) -->
                   <div class="product-card__back">
-                    <?php if ( $back_url ) : ?>
-                      <img src="<?php echo esc_url( $back_url ); ?>" alt="<?php echo esc_attr( $title ); ?> — growing" loading="lazy" width="400" height="400">
-                    <?php elseif ( $front_url ) : ?>
-                      <img src="<?php echo esc_url( $front_url ); ?>" alt="<?php echo esc_attr( $title ); ?>" loading="lazy" width="400" height="400">
+                    <?php if ( $front_url ) : ?>
+                      <img src="<?php echo esc_url( $front_url ); ?>" alt="<?php echo esc_attr( $title ); ?> — dried raw material" loading="lazy" width="400" height="400">
                     <?php else : ?>
                       <div style="width:400px;height:400px;background:#d1d5db;display:flex;align-items:center;justify-content:center;color:#6b7280;">No image</div>
                     <?php endif; ?>
@@ -140,9 +144,9 @@ $category_labels = [
 
     <!-- Explore Catalog button -->
     <div class="products__cta">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>#contacts" class="btn btn--primary btn--lg">
+      <a href="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg">
         <i data-lucide="file-text"></i>
-        <?php echo esc_html( sporysh_t( 'btn-catalog', 'Request Full PDF Catalog' ) ); ?>
+        <?php echo esc_html( sporysh_t( 'btn-catalog', 'View Full Catalog' ) ); ?>
       </a>
     </div>
   </div>

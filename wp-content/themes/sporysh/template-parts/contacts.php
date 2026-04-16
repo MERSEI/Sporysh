@@ -16,34 +16,24 @@
         <div class="contact-block">
           <h3><?php echo esc_html( sporysh_t( 'contact-export-dept', 'Export Department' ) ); ?></h3>
           <div class="contact-item">
-            <i data-lucide="mail"></i>
-            <a href="mailto:info@sporysh.com" target="_blank" rel="noopener noreferrer">info@sporysh.com</a>
+            <i data-lucide="phone"></i>
+            <a href="tel:+380971813631">+380 97 181 3631</a>
           </div>
           <div class="contact-item">
             <i data-lucide="phone"></i>
             <a href="tel:+380974964423">+380 97 496 4423</a>
-          </div>
-          <div class="contact-item">
-            <i data-lucide="phone"></i>
-            <a href="tel:+080023367811">+0800 2336 7811</a>
           </div>
         </div>
         <div class="contact-block">
           <h3><?php echo esc_html( sporysh_t( 'contact-address-label', 'Address' ) ); ?></h3>
           <div class="contact-item">
             <i data-lucide="map-pin"></i>
-            <span><?php echo wp_kses_post( sporysh_t( 'contact-address-text', 'Prospekt Nezalezhnosti 106-b,<br>Zhytomyr, Ukraine, 10029' ) ); ?></span>
+            <span><?php echo wp_kses_post( sporysh_t( 'contact-address-text', 'Nezalezhnosti Avenue 106-B,<br>Zhytomyr, Ukraine, 10029' ) ); ?></span>
           </div>
         </div>
         <div class="contact-block">
-          <h3><?php echo esc_html( sporysh_t( 'contact-follow', 'Follow Us' ) ); ?></h3>
+          <h3>LinkedIn</h3>
           <div class="contacts__social">
-            <a href="https://www.instagram.com/sporysh_tm" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="https://www.facebook.com/share/1MCBSfD9iV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
             <a href="https://www.linkedin.com/company/sporysh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </a>
@@ -63,13 +53,16 @@
       <div class="manager-card manager-card--head">
         <div class="manager-card__role-badge">Head of International Sales</div>
         <div class="manager-card__avatar">NI</div>
-        <h3 class="manager-card__name">Nick Ischenko</h3>
+        <h3 class="manager-card__name">Nick Ishchenko</h3>
         <div class="manager-card__contacts">
           <a href="tel:+380971813631" class="manager-card__link">
             <i data-lucide="phone"></i>+380 97 181 3631
           </a>
           <a href="mailto:export@sporysh.com.ua" class="manager-card__link">
             <i data-lucide="mail"></i>export@sporysh.com.ua
+          </a>
+          <a href="https://www.linkedin.com/in/nick-ishchenko-b786a032/" target="_blank" rel="noopener noreferrer" class="manager-card__link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
           </a>
         </div>
       </div>
@@ -84,6 +77,9 @@
           <a href="mailto:a.kosovets@sporysh.com.ua" class="manager-card__link">
             <i data-lucide="mail"></i>a.kosovets@sporysh.com.ua
           </a>
+          <a href="https://www.linkedin.com/in/anna-kosovets-6b0062377/" target="_blank" rel="noopener noreferrer" class="manager-card__link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+          </a>
         </div>
       </div>
       <div class="manager-card">
@@ -97,18 +93,24 @@
           <a href="mailto:s.yakymenko@sporysh.com.ua" class="manager-card__link">
             <i data-lucide="mail"></i>s.yakymenko@sporysh.com.ua
           </a>
+          <a href="https://www.linkedin.com/in/sofia-yakymenko-651866302/" target="_blank" rel="noopener noreferrer" class="manager-card__link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
+          </a>
         </div>
       </div>
       <div class="manager-card">
         <div class="manager-card__role-badge">Export Manager</div>
         <div class="manager-card__avatar">AR</div>
-        <h3 class="manager-card__name">Anastasia Romanchuk</h3>
+        <h3 class="manager-card__name">Anastasiia Romanchuk</h3>
         <div class="manager-card__contacts">
           <a href="tel:+380967930614" class="manager-card__link">
             <i data-lucide="phone"></i>+380 96 793 0614
           </a>
           <a href="mailto:a.romanchuk@sporysh.com.ua" class="manager-card__link">
             <i data-lucide="mail"></i>a.romanchuk@sporysh.com.ua
+          </a>
+          <a href="https://www.linkedin.com/in/anastasiia-romanchuk-381491302" target="_blank" rel="noopener noreferrer" class="manager-card__link">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn
           </a>
         </div>
       </div>
