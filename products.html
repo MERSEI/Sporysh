@@ -406,6 +406,57 @@
   display: block;
 }
 
+/* ---- Page Animations ---- */
+@keyframes sp-fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sp-fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes sp-cardIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes sp-filterIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero entrance */
+.page-hero__breadcrumb { animation: sp-fadeIn 0.5s ease both 0.05s; }
+.page-hero h1          { animation: sp-fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) both 0.12s; }
+.page-hero__desc       { animation: sp-fadeUp 0.65s ease both 0.3s; }
+.page-hero__stats      { animation: sp-fadeUp 0.6s  ease both 0.46s; }
+.page-hero__visual-img:nth-child(1) { animation: sp-fadeUp 0.65s ease both 0.18s; }
+.page-hero__visual-img:nth-child(2) { animation: sp-fadeUp 0.55s ease both 0.32s; }
+.page-hero__visual-img:nth-child(3) { animation: sp-fadeUp 0.55s ease both 0.4s; }
+
+/* Controls bar */
+.catalog__controls { animation: sp-fadeIn 0.55s ease both 0.1s; }
+
+/* Cards — stagger set via JS custom property */
+.cat-card {
+  animation: sp-cardIn 0.55s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: var(--card-delay, 0.5s);
+}
+
+/* Filter transition for shown cards */
+.cat-card.sp-filter-in {
+  animation: sp-filterIn 0.4s cubic-bezier(0.22,1,0.36,1) both;
+  animation-delay: var(--filter-delay, 0s) !important;
+}
+
+/* CTA strip */
+.catalog__cta { animation: sp-fadeUp 0.6s ease both; }
+
+/* Filter buttons active pulse */
+.filter-btn {
+  transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.filter-btn:active { transform: scale(0.94); }
+
 /* ---- CTA Strip ---- */
 .catalog__cta {
   margin-top: 72px;
@@ -538,13 +589,13 @@
 
       <div class="page-hero__visual">
         <div class="page-hero__visual-img">
-          <img src="https://drive.google.com/thumbnail?id=1CkTiUzgcQ0naVT9oRYVKAvhSO-fcDLQS&sz=w800" alt="Linden flowers" loading="eager">
+          <img src="./assets/products/linden-flowers.webp" alt="Linden flowers" loading="eager">
         </div>
         <div class="page-hero__visual-img">
-          <img src="https://drive.google.com/thumbnail?id=1N--Q5ZlDEe6njZrOCdgrSstGrDbyi0uP&sz=w400" alt="Nettle herb" loading="eager">
+          <img src="./assets/products/nettle-herb.webp" alt="Nettle herb" loading="eager">
         </div>
         <div class="page-hero__visual-img">
-          <img src="https://drive.google.com/thumbnail?id=16usLgPTKtcjm2LnkAdD3OBPKoBga-gHJ&sz=w400" alt="Rosehips" loading="eager">
+          <img src="./assets/products/rosehips.webp" alt="Rosehips" loading="eager">
         </div>
       </div>
     </div>
@@ -585,8 +636,8 @@
       <!-- 1. Nettle herb -->
       <div class="cat-card" data-category="herbs" data-name="nettle herb urtica dioica кропива трава">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1N--Q5ZlDEe6njZrOCdgrSstGrDbyi0uP&sz=w600" alt="Nettle herb dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg/600px-Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg" alt="Urtica dioica growing in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/nettle-herb.webp" alt="Nettle herb dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg/330px-Fen_nettle_%28Urtica_dioica_ssp._galeopsifolia%29_-_geograph.org.uk_-_5423125.jpg" alt="Urtica dioica growing in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Herbs</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -605,8 +656,8 @@
       <!-- 2. Purple coneflower herb -->
       <div class="cat-card" data-category="herbs" data-name="purple coneflower herb echinacea purpurea ехінацея трава">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1QY5bnz0fJJFb0VNMLV8ZUCiwVRfTifnt&sz=w600" alt="Echinacea purpurea herb dried" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Echinacea_purpurea_Grandview_Prairie.jpg/600px-Echinacea_purpurea_Grandview_Prairie.jpg" alt="Echinacea purpurea blooming in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/purple-coneflower.webp" alt="Echinacea purpurea herb dried" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Echinacea_purpurea_Grandview_Prairie.jpg/330px-Echinacea_purpurea_Grandview_Prairie.jpg" alt="Echinacea purpurea blooming in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Herbs</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -625,8 +676,8 @@
       <!-- 3. Birch leaves -->
       <div class="cat-card" data-category="leaves" data-name="birch leaves betula pendula береза листя">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=16Okb4791Mu9ihcmLvvWpvSLZKjOdKQsS&sz=w600" alt="Birch leaves dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Betula_pendula_Finland.jpg/600px-Betula_pendula_Finland.jpg" alt="Betula pendula birch tree in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/birch-leaves.webp" alt="Birch leaves dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Betula_pendula_Finland.jpg/330px-Betula_pendula_Finland.jpg" alt="Betula pendula birch tree in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Leaves</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -645,8 +696,8 @@
       <!-- 4. Raspberry leaves -->
       <div class="cat-card" data-category="leaves" data-name="raspberry leaves rubus idaeus малина листя">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1azcjAucmRdxoeWTLH-K7GK3CNijpkFUw&sz=w600" alt="Raspberry leaves dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Fert%C5%91di_k%C3%A1rmin_m%C3%A1lna.JPG/600px-Fert%C5%91di_k%C3%A1rmin_m%C3%A1lna.JPG" alt="Rubus idaeus raspberry plant in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/raspberry-leaves.webp" alt="Raspberry leaves dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Fert%C5%91di_k%C3%A1rmin_m%C3%A1lna.JPG/330px-Fert%C5%91di_k%C3%A1rmin_m%C3%A1lna.JPG" alt="Rubus idaeus raspberry plant in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Leaves</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -665,8 +716,8 @@
       <!-- 5. Linden flowers -->
       <div class="cat-card" data-category="flowers" data-name="linden flowers tilia cordata липа цвіт">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1CkTiUzgcQ0naVT9oRYVKAvhSO-fcDLQS&sz=w600" alt="Linden flowers dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tilia-cordata2.JPG/600px-Tilia-cordata2.JPG" alt="Tilia cordata linden tree in bloom" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/linden-flowers.webp" alt="Linden flowers dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tilia-cordata2.JPG/330px-Tilia-cordata2.JPG" alt="Tilia cordata linden tree in bloom" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Flowers</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -685,8 +736,8 @@
       <!-- 6. Sandy everlasting flowers -->
       <div class="cat-card" data-category="flowers" data-name="sandy everlasting flowers helichrysum arenarium цмин пісковий квіти">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=11qQrGmoZSQ_r1lTGKToxHSf7efXbzHH-&sz=w600" alt="Helichrysum arenarium dried flowers" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Helichrysum_arenarium.jpg/600px-Helichrysum_arenarium.jpg" alt="Helichrysum arenarium sandy everlasting in bloom" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/sandy-everlasting.webp" alt="Helichrysum arenarium dried flowers" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Helichrysum_arenarium.jpg/330px-Helichrysum_arenarium.jpg" alt="Helichrysum arenarium sandy everlasting in bloom" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Flowers</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -705,8 +756,8 @@
       <!-- 7. Dandelion root -->
       <div class="cat-card" data-category="roots" data-name="dandelion root taraxacum officinale кульбаба корінь">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1MM8E7AxoWF9JSPYbqj_DRDi5n71rbrjw&sz=w600" alt="Dandelion root dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/600px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg" alt="Taraxacum officinale botanical illustration" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/dandelion-root.webp" alt="Dandelion root dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg/330px-Taraxacum_officinale_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-135.jpg" alt="Taraxacum officinale botanical illustration" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Roots</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -725,8 +776,8 @@
       <!-- 8. Valerian root -->
       <div class="cat-card" data-category="roots" data-name="valerian root valeriana officinalis валеріана корінь">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1J6rV369Wa2ULkxOhVyQ0xn6zacb7jZIQ&sz=w600" alt="Valerian root dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Valeriana_officinalis_inflorescence_-_Niitv%C3%A4lja.jpg/600px-Valeriana_officinalis_inflorescence_-_Niitv%C3%A4lja.jpg" alt="Valeriana officinalis flowering in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/valerian-root.webp" alt="Valerian root dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Valeriana_officinalis_inflorescence_-_Niitv%C3%A4lja.jpg/330px-Valeriana_officinalis_inflorescence_-_Niitv%C3%A4lja.jpg" alt="Valeriana officinalis flowering in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Roots</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -745,8 +796,8 @@
       <!-- 9. Elderberries -->
       <div class="cat-card" data-category="berries" data-name="elderberries sambucus nigra бузина плоди">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1feFc1AedxX2ZeXime5rYPvqB7chCH86j&sz=w600" alt="Elderberries dried fruits" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Sambucus_nigra_004.jpg/600px-Sambucus_nigra_004.jpg" alt="Sambucus nigra elderberry clusters in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/elderberries.webp" alt="Elderberries dried fruits" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Sambucus_nigra_004.jpg/330px-Sambucus_nigra_004.jpg" alt="Sambucus nigra elderberry clusters in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Berries</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -765,8 +816,8 @@
       <!-- 10. Rosehips -->
       <div class="cat-card" data-category="berries" data-name="rosehips rosa canina шипшина плоди">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=16usLgPTKtcjm2LnkAdD3OBPKoBga-gHJ&sz=w600" alt="Rosehips dried fruits" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Divlja_ruza_cvijet_270508.jpg/600px-Divlja_ruza_cvijet_270508.jpg" alt="Rosa canina wild rose blooming in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/rosehips.webp" alt="Rosehips dried fruits" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Divlja_ruza_cvijet_270508.jpg/330px-Divlja_ruza_cvijet_270508.jpg" alt="Rosa canina wild rose blooming in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Berries</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -785,8 +836,8 @@
       <!-- 11. Buckthorn bark -->
       <div class="cat-card" data-category="others" data-name="buckthorn bark frangula alnus крушина кора">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1GxuwhL2tBRaNBYs1pURNVaOIe6BXE0cl&sz=w600" alt="Buckthorn bark dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Frangula-alnus-fruits.JPG/600px-Frangula-alnus-fruits.JPG" alt="Frangula alnus alder buckthorn with berries" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/buckthorn-bark.webp" alt="Buckthorn bark dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Frangula-alnus-fruits.JPG/330px-Frangula-alnus-fruits.JPG" alt="Frangula alnus alder buckthorn with berries" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Others</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -805,8 +856,8 @@
       <!-- 12. Pine buds -->
       <div class="cat-card" data-category="others" data-name="pine buds pinus sylvestris сосна бруньки">
         <div class="cat-card__img-wrap">
-          <img class="cat-card__img cat-card__img--product" src="https://drive.google.com/thumbnail?id=1OZbhTmPWjzXogj32iBG_TPhlU3uCOfaQ&sz=w600" alt="Pine buds dried raw material" loading="lazy" width="600" height="600">
-          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/600px-Skuleskogen_pine.jpg" alt="Pinus sylvestris scots pine in nature" loading="lazy" width="600" height="600">
+          <img class="cat-card__img cat-card__img--product" src="./assets/products/pine-buds.webp" alt="Pine buds dried raw material" loading="eager" width="600" height="600">
+          <img class="cat-card__img cat-card__img--nature" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Skuleskogen_pine.jpg/330px-Skuleskogen_pine.jpg" alt="Pinus sylvestris scots pine in nature" loading="lazy" width="600" height="600">
           <span class="cat-card__badge">Others</span>
           <span class="cat-card__badge--nature">In Nature</span>
           <div class="cat-card__overlay">
@@ -952,18 +1003,58 @@ function _applyFilters() {
   const category = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
   const term = (document.getElementById('catalogSearch')?.value || '').toLowerCase().trim();
   const cards = document.querySelectorAll('.cat-card');
-  let visible = 0;
+  let showIndex = 0;
 
   cards.forEach(card => {
     const catMatch = category === 'all' || card.dataset.category === category;
     const nameMatch = !term || card.dataset.name.includes(term);
     const show = catMatch && nameMatch;
-    card.style.display = show ? '' : 'none';
-    if (show) visible++;
+
+    if (show) {
+      card.style.display = '';
+      card.classList.remove('sp-filter-in');
+      card.style.setProperty('--filter-delay', `${showIndex * 0.045}s`);
+      // Force reflow to restart animation
+      void card.offsetWidth;
+      card.classList.add('sp-filter-in');
+      showIndex++;
+    } else {
+      card.style.display = 'none';
+      card.classList.remove('sp-filter-in');
+    }
   });
 
   const empty = document.getElementById('catalogEmpty');
-  if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+  if (empty) empty.style.display = showIndex === 0 ? 'block' : 'none';
+}
+
+// Counter animation for hero stats
+function animateStat(el, target, suffix) {
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * target) + (suffix || '');
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function initHeroStats() {
+  const statsMap = { '12': '', '6': '', '21': '' };
+  document.querySelectorAll('.page-hero__stat-num').forEach(el => {
+    const val = parseInt(el.textContent);
+    if (!isNaN(val)) {
+      const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          animateStat(el, val);
+          obs.disconnect();
+        }
+      }, { threshold: 0.5 });
+      obs.observe(el);
+    }
+  });
 }
 
 // URL param filter (e.g. products.html?filter=herbs)
@@ -986,6 +1077,26 @@ function initMobileNatureTap() {
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
+  // Stagger delays for initial card load
+  document.querySelectorAll('.cat-card').forEach((card, i) => {
+    card.style.setProperty('--card-delay', `${0.55 + i * 0.055}s`);
+  });
+
+  // CTA scroll-reveal
+  const cta = document.querySelector('.catalog__cta');
+  if (cta) {
+    cta.style.opacity = '0';
+    const ctaObs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        cta.style.opacity = '';
+        cta.style.animation = 'sp-fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) both';
+        ctaObs.disconnect();
+      }
+    }, { threshold: 0.15 });
+    ctaObs.observe(cta);
+  }
+
+  initHeroStats();
   applyUrlFilter();
   initMobileNatureTap();
   if (typeof lucide !== 'undefined') lucide.createIcons();
