@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — SPORYSH Premium Herbal Raw Materials</title>
+<meta name="description" content="Browse SPORYSH's full catalog of premium herbal raw materials — herbs, leaves, flowers, roots, berries and more. Sourced from Ukraine, exported worldwide.">
+
+<meta property="og:title" content="Products — SPORYSH Premium Herbal Raw Materials">
+<meta property="og:description" content="Premium plant raw materials from Ukraine. Herbs, leaves, flowers, roots, berries — for B2B partners worldwide.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js" defer></script>
+
+<link rel="stylesheet" href="./style.css">
+<style>
+/* ============================================
+   PRODUCTS PAGE
+   ============================================ */
+
+/* ---- Page Hero ---- */
+.page-hero {
+  padding: 140px 0 72px;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(46,93,58,0.07) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(196,128,90,0.07) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.page-hero__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.page-hero__breadcrumb a {
+  color: var(--text-light);
+  transition: color 0.2s;
+}
+
+.page-hero__breadcrumb a:hover { color: var(--green-primary); }
+.page-hero__breadcrumb .sep { opacity: 0.4; }
+.page-hero__breadcrumb .current { color: var(--green-primary); }
+
+.page-hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+
+.page-hero h1 {
+  font-size: clamp(44px, 6vw, 76px);
+  line-height: 1.05;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+}
+
+.page-hero h1 em {
+  font-style: italic;
+  color: var(--green-primary);
+}
+
+.page-hero__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+.page-hero__stats {
+  display: flex;
+  gap: 40px;
+}
+
+.page-hero__stat-num {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--green-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.page-hero__stat-label {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.page-hero__visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-bottom: 0;
+}
+
+.page-hero__visual-img {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--sage);
+}
+
+.page-hero__visual-img:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16 / 9;
+}
+
+.page-hero__visual-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .page-hero__inner { grid-template-columns: 1fr; gap: 40px; }
+  .page-hero__visual { display: none; }
+}
+
+/* ---- Catalog Section ---- */
+.catalog {
+  padding: 80px 0 120px;
+  background: #fff;
+}
+
+/* Controls bar */
+.catalog__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.catalog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.catalog__search-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.catalog__search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 15px;
+  color: var(--text-light);
+  pointer-events: none;
+}
+
+.catalog__search-input {
+  padding: 10px 16px 10px 40px;
+  border: 1.5px solid #e4e0d8;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  width: 220px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--off-white);
+  color: var(--charcoal);
+}
+
+.catalog__search-input::placeholder { color: var(--text-light); }
+.catalog__search-input:focus {
+  border-color: var(--green-primary);
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .catalog__controls { flex-direction: column; align-items: stretch; }
+  .catalog__search-input { width: 100%; }
+}
+
+/* Product Grid */
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1100px) { .catalog__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .catalog__grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+
+/* ---- Product Card ---- */
+.cat-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--off-white);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.10);
+}
+
+.cat-card__img-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--sage);
+}
+
+.cat-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+.cat-card:hover .cat-card__img { transform: scale(1.08); }
+
+/* Category badge */
+.cat-card__badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(6px);
+  color: var(--green-primary);
+  font-family: 'Syne', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(46,93,58,0.15);
+}
+
+/* Hover overlay */
+.cat-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(22, 46, 32, 0.88) 0%,
+    rgba(22, 46, 32, 0.25) 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  padding: 18px;
+}
+
+.cat-card:hover .cat-card__overlay { opacity: 1; }
+
+.cat-card__overlay-inner {
+  transform: translateY(6px);
+  transition: transform 0.35s ease;
+}
+
+.cat-card:hover .cat-card__overlay-inner { transform: translateY(0); }
+
+.cat-card__overlay-name {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 3px;
+}
+
+.cat-card__overlay-latin {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(255,255,255,0.68);
+}
+
+/* Card info bar */
+.cat-card__info {
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+.cat-card__name {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 15px;
+  color: var(--charcoal);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+
+.cat-card__latin {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-style: italic;
+  color: var(--text-light);
+}
+
+/* Empty state */
+.catalog__empty {
+  display: none;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+}
+
+.catalog__empty svg {
+  margin: 0 auto 16px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.35;
+  display: block;
+}
+
+/* ---- CTA Strip ---- */
+.catalog__cta {
+  margin-top: 72px;
+  background: var(--cream);
+  border-radius: var(--radius-xl);
+  padding: 64px 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.catalog__cta-text h3 {
+  font-size: clamp(24px, 3vw, 36px);
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+
+.catalog__cta-text p {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 420px;
+}
+
+.catalog__cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn--dark {
+  background: var(--green-primary);
+  color: white;
+  border-color: var(--green-primary);
+}
+.btn--dark:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+@media (max-width: 768px) {
+  .catalog__cta {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    text-align: center;
+  }
+  .catalog__cta-text p { max-width: none; }
+  .catalog__cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<div id="page-progress"></div>
+<div id="cursor"></div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+  <div class="header__inner">
+    <div class="header__left">
+      <a href="./index.html" class="header__logo" aria-label="SPORYSH Home">
+        <img src="./assets/logo.svg" alt="SPORYSH" class="header__logo-img">
+        <span class="header__logo-text">SPORYSH</span>
+      </a>
+    </div>
+
+    <nav class="header__nav" id="mainNav" aria-label="Main navigation">
+      <a href="./index.html" class="nav-link">Home</a>
+      <a href="./products.html" class="nav-link active">Products</a>
+      <a href="./index.html#about" class="nav-link">About Us</a>
+      <a href="./index.html#contacts" class="nav-link">Contacts</a>
+    </nav>
+
+    <div class="header__right">
+      <div class="header__contacts">
+        <a href="tel:+380974964423" class="header__contact-item">
+          <i data-lucide="phone"></i>
+          <span>+380 97 496 4423</span>
+        </a>
+        <a href="mailto:info@sporysh.com" class="header__contact-item">
+          <i data-lucide="mail"></i>
+          <span>info@sporysh.com</span>
+        </a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu" aria-expanded="false">
+        <i data-lucide="menu" class="icon-menu"></i>
+        <i data-lucide="x" class="icon-close"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="./index.html" class="mobile-nav__link">Home</a>
+    <a href="./products.html" class="mobile-nav__link">Products</a>
+    <a href="./index.html#about" class="mobile-nav__link">About Us</a>
+    <a href="./index.html#contacts" class="mobile-nav__link">Contacts</a>
+  </div>
+</header>
+
+<!-- ==================== PAGE HERO ==================== -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero__breadcrumb">
+      <a href="./index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Products</span>
+    </div>
+    <div class="page-hero__inner">
+      <div>
+        <h1>Premium<br><em>Herbal</em><br>Catalog</h1>
+        <p class="page-hero__desc">Plant raw materials sourced from 11 ecologically clean regions of Ukraine. Carefully selected, processed and exported to B2B partners across 21 countries.</p>
+        <div class="page-hero__stats">
+          <div>
+            <span class="page-hero__stat-num">12</span>
+            <span class="page-hero__stat-label">Product Types</span>
+          </div>
+          <div>
+            <span class="page-hero__stat-num">6</span>
+            <span class="page-hero__stat-label">Categories</span>
+          </div>
+          <div>
+            <span class="page-hero__stat-num">21</span>
+            <span class="page-hero__stat-label">Export Countries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-hero__visual">
+        <div class="page-hero__visual-img">
+          <img src="https://drive.google.com/thumbnail?id=1CkTiUzgcQ0naVT9oRYVKAvhSO-fcDLQS&sz=w800" alt="Linden flowers" loading="eager">
+        </div>
+        <div class="page-hero__visual-img">
+          <img src="https://drive.google.com/thumbnail?id=1N--Q5ZlDEe6njZrOCdgrSstGrDbyi0uP&sz=w400" alt="Nettle herb" loading="eager">
+        </div>
+        <div class="page-hero__visual-img">
+          <img src="https://drive.google.com/thumbnail?id=16usLgPTKtcjm2LnkAdD3OBPKoBga-gHJ&sz=w400" alt="Rosehips" loading="eager">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CATALOG ==================== -->
+<section class="catalog">
+  <div class="container">
+
+    <!-- Controls -->
+    <div class="catalog__controls">
+      <div class="catalog__filters" id="catalogFilters">
+        <button class="filter-btn active" data-filter="all" onclick="filterCatalog('all')">All (12)</button>
+        <button class="filter-btn" data-filter="herbs" onclick="filterCatalog('herbs')">Herbs</button>
+        <button class="filter-btn" data-filter="leaves" onclick="filterCatalog('leaves')">Leaves</button>
+        <button class="filter-btn" data-filter="flowers" onclick="filterCatalog('flowers')">Flowers</button>
+        <button class="filter-btn" data-filter="roots" onclick="filterCatalog('roots')">Roots</button>
+        <button class="filter-btn" data-filter="berries" onclick="filterCatalog('berries')">Berries</button>
+        <button class="filter-btn" data-filter="others" onclick="filterCatalog('others')">Others</button>
+      </div>
+      <div class="catalog__search-wrap">
+        <i data-lucide="search" class="catalog__search-icon"></i>
+        <input
+          type="text"
+          class="catalog__search-input"
+          id="catalogSearch"
+          placeholder="Search by name or Latin name…"
+          autocomplete="off"
+          oninput="searchCatalog(this.value)"
+        >
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="catalog__grid" id="catalogGrid">
+
+      <!-- 1. Nettle herb -->
+      <div class="cat-card" data-category="herbs" data-name="nettle herb urtica dioica кропива трава">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1N--Q5ZlDEe6njZrOCdgrSstGrDbyi0uP&sz=w600" alt="Nettle herb dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Herbs</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Nettle herb</span>
+              <span class="cat-card__overlay-latin">Urtica dioica</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Nettle herb</span>
+          <span class="cat-card__latin">Urtica dioica</span>
+        </div>
+      </div>
+
+      <!-- 2. Purple coneflower herb -->
+      <div class="cat-card" data-category="herbs" data-name="purple coneflower herb echinacea purpurea ехінацея трава">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1QY5bnz0fJJFb0VNMLV8ZUCiwVRfTifnt&sz=w600" alt="Echinacea purpurea herb dried" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Herbs</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Purple coneflower herb</span>
+              <span class="cat-card__overlay-latin">Echinacea purpurea</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Purple coneflower herb</span>
+          <span class="cat-card__latin">Echinacea purpurea</span>
+        </div>
+      </div>
+
+      <!-- 3. Birch leaves -->
+      <div class="cat-card" data-category="leaves" data-name="birch leaves betula pendula береза листя">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=16Okb4791Mu9ihcmLvvWpvSLZKjOdKQsS&sz=w600" alt="Birch leaves dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Leaves</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Birch leaves</span>
+              <span class="cat-card__overlay-latin">Betula pendula</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Birch leaves</span>
+          <span class="cat-card__latin">Betula pendula</span>
+        </div>
+      </div>
+
+      <!-- 4. Raspberry leaves -->
+      <div class="cat-card" data-category="leaves" data-name="raspberry leaves rubus idaeus малина листя">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1azcjAucmRdxoeWTLH-K7GK3CNijpkFUw&sz=w600" alt="Raspberry leaves dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Leaves</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Raspberry leaves</span>
+              <span class="cat-card__overlay-latin">Rubus idaeus</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Raspberry leaves</span>
+          <span class="cat-card__latin">Rubus idaeus</span>
+        </div>
+      </div>
+
+      <!-- 5. Linden flowers -->
+      <div class="cat-card" data-category="flowers" data-name="linden flowers tilia cordata липа цвіт">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1CkTiUzgcQ0naVT9oRYVKAvhSO-fcDLQS&sz=w600" alt="Linden flowers dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Flowers</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Linden flowers</span>
+              <span class="cat-card__overlay-latin">Tilia cordata</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Linden flowers</span>
+          <span class="cat-card__latin">Tilia cordata</span>
+        </div>
+      </div>
+
+      <!-- 6. Sandy everlasting flowers -->
+      <div class="cat-card" data-category="flowers" data-name="sandy everlasting flowers helichrysum arenarium цмин пісковий квіти">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=11qQrGmoZSQ_r1lTGKToxHSf7efXbzHH-&sz=w600" alt="Helichrysum arenarium dried flowers" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Flowers</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Sandy everlasting flowers</span>
+              <span class="cat-card__overlay-latin">Helichrysum arenarium</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Sandy everlasting flowers</span>
+          <span class="cat-card__latin">Helichrysum arenarium</span>
+        </div>
+      </div>
+
+      <!-- 7. Dandelion root -->
+      <div class="cat-card" data-category="roots" data-name="dandelion root taraxacum officinale кульбаба корінь">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1MM8E7AxoWF9JSPYbqj_DRDi5n71rbrjw&sz=w600" alt="Dandelion root dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Roots</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Dandelion root</span>
+              <span class="cat-card__overlay-latin">Taraxacum officinale</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Dandelion root</span>
+          <span class="cat-card__latin">Taraxacum officinale</span>
+        </div>
+      </div>
+
+      <!-- 8. Valerian root -->
+      <div class="cat-card" data-category="roots" data-name="valerian root valeriana officinalis валеріана корінь">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1J6rV369Wa2ULkxOhVyQ0xn6zacb7jZIQ&sz=w600" alt="Valerian root dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Roots</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Valerian root</span>
+              <span class="cat-card__overlay-latin">Valeriana officinalis</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Valerian root</span>
+          <span class="cat-card__latin">Valeriana officinalis</span>
+        </div>
+      </div>
+
+      <!-- 9. Elderberries -->
+      <div class="cat-card" data-category="berries" data-name="elderberries sambucus nigra бузина плоди">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1feFc1AedxX2ZeXime5rYPvqB7chCH86j&sz=w600" alt="Elderberries dried fruits" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Berries</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Elderberries</span>
+              <span class="cat-card__overlay-latin">Sambucus nigra</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Elderberries</span>
+          <span class="cat-card__latin">Sambucus nigra</span>
+        </div>
+      </div>
+
+      <!-- 10. Rosehips -->
+      <div class="cat-card" data-category="berries" data-name="rosehips rosa canina шипшина плоди">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=16usLgPTKtcjm2LnkAdD3OBPKoBga-gHJ&sz=w600" alt="Rosehips dried fruits" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Berries</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Rosehips</span>
+              <span class="cat-card__overlay-latin">Rosa canina</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Rosehips</span>
+          <span class="cat-card__latin">Rosa canina</span>
+        </div>
+      </div>
+
+      <!-- 11. Buckthorn bark -->
+      <div class="cat-card" data-category="others" data-name="buckthorn bark frangula alnus крушина кора">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1GxuwhL2tBRaNBYs1pURNVaOIe6BXE0cl&sz=w600" alt="Buckthorn bark dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Others</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Buckthorn bark</span>
+              <span class="cat-card__overlay-latin">Frangula alnus</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Buckthorn bark</span>
+          <span class="cat-card__latin">Frangula alnus</span>
+        </div>
+      </div>
+
+      <!-- 12. Pine buds -->
+      <div class="cat-card" data-category="others" data-name="pine buds pinus sylvestris сосна бруньки">
+        <div class="cat-card__img-wrap">
+          <img class="cat-card__img" src="https://drive.google.com/thumbnail?id=1OZbhTmPWjzXogj32iBG_TPhlU3uCOfaQ&sz=w600" alt="Pine buds dried raw material" loading="lazy" width="600" height="600">
+          <span class="cat-card__badge">Others</span>
+          <div class="cat-card__overlay">
+            <div class="cat-card__overlay-inner">
+              <span class="cat-card__overlay-name">Pine buds</span>
+              <span class="cat-card__overlay-latin">Pinus sylvestris</span>
+            </div>
+          </div>
+        </div>
+        <div class="cat-card__info">
+          <span class="cat-card__name">Pine buds</span>
+          <span class="cat-card__latin">Pinus sylvestris</span>
+        </div>
+      </div>
+
+    </div><!-- /catalog__grid -->
+
+    <!-- Empty state -->
+    <div class="catalog__empty" id="catalogEmpty">
+      <i data-lucide="search-x"></i>
+      <p>No products found matching your search.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="catalog__cta">
+      <div class="catalog__cta-text">
+        <h3>Need the Full Specification?</h3>
+        <p>Request our complete PDF catalog with detailed product specs, packaging formats, moisture content, and export pricing.</p>
+      </div>
+      <div class="catalog__cta-actions">
+        <a href="./index.html#contacts" class="btn btn--primary btn--lg">
+          <i data-lucide="file-text"></i>
+          Request PDF Catalog
+        </a>
+        <a href="./index.html#contacts" class="btn btn--dark btn--lg">
+          <i data-lucide="mail"></i>
+          Contact Sales
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="./index.html" class="footer__logo">
+          <img src="./assets/logo.svg" alt="SPORYSH" class="footer__logo-img">
+          <span>SPORYSH LLC</span>
+        </a>
+        <p class="footer__tagline">Premium herbal raw materials supplier from Ukraine for the European B2B market.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>Navigation</h4>
+          <a href="./index.html">Home</a>
+          <a href="./products.html">Products</a>
+          <a href="./index.html#about">About Us</a>
+          <a href="./index.html#contacts">Contacts</a>
+        </div>
+        <div class="footer__col">
+          <h4>Categories</h4>
+          <a href="./products.html?filter=herbs">Herbs</a>
+          <a href="./products.html?filter=leaves">Leaves</a>
+          <a href="./products.html?filter=flowers">Flowers</a>
+          <a href="./products.html?filter=roots">Roots</a>
+          <a href="./products.html?filter=berries">Berries</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contacts</h4>
+          <a href="mailto:info@sporysh.com">info@sporysh.com</a>
+          <a href="tel:+380974964423">+380 97 496 4423</a>
+          <span>Zhytomyr, Ukraine, 10029</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; 2026 SPORYSH LLC — All Rights Reserved</span>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/sporysh_tm" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.facebook.com/share/1MCBSfD9iV/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/sporysh" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i data-lucide="arrow-up"></i>
+</button>
+
+<script>
+// Header scroll
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('header--scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Mobile menu
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileNav = document.getElementById('mobileNav');
+mobileToggle?.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.toggle('open');
+  mobileToggle.setAttribute('aria-expanded', String(isOpen));
+});
+mobileNav?.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+  })
+);
+
+// Back to top
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop?.classList.toggle('visible', window.scrollY > 600);
+}, { passive: true });
+backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Filter
+function filterCatalog(category) {
+  document.querySelectorAll('.filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.filter === category)
+  );
+  _applyFilters();
+}
+
+// Search
+function searchCatalog(value) {
+  _applyFilters();
+}
+
+function _applyFilters() {
+  const category = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+  const term = (document.getElementById('catalogSearch')?.value || '').toLowerCase().trim();
+  const cards = document.querySelectorAll('.cat-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const catMatch = category === 'all' || card.dataset.category === category;
+    const nameMatch = !term || card.dataset.name.includes(term);
+    const show = catMatch && nameMatch;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  const empty = document.getElementById('catalogEmpty');
+  if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+}
+
+// URL param filter (e.g. products.html?filter=herbs)
+function applyUrlFilter() {
+  const params = new URLSearchParams(window.location.search);
+  const f = params.get('filter');
+  if (f) filterCatalog(f);
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  applyUrlFilter();
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+});
+window.addEventListener('load', () => {
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+});
+</script>
+</body>
+</html>
