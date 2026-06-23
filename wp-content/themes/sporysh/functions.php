@@ -27,7 +27,7 @@ function sporysh_scripts() {
     );
 
     // Main stylesheet
-    wp_enqueue_style( 'sporysh-style', get_stylesheet_uri(), [ 'sporysh-fonts' ], '1.1.0' );
+    wp_enqueue_style( 'sporysh-style', get_stylesheet_uri(), [ 'sporysh-fonts' ], '1.2.0' );
 
     // Lucide Icons (CDN)
     wp_enqueue_script( 'lucide', 'https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js', [], '0.344.0', true );
@@ -37,7 +37,7 @@ function sporysh_scripts() {
         'sporysh-app',
         get_template_directory_uri() . '/assets/js/app.js',
         [ 'lucide' ],
-        '1.1.0',
+        '1.2.0',
         true
     );
 }
@@ -299,3 +299,36 @@ function sporysh_admin_scripts( string $hook ): void {
     }
 }
 add_action( 'admin_enqueue_scripts', 'sporysh_admin_scripts' );
+
+
+// ─── Auto-create the Products page on theme activation ─────────────────────────
+/**
+ * On activation, ensure a published page exists at /products/ using the
+ * "Products Catalog" template (page-products.php). Zero manual setup needed —
+ * the full 175-item catalog renders immediately after the theme is activated.
+ */
+function sporysh_create_products_page(): void {
+    $existing = get_page_by_path( 'products' );
+
+    if ( $existing instanceof WP_Post ) {
+        // Make sure it uses our template and is published.
+        update_post_meta( $existing->ID, '_wp_page_template', 'page-products.php' );
+        if ( $existing->post_status !== 'publish' ) {
+            wp_update_post( [ 'ID' => $existing->ID, 'post_status' => 'publish' ] );
+        }
+        return;
+    }
+
+    wp_insert_post( [
+        'post_title'   => 'Products',
+        'post_name'    => 'products',
+        'post_status'  => 'publish',
+        'post_type'    => 'page',
+        'post_content' => '',
+        'meta_input'   => [ '_wp_page_template' => 'page-products.php' ],
+    ] );
+
+    // Refresh permalinks so /products/ resolves immediately.
+    flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'sporysh_create_products_page' );
