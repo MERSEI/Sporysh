@@ -297,6 +297,95 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Interactive map tooltips (country / oblast names) ---
   initMapTooltips();
 
+  // --- Map zoom / pan ---
+  initMapZoom();
+
+  function initMapZoom() {
+    document.querySelectorAll('.location__map-base').forEach(svg => {
+      const b = svg.viewBox.baseVal;
+      const VX = b.x, VY = b.y, VW = b.width, VH = b.height;
+      const MAX = 6;
+      let s = { x: VX, y: VY, w: VW, h: VH, z: 1 };
+
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+      function apply() { svg.setAttribute('viewBox', `${s.x} ${s.y} ${s.w} ${s.h}`); }
+
+      function zoomAt(cx, cy, factor) {
+        const nw = clamp(s.w / factor, VW / MAX, VW);
+        const f = nw / s.w;
+        s.x = cx - f * (cx - s.x);
+        s.y = cy - f * (cy - s.y);
+        s.w = nw; s.h = VH * (nw / VW); s.z = VW / nw;
+        apply(); syncButtons();
+      }
+
+      function svgPt(clientX, clientY) {
+        const pt = svg.createSVGPoint();
+        pt.x = clientX; pt.y = clientY;
+        return pt.matrixTransform(svg.getScreenCTM().inverse());
+      }
+
+      function syncButtons() {
+        const wrap = svg.closest('.location__world-container');
+        if (!wrap) return;
+        wrap.querySelector('.map-zoom-in')?.toggleAttribute('disabled', s.z >= MAX);
+        wrap.querySelector('.map-zoom-out')?.toggleAttribute('disabled', s.z <= 1);
+        wrap.querySelector('.map-zoom-reset')?.toggleAttribute('disabled', s.z <= 1);
+      }
+
+      svg.addEventListener('wheel', e => {
+        e.preventDefault();
+        const p = svgPt(e.clientX, e.clientY);
+        zoomAt(p.x, p.y, e.deltaY < 0 ? 1.25 : 0.8);
+      }, { passive: false });
+
+      let pd = null, pm = null;
+      svg.addEventListener('touchstart', e => {
+        if (e.touches.length === 2) {
+          pd = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          pm = svgPt((e.touches[0].clientX + e.touches[1].clientX) / 2, (e.touches[0].clientY + e.touches[1].clientY) / 2);
+        }
+      }, { passive: true });
+      svg.addEventListener('touchmove', e => {
+        if (e.touches.length === 2 && pd) {
+          e.preventDefault();
+          const d = Math.hypot(e.touches[0].clientX - e.touches[1].clientX, e.touches[0].clientY - e.touches[1].clientY);
+          zoomAt(pm.x, pm.y, d / pd); pd = d;
+        }
+      }, { passive: false });
+      svg.addEventListener('touchend', () => { pd = null; });
+
+      let drag = false, ds = null, vs = null;
+      svg.addEventListener('pointerdown', e => {
+        if (s.z <= 1) return;
+        drag = true; svg.setPointerCapture(e.pointerId);
+        ds = svgPt(e.clientX, e.clientY); vs = { x: s.x, y: s.y };
+        svg.style.cursor = 'grabbing';
+      });
+      svg.addEventListener('pointermove', e => {
+        if (!drag) return;
+        const p = svgPt(e.clientX, e.clientY);
+        s.x = clamp(vs.x - (p.x - ds.x), VX - (VW - s.w), VX + (VW - s.w));
+        s.y = clamp(vs.y - (p.y - ds.y), VY - (VH - s.h), VY + (VH - s.h));
+        apply();
+      });
+      svg.addEventListener('pointerup', () => { drag = false; svg.style.cursor = ''; });
+
+      const wrap = svg.closest('.location__world-container');
+      if (wrap && !wrap.querySelector('.map-zoom-controls')) {
+        const ctrl = document.createElement('div');
+        ctrl.className = 'map-zoom-controls';
+        ctrl.innerHTML = '<button class="map-zoom-in" title="Zoom in">+</button><button class="map-zoom-reset" title="Reset" disabled>⊙</button><button class="map-zoom-out" title="Zoom out" disabled>−</button>';
+        wrap.appendChild(ctrl);
+        ctrl.querySelector('.map-zoom-in').addEventListener('click', () => zoomAt(s.x + s.w / 2, s.y + s.h / 2, 1.5));
+        ctrl.querySelector('.map-zoom-out').addEventListener('click', () => zoomAt(s.x + s.w / 2, s.y + s.h / 2, 1 / 1.5));
+        ctrl.querySelector('.map-zoom-reset').addEventListener('click', () => {
+          s = { x: VX, y: VY, w: VW, h: VH, z: 1 }; apply(); syncButtons();
+        });
+      }
+    });
+  }
+
   function initMapTooltips() {
     const regions = document.querySelectorAll('.location__map-base path[data-name]');
     if (!regions.length) return;

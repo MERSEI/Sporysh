@@ -940,8 +940,8 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 }
 
 .location__map-tag--import {
-  background: rgba(232, 146, 74, 0.15);
-  color: #C0632A;
+  background: rgba(125, 186, 138, 0.15);
+  color: #3d8a50;
 }
 
 .location__map-tag--export {
@@ -1007,8 +1007,8 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 .location__map-base path.is-importer,
 .location__map-base path.is-collection {
-  fill: #E8924A;
-  stroke: #C0632A;
+  fill: #7dba8a;
+  stroke: #4a8c5c;
   stroke-width: 1.4;
 }
 
@@ -1020,8 +1020,39 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 .location__map-base path.is-base:hover { fill: #c7d2bf; }
 .location__map-base path.is-importer:hover,
-.location__map-base path.is-collection:hover { fill: #d97e2f; }
+.location__map-base path.is-collection:hover { fill: #5a9e68; }
 .location__map-base path.is-origin:hover { fill: #25502f; }
+
+/* Map zoom controls */
+.location__world-container { position: relative; }
+.map-zoom-controls {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+.map-zoom-controls button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  user-select: none;
+  line-height: 1;
+}
+.map-zoom-controls button:hover:not(:disabled) { background: rgba(0, 0, 0, 0.8); }
+.map-zoom-controls button:disabled { opacity: 0.35; cursor: default; }
+.location__map-base { cursor: grab; }
 
 /* Floating region/country name tooltip */
 .map-tooltip {
