@@ -952,8 +952,8 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 }
 
 .location__map-tag--import {
-  background: rgba(232, 146, 74, 0.15);
-  color: #C0632A;
+  background: rgba(125, 186, 138, 0.15);
+  color: #3d8a50;
 }
 
 .location__map-tag--export {
@@ -999,6 +999,92 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   height: 100%;
   pointer-events: none;
 }
+
+/* Interactive vector map base — real country / oblast borders */
+.location__map-base {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.location__map-base path {
+  fill: #dfe4da;
+  stroke: #ffffff;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.location__map-base path.is-importer,
+.location__map-base path.is-collection {
+  fill: #7dba8a;
+  stroke: #4a8c5c;
+  stroke-width: 1.4;
+}
+
+.location__map-base path.is-origin {
+  fill: #2E5D3A;
+  stroke: #1d3f27;
+  stroke-width: 1.4;
+}
+
+.location__map-base path.is-base:hover { fill: #c7d2bf; }
+.location__map-base path.is-importer:hover,
+.location__map-base path.is-collection:hover { fill: #5a9e68; }
+.location__map-base path.is-origin:hover { fill: #25502f; }
+
+/* Map zoom controls */
+.map-zoom-controls {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 10;
+}
+.map-zoom-controls button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  user-select: none;
+  line-height: 1;
+}
+.map-zoom-controls button:hover:not(:disabled) { background: rgba(0, 0, 0, 0.8); }
+.map-zoom-controls button:disabled { opacity: 0.35; cursor: default; }
+.location__map-base { cursor: grab; }
+
+/* Floating region/country name tooltip */
+.map-tooltip {
+  position: fixed;
+  z-index: 60;
+  pointer-events: none;
+  background: var(--charcoal, #2b2b2b);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 4px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transform: translate(-50%, -135%);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.map-tooltip.is-visible { opacity: 1; }
 
 .location__address {
   display: flex;
