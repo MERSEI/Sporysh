@@ -144,10 +144,52 @@ $category_labels = [
 
     <!-- Explore Catalog button -->
     <div class="products__cta">
-      <a href="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg">
+      <button type="button" onclick="openCatalogModal()" class="btn btn--primary btn--lg">
         <i data-lucide="file-text"></i>
-        <?php echo esc_html( sporysh_t( 'btn-catalog', 'View Full Catalog' ) ); ?>
-      </a>
+        <?php echo esc_html( sporysh_t( 'btn-catalog', 'Request Full Catalog' ) ); ?>
+      </button>
     </div>
   </div>
 </section>
+
+<!-- PDF Catalog Modal -->
+<div id="catalogModal" class="catalog-modal" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Product Catalog', 'sporysh' ); ?>">
+  <div class="catalog-modal__overlay" onclick="closeCatalogModal()"></div>
+  <div class="catalog-modal__inner">
+    <div class="catalog-modal__header">
+      <span class="catalog-modal__title">SPORYSH — <?php echo esc_html( sporysh_t( 'btn-catalog', 'Request Full Catalog' ) ); ?></span>
+      <button type="button" class="catalog-modal__close" onclick="closeCatalogModal()" aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <iframe
+      id="catalogFrame"
+      src=""
+      data-src="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/preview"
+      class="catalog-modal__frame"
+      allow="autoplay"
+      title="SPORYSH Product Catalog"
+    ></iframe>
+  </div>
+</div>
+<script>
+(function(){
+  function openCatalogModal() {
+    var modal = document.getElementById('catalogModal');
+    var frame = document.getElementById('catalogFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = frame.dataset.src;
+    }
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons();
+  }
+  function closeCatalogModal() {
+    document.getElementById('catalogModal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCatalogModal(); });
+  window.openCatalogModal = openCatalogModal;
+  window.closeCatalogModal = closeCatalogModal;
+})();
+</script>

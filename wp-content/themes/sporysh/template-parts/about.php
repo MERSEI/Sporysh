@@ -67,105 +67,75 @@ $tdir = get_template_directory_uri();
 
     <div class="location__maps-grid">
 
-      <!-- MAP 1: Ukraine — Collection Regions -->
+      <!-- MAP 1: World — Import USA → Ukraine -->
       <div class="location__map-panel reveal">
         <div class="location__map-header">
-          <span class="location__map-tag location__map-tag--ukraine">&#8857; Collection</span>
-          <span class="location__map-route">Ukraine — Source Regions</span>
+          <span class="location__map-tag location__map-tag--import">&#8595; Import</span>
+          <span class="location__map-route">USA &#8594; Ukraine</span>
         </div>
         <div class="location__world-container">
-          <img src="<?php echo esc_url( $tdir ); ?>/assets/images/map-ukr.png" alt="Ukraine map with SPORYSH collection regions" class="location__world-img">
-          <svg class="location__map-overlay" viewBox="0 0 100 66.7" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="30.8" y1="8.8"  x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="22.1" y1="13.6" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="13.4" y1="21.1" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="4.8"  y1="32.6" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="20.2" y1="32.0" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="25.2" y1="22.5" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="24.8" y1="34.8" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="33.2" y1="24.5" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="49.3" y1="29.4" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="65.8" y1="26.2" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="68.5" y1="32.0" x2="44.5" y2="17.7" stroke="rgba(255,255,255,0.7)" stroke-width="0.45" stroke-dasharray="1,1"/>
-            <line x1="30.8" y1="8.8"  x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="22.1" y1="13.6" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="13.4" y1="21.1" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="4.8"  y1="32.6" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="20.2" y1="32.0" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="25.2" y1="22.5" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="24.8" y1="34.8" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="33.2" y1="24.5" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="49.3" y1="29.4" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="65.8" y1="26.2" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <line x1="68.5" y1="32.0" x2="44.5" y2="17.7" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="1,1"/>
-            <circle cx="30.8" cy="8.8"  r="0.65" fill="white"/><circle cx="30.8" cy="8.8"  r="0.42" fill="#E8924A"/>
-            <circle cx="22.1" cy="13.6" r="0.65" fill="white"/><circle cx="22.1" cy="13.6" r="0.42" fill="#E8924A"/>
-            <circle cx="13.4" cy="21.1" r="0.65" fill="white"/><circle cx="13.4" cy="21.1" r="0.42" fill="#E8924A"/>
-            <circle cx="4.8"  cy="32.6" r="0.65" fill="white"/><circle cx="4.8"  cy="32.6" r="0.42" fill="#E8924A"/>
-            <circle cx="20.2" cy="32.0" r="0.65" fill="white"/><circle cx="20.2" cy="32.0" r="0.42" fill="#E8924A"/>
-            <circle cx="25.2" cy="22.5" r="0.65" fill="white"/><circle cx="25.2" cy="22.5" r="0.42" fill="#E8924A"/>
-            <circle cx="24.8" cy="34.8" r="0.65" fill="white"/><circle cx="24.8" cy="34.8" r="0.42" fill="#E8924A"/>
-            <circle cx="33.2" cy="24.5" r="0.65" fill="white"/><circle cx="33.2" cy="24.5" r="0.42" fill="#E8924A"/>
-            <circle cx="49.3" cy="29.4" r="0.65" fill="white"/><circle cx="49.3" cy="29.4" r="0.42" fill="#E8924A"/>
-            <circle cx="65.8" cy="26.2" r="0.65" fill="white"/><circle cx="65.8" cy="26.2" r="0.42" fill="#E8924A"/>
-            <circle cx="68.5" cy="32.0" r="0.65" fill="white"/><circle cx="68.5" cy="32.0" r="0.42" fill="#E8924A"/>
-            <circle cx="44.5" cy="17.7" r="0.9" fill="white"/>
-            <circle cx="44.5" cy="17.7" r="0.58" fill="#2E5D3A"/>
-            <circle cx="44.5" cy="17.7" r="2" fill="none" stroke="#2E5D3A" stroke-width="0.2">
-              <animate attributeName="r" values="1.0;2.4;1.0" dur="2.5s" repeatCount="indefinite"/>
+          <img src="<?php echo esc_url( $tdir ); ?>/assets/images/map-world.png" alt="World map: import route from USA to Ukraine" class="location__world-img">
+          <svg class="location__map-overlay" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M28.1,14.2 Q38,3.5 57.97,11.03" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <path d="M28.1,14.2 Q38,3.5 57.97,11.03" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
+            <circle cx="28.1" cy="14.2" r="0.85" fill="white"/>
+            <circle cx="28.1" cy="14.2" r="0.55" fill="#E8924A"/>
+            <circle cx="28.1" cy="14.2" r="1.8" fill="none" stroke="#E8924A" stroke-width="0.18">
+              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="57.97" cy="11.03" r="0.85" fill="white"/>
+            <circle cx="57.97" cy="11.03" r="0.55" fill="#2E5D3A"/>
+            <circle cx="57.97" cy="11.03" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
+              <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>
           </svg>
         </div>
       </div>
 
-      <!-- MAP 2: World — Export destinations (21 countries) -->
+      <!-- MAP 2: Europe — Export Ukraine → Europe -->
       <div class="location__map-panel reveal">
         <div class="location__map-header">
           <span class="location__map-tag location__map-tag--export">&#8593; Export</span>
-          <span class="location__map-route">Ukraine → 21 countries worldwide</span>
+          <span class="location__map-route">Ukraine &#8594; Europe</span>
         </div>
         <div class="location__world-container">
-          <img src="<?php echo esc_url( $tdir ); ?>/assets/images/map-world.png" alt="World map: SPORYSH export destinations" class="location__world-img">
-          <svg class="location__map-overlay" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
-            <!-- Arc routes: Ukraine → Western Europe / UK / USA / China / India -->
-            <path d="M57.97,11.03 Q54,7 52.8,11.9"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q53,6 49.4,10.0"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M23.6,14.4 Q37,2 57.97,11.03"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q73,5 78.9,15.3"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q67,12 71.7,18.9"  fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q54,7 52.8,11.9"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q53,6 49.4,10.0"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M23.6,14.4 Q37,2 57.97,11.03"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q73,5 78.9,15.3"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <path d="M57.97,11.03 Q67,12 71.7,18.9"  fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.1" stroke-linecap="round"/>
-            <!-- Country dots: Europe -->
-            <circle cx="55.6" cy="10.6" r="0.55" fill="white"/><circle cx="55.6" cy="10.6" r="0.35" fill="#E8924A"/><!-- Poland -->
-            <circle cx="52.8" cy="10.8" r="0.55" fill="white"/><circle cx="52.8" cy="10.8" r="0.35" fill="#E8924A"/><!-- Germany -->
-            <circle cx="50.6" cy="11.9" r="0.55" fill="white"/><circle cx="50.6" cy="11.9" r="0.35" fill="#E8924A"/><!-- France -->
-            <circle cx="54.3" cy="11.1" r="0.55" fill="white"/><circle cx="54.3" cy="11.1" r="0.35" fill="#E8924A"/><!-- Czech Rep. -->
-            <circle cx="53.9" cy="11.9" r="0.55" fill="white"/><circle cx="53.9" cy="11.9" r="0.35" fill="#E8924A"/><!-- Austria -->
-            <circle cx="55.3" cy="11.9" r="0.55" fill="white"/><circle cx="55.3" cy="11.9" r="0.35" fill="#E8924A"/><!-- Hungary -->
-            <circle cx="52.2" cy="11.9" r="0.55" fill="white"/><circle cx="52.2" cy="11.9" r="0.35" fill="#E8924A"/><!-- Switzerland -->
-            <circle cx="53.3" cy="13.3" r="0.55" fill="white"/><circle cx="53.3" cy="13.3" r="0.35" fill="#E8924A"/><!-- Italy -->
-            <circle cx="48.9" cy="13.9" r="0.55" fill="white"/><circle cx="48.9" cy="13.9" r="0.35" fill="#E8924A"/><!-- Spain -->
-            <circle cx="47.8" cy="14.2" r="0.55" fill="white"/><circle cx="47.8" cy="14.2" r="0.35" fill="#E8924A"/><!-- Portugal -->
-            <circle cx="49.4" cy="10.0" r="0.55" fill="white"/><circle cx="49.4" cy="10.0" r="0.35" fill="#E8924A"/><!-- UK -->
-            <circle cx="56.7" cy="9.4"  r="0.55" fill="white"/><circle cx="56.7" cy="9.4"  r="0.35" fill="#E8924A"/><!-- Lithuania -->
-            <circle cx="54.4" cy="12.5" r="0.55" fill="white"/><circle cx="54.4" cy="12.5" r="0.35" fill="#E8924A"/><!-- Croatia -->
-            <circle cx="54.2" cy="12.2" r="0.55" fill="white"/><circle cx="54.2" cy="12.2" r="0.35" fill="#E8924A"/><!-- Slovenia -->
-            <circle cx="55.8" cy="12.8" r="0.55" fill="white"/><circle cx="55.8" cy="12.8" r="0.35" fill="#E8924A"/><!-- Serbia -->
-            <circle cx="56.9" cy="13.1" r="0.55" fill="white"/><circle cx="56.9" cy="13.1" r="0.35" fill="#E8924A"/><!-- Bulgaria -->
-            <circle cx="55.6" cy="13.6" r="0.55" fill="white"/><circle cx="55.6" cy="13.6" r="0.35" fill="#E8924A"/><!-- Albania -->
-            <circle cx="56.1" cy="13.6" r="0.55" fill="white"/><circle cx="56.1" cy="13.6" r="0.35" fill="#E8924A"/><!-- Macedonia -->
-            <!-- Country dots: Americas + Asia -->
-            <circle cx="23.6" cy="14.4" r="0.85" fill="white"/><circle cx="23.6" cy="14.4" r="0.55" fill="#E8924A"/><!-- USA -->
-            <circle cx="78.9" cy="15.3" r="0.55" fill="white"/><circle cx="78.9" cy="15.3" r="0.35" fill="#E8924A"/><!-- China -->
-            <circle cx="71.7" cy="18.9" r="0.55" fill="white"/><circle cx="71.7" cy="18.9" r="0.35" fill="#E8924A"/><!-- India -->
-            <!-- Ukraine (Zhytomyr) — source dot -->
-            <circle cx="57.97" cy="11.03" r="0.9" fill="white"/>
-            <circle cx="57.97" cy="11.03" r="0.58" fill="#2E5D3A"/>
-            <circle cx="57.97" cy="11.03" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
+          <img src="<?php echo esc_url( $tdir ); ?>/assets/images/map-europ.png" alt="Europe map: export routes from Ukraine to European partners" class="location__world-img">
+          <svg class="location__map-overlay" viewBox="0 0 100 86" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M59,41 Q55.5,37 52,33"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q51,35 43,31"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q48,29 37,28"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q45.5,35 32,36"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q41,40 23,51"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q52,46 45,47"     fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q54,38.5 49,37"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q52.5,37.5 46,34" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q55.5,40 52,40"   fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q58.5,43.5 58,46" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="0.42" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q55.5,37 52,33"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q51,35 43,31"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q48,29 37,28"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q45.5,35 32,36"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q41,40 23,51"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q52,46 45,47"     fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q54,38.5 49,37"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q52.5,37.5 46,34" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q55.5,40 52,40"   fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <path d="M59,41 Q58.5,43.5 58,46" fill="none" stroke="#E8924A" stroke-width="0.28" stroke-dasharray="0.001,1.3" stroke-linecap="round"/>
+            <circle cx="52" cy="33" r="0.55" fill="white"/><circle cx="52" cy="33" r="0.35" fill="#E8924A"/>
+            <circle cx="43" cy="31" r="0.55" fill="white"/><circle cx="43" cy="31" r="0.35" fill="#E8924A"/>
+            <circle cx="37" cy="28" r="0.55" fill="white"/><circle cx="37" cy="28" r="0.35" fill="#E8924A"/>
+            <circle cx="32" cy="36" r="0.55" fill="white"/><circle cx="32" cy="36" r="0.35" fill="#E8924A"/>
+            <circle cx="23" cy="51" r="0.55" fill="white"/><circle cx="23" cy="51" r="0.35" fill="#E8924A"/>
+            <circle cx="45" cy="47" r="0.55" fill="white"/><circle cx="45" cy="47" r="0.35" fill="#E8924A"/>
+            <circle cx="49" cy="37" r="0.55" fill="white"/><circle cx="49" cy="37" r="0.35" fill="#E8924A"/>
+            <circle cx="46" cy="34" r="0.55" fill="white"/><circle cx="46" cy="34" r="0.35" fill="#E8924A"/>
+            <circle cx="52" cy="40" r="0.55" fill="white"/><circle cx="52" cy="40" r="0.35" fill="#E8924A"/>
+            <circle cx="58" cy="46" r="0.55" fill="white"/><circle cx="58" cy="46" r="0.35" fill="#E8924A"/>
+            <circle cx="59" cy="41" r="0.85" fill="white"/>
+            <circle cx="59" cy="41" r="0.55" fill="#2E5D3A"/>
+            <circle cx="59" cy="41" r="1.8" fill="none" stroke="#2E5D3A" stroke-width="0.18">
               <animate attributeName="r" values="1.0;2.2;1.0" dur="2.5s" repeatCount="indefinite"/>
               <animate attributeName="opacity" values="0.7;0;0.7" dur="2.5s" repeatCount="indefinite"/>
             </circle>

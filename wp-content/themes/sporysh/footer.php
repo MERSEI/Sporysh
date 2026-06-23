@@ -13,18 +13,18 @@
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-nav-title', 'Navigation' ) ); ?></h4>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#home"><?php echo esc_html( sporysh_t( 'nav-home', 'Home' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/' ) ); ?>"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#about"><?php echo esc_html( sporysh_t( 'nav-about', 'About Us' ) ); ?></a>
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>#contacts"><?php echo esc_html( sporysh_t( 'nav-contacts', 'Contacts' ) ); ?></a>
         </div>
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-categories-title', 'Categories' ) ); ?></h4>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('herbs')"><?php echo esc_html( sporysh_t( 'filter-herbs', 'Herbs' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('leaves')"><?php echo esc_html( sporysh_t( 'filter-leaves', 'Leaves' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('flowers')"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('roots')"><?php echo esc_html( sporysh_t( 'filter-roots', 'Roots' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('berries')"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products" onclick="filterProducts('others')"><?php echo esc_html( sporysh_t( 'filter-others', 'Others' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=herbs' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-herbs', 'Herbs' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=leaves' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-leaves', 'Leaves' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=flowers' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=roots' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-roots', 'Roots' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=berries' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/products/?filter=others' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-others', 'Others' ) ); ?></a>
         </div>
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-contacts-title', 'Contacts' ) ); ?></h4>

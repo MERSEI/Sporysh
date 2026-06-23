@@ -31,7 +31,7 @@
     <!-- CENTER: Navigation -->
     <nav class="header__nav" id="mainNav" aria-label="Main navigation">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>#home"     class="nav-link active" data-section="home"><?php echo esc_html( sporysh_t( 'nav-home', 'Home' ) ); ?></a>
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products"  class="nav-link"        data-section="products"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
+      <a href="<?php echo esc_url( home_url( '/products/' ) ); ?>"  class="nav-link<?php echo is_page_template( 'page-products.php' ) ? ' active' : ''; ?>" data-section="products"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>#about"     class="nav-link"        data-section="about"><?php echo esc_html( sporysh_t( 'nav-about', 'About Us' ) ); ?></a>
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>#contacts"  class="nav-link"        data-section="contacts"><?php echo esc_html( sporysh_t( 'nav-contacts', 'Contacts' ) ); ?></a>
     </nav>
@@ -81,7 +81,7 @@
   <!-- Mobile Nav -->
   <div class="mobile-nav" id="mobileNav">
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>#home"     class="mobile-nav__link" data-section="home"><?php echo esc_html( sporysh_t( 'nav-home', 'Home' ) ); ?></a>
-    <a href="<?php echo esc_url( home_url( '/' ) ); ?>#products"  class="mobile-nav__link" data-section="products"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
+    <a href="<?php echo esc_url( home_url( '/products/' ) ); ?>"  class="mobile-nav__link" data-section="products"><?php echo esc_html( sporysh_t( 'nav-products', 'Products' ) ); ?></a>
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>#about"     class="mobile-nav__link" data-section="about"><?php echo esc_html( sporysh_t( 'nav-about', 'About Us' ) ); ?></a>
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>#contacts"  class="mobile-nav__link" data-section="contacts"><?php echo esc_html( sporysh_t( 'nav-contacts', 'Contacts' ) ); ?></a>
   </div>
