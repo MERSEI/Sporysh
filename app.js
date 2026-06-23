@@ -294,6 +294,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Map draw-in animation ---
   initMapDrawAnimation();
 
+  // --- Interactive map tooltips (country / oblast names) ---
+  initMapTooltips();
+
+  function initMapTooltips() {
+    const regions = document.querySelectorAll('.location__map-base path[data-name]');
+    if (!regions.length) return;
+    let tip = document.querySelector('.map-tooltip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.className = 'map-tooltip';
+      document.body.appendChild(tip);
+    }
+    regions.forEach(region => {
+      region.addEventListener('mouseenter', () => {
+        tip.textContent = region.getAttribute('data-name');
+        tip.classList.add('is-visible');
+      });
+      region.addEventListener('mousemove', e => {
+        tip.style.left = e.clientX + 'px';
+        tip.style.top = e.clientY + 'px';
+      });
+      region.addEventListener('mouseleave', () => {
+        tip.classList.remove('is-visible');
+      });
+    });
+  }
+
   function initMapDrawAnimation() {
     const panels = document.querySelectorAll('.location__map-panel');
     if (!panels.length) return;
