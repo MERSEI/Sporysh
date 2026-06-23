@@ -27,7 +27,7 @@ function sporysh_scripts() {
     );
 
     // Main stylesheet
-    wp_enqueue_style( 'sporysh-style', get_stylesheet_uri(), [ 'sporysh-fonts' ], '1.0.0' );
+    wp_enqueue_style( 'sporysh-style', get_stylesheet_uri(), [ 'sporysh-fonts' ], '1.1.0' );
 
     // Lucide Icons (CDN)
     wp_enqueue_script( 'lucide', 'https://unpkg.com/lucide@0.344.0/dist/umd/lucide.min.js', [], '0.344.0', true );
@@ -37,7 +37,7 @@ function sporysh_scripts() {
         'sporysh-app',
         get_template_directory_uri() . '/assets/js/app.js',
         [ 'lucide' ],
-        '1.0.0',
+        '1.1.0',
         true
     );
 }

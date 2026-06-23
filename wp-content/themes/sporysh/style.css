@@ -2,7 +2,7 @@
 Theme Name: Sporysh
 Theme URI: https://sporysh.pp.ua
 Description: Premium Herbal Raw Materials — B2B supplier theme for SPORYSH LLC
-Version: 1.0.0
+Version: 1.1.0
 Author: Sporysh LLC
 Text Domain: sporysh
 Requires at least: 6.0
@@ -115,11 +115,12 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: background var(--transition), box-shadow var(--transition);
+  color: white;
 }
 
 .header--scrolled {
   background: rgba(46, 93, 58, 0.97);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 
 .header__inner {
@@ -252,8 +253,8 @@ p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 .lang-switch:hover { background: rgba(255, 255, 255, 0.25); }
 .lang-switch__active { color: white; }
-.lang-switch__divider { color: rgba(255, 255, 255, 0.5); }
-.lang-switch__inactive { color: rgba(255, 255, 255, 0.6); }
+.lang-switch__divider { color: rgba(255, 255, 255, 0.45); }
+.lang-switch__inactive { color: rgba(255, 255, 255, 0.65); }
 
 .mobile-toggle {
   display: none;
@@ -2167,6 +2168,7 @@ body::after {
 .certifications__grid .cert-card:nth-child(1)  { transition-delay: 0.00s; }
 .certifications__grid .cert-card:nth-child(2)  { transition-delay: 0.08s; }
 .certifications__grid .cert-card:nth-child(3)  { transition-delay: 0.16s; }
+.certifications__grid .cert-card:nth-child(4)  { transition-delay: 0.24s; }
 
 .categories__grid .category-card:nth-child(1)  { transition-delay: 0.00s; }
 .categories__grid .category-card:nth-child(2)  { transition-delay: 0.07s; }
@@ -2177,6 +2179,7 @@ body::after {
 
 .location__maps-grid .location__map-panel:nth-child(1) { transition-delay: 0.00s; }
 .location__maps-grid .location__map-panel:nth-child(2) { transition-delay: 0.12s; }
+.location__maps-grid .location__map-panel:nth-child(3) { transition-delay: 0.24s; }
 
 /* ---- Nav link: sharper letter-spacing with Syne ---- */
 .nav-link {
