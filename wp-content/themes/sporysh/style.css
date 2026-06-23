@@ -2,7 +2,7 @@
 Theme Name: Sporysh
 Theme URI: https://sporysh.pp.ua
 Description: Premium Herbal Raw Materials — B2B supplier theme for SPORYSH LLC
-Version: 1.2.0
+Version: 1.3.0
 Author: Sporysh LLC
 Text Domain: sporysh
 Requires at least: 6.0
@@ -2648,6 +2648,7 @@ body::after {
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--off-white);
+  border: 1px solid var(--border-light);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
@@ -3012,4 +3013,79 @@ body::after {
   }
   .catalog__cta-text p { max-width: none; }
   .catalog__cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+/* ---- PDF Catalog Modal ---- */
+.catalog-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.catalog-modal.is-open { display: flex; }
+.catalog-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.catalog-modal__inner {
+  position: relative;
+  z-index: 1;
+  width: min(940px, 100%);
+  height: min(92vh, 820px);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+}
+.catalog-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--cream);
+  flex-shrink: 0;
+}
+.catalog-modal__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--charcoal);
+}
+.catalog-modal__close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  color: var(--charcoal);
+}
+.catalog-modal__close:hover {
+  background: var(--green-primary);
+  border-color: var(--green-primary);
+  color: white;
+}
+.catalog-modal__close svg { width: 16px; height: 16px; }
+.catalog-modal__frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+@media (max-width: 600px) {
+  .catalog-modal { padding: 10px; }
+  .catalog-modal__inner { border-radius: 8px; }
 }

@@ -360,10 +360,10 @@ get_header();
         <p>Request our complete PDF catalog with detailed product specs, packaging formats, moisture content, and export pricing.</p>
       </div>
       <div class="catalog__cta-actions">
-        <a href="<?php echo $home; ?>#contacts" class="btn btn--primary btn--lg">
+        <button type="button" onclick="openCatalogModal()" class="btn btn--primary btn--lg">
           <i data-lucide="file-text"></i>
-          Request PDF Catalog
-        </a>
+          Request Full Catalog
+        </button>
         <a href="<?php echo $home; ?>#contacts" class="btn btn--dark btn--lg">
           <i data-lucide="mail"></i>
           Contact Sales
@@ -373,6 +373,27 @@ get_header();
 
   </div>
 </section>
+
+<!-- PDF Catalog Modal -->
+<div id="catalogModal" class="catalog-modal" role="dialog" aria-modal="true" aria-label="Product Catalog">
+  <div class="catalog-modal__overlay" onclick="closeCatalogModal()"></div>
+  <div class="catalog-modal__inner">
+    <div class="catalog-modal__header">
+      <span class="catalog-modal__title">SPORYSH — Product Catalog PDF</span>
+      <button type="button" class="catalog-modal__close" onclick="closeCatalogModal()" aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <iframe
+      id="catalogFrame"
+      src=""
+      data-src="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/preview"
+      class="catalog-modal__frame"
+      allow="autoplay"
+      title="SPORYSH Product Catalog"
+    ></iframe>
+  </div>
+</div>
 
 <script>
 // Filter
@@ -538,6 +559,27 @@ window.addEventListener('load', () => {
     });
   }
   document.addEventListener('DOMContentLoaded', buildFullCatalog);
+})();
+
+// PDF Catalog Modal
+(function(){
+  function openCatalogModal() {
+    var modal = document.getElementById('catalogModal');
+    var frame = document.getElementById('catalogFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = frame.dataset.src;
+    }
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (window.lucide) lucide.createIcons();
+  }
+  function closeCatalogModal() {
+    document.getElementById('catalogModal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCatalogModal(); });
+  window.openCatalogModal = openCatalogModal;
+  window.closeCatalogModal = closeCatalogModal;
 })();
 </script>
 

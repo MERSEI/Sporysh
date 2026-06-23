@@ -235,6 +235,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--off-white);
+  border: 1px solid var(--border-light);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
@@ -599,6 +600,73 @@
   }
   .catalog__cta-text p { max-width: none; }
   .catalog__cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+/* ---- PDF Catalog Modal ---- */
+.catalog-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.catalog-modal.is-open { display: flex; }
+.catalog-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.catalog-modal__inner {
+  position: relative;
+  z-index: 1;
+  width: min(940px, 100%);
+  height: min(92vh, 820px);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+}
+.catalog-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid #e5e0d4;
+  background: #faf9f5;
+  flex-shrink: 0;
+}
+.catalog-modal__title {
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #1a2e1e;
+}
+.catalog-modal__close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e5e0d4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  color: #1a2e1e;
+}
+.catalog-modal__close:hover { background: #2E5D3A; border-color: #2E5D3A; color: white; }
+.catalog-modal__close svg { width: 16px; height: 16px; }
+.catalog-modal__frame { flex: 1; width: 100%; border: none; }
+@media (max-width: 600px) {
+  .catalog-modal { padding: 10px; }
+  .catalog-modal__inner { border-radius: 8px; }
 }
 </style>
 </head>
@@ -997,10 +1065,10 @@
         <p>Request our complete PDF catalog with detailed product specs, packaging formats, moisture content, and export pricing.</p>
       </div>
       <div class="catalog__cta-actions">
-        <a href="./index.html#contacts" class="btn btn--primary btn--lg">
+        <button type="button" onclick="openCatalogModal()" class="btn btn--primary btn--lg">
           <i data-lucide="file-text"></i>
-          Request PDF Catalog
-        </a>
+          Request Full Catalog
+        </button>
         <a href="./index.html#contacts" class="btn btn--dark btn--lg">
           <i data-lucide="mail"></i>
           Contact Sales
@@ -1010,6 +1078,27 @@
 
   </div>
 </section>
+
+<!-- PDF Catalog Modal -->
+<div id="catalogModal" class="catalog-modal" role="dialog" aria-modal="true" aria-label="Product Catalog">
+  <div class="catalog-modal__overlay" onclick="closeCatalogModal()"></div>
+  <div class="catalog-modal__inner">
+    <div class="catalog-modal__header">
+      <span class="catalog-modal__title">SPORYSH — Product Catalog PDF</span>
+      <button type="button" class="catalog-modal__close" onclick="closeCatalogModal()" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <iframe
+      id="catalogFrame"
+      src=""
+      data-src="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/preview"
+      class="catalog-modal__frame"
+      allow="autoplay"
+      title="SPORYSH Product Catalog"
+    ></iframe>
+  </div>
+</div>
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer">
@@ -1259,6 +1348,26 @@ window.addEventListener('load', () => {
     });
   }
   document.addEventListener('DOMContentLoaded', buildFullCatalog);
+})();
+
+// PDF Catalog Modal
+(function(){
+  function openCatalogModal() {
+    var modal = document.getElementById('catalogModal');
+    var frame = document.getElementById('catalogFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = frame.dataset.src;
+    }
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCatalogModal() {
+    document.getElementById('catalogModal').classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeCatalogModal(); });
+  window.openCatalogModal = openCatalogModal;
+  window.closeCatalogModal = closeCatalogModal;
 })();
 </script>
 </body>
