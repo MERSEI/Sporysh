@@ -662,6 +662,17 @@
   color: #1a2e1e;
 }
 .catalog-modal__close:hover { background: #2E5D3A; border-color: #2E5D3A; color: white; }
+.catalog-modal__download {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 6px;
+  background: var(--green-primary, #2e5d3a); color: #fff;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; transition: opacity 0.2s;
+  margin-left: auto;
+}
+.catalog-modal__download:hover { opacity: 0.85; }
+.catalog-modal__download svg { width: 14px; height: 14px; }
 .catalog-modal__close svg { width: 16px; height: 16px; }
 .catalog-modal__frame { flex: 1; width: 100%; border: none; }
 @media (max-width: 600px) {
@@ -1085,6 +1096,7 @@
   <div class="catalog-modal__inner">
     <div class="catalog-modal__header">
       <span class="catalog-modal__title">SPORYSH — Product Catalog PDF</span>
+      <a href="https://sporysh.pp.ua/wp-content/uploads/2026/06/product-catalog-sporysh.pdf" download="SPORYSH-Product-Catalog.pdf" class="catalog-modal__download" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
       <button type="button" class="catalog-modal__close" onclick="closeCatalogModal()" aria-label="Close">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -1092,7 +1104,7 @@
     <iframe
       id="catalogFrame"
       src=""
-      data-src="https://drive.google.com/file/d/1LRA2KES8jgnedoFHBtzUgow5BKCjHuwa/preview"
+      data-src="https://docs.google.com/viewer?url=https%3A%2F%2Fsporysh.pp.ua%2Fwp-content%2Fuploads%2F2026%2F06%2Fproduct-catalog-sporysh.pdf&embedded=true"
       class="catalog-modal__frame"
       allow="autoplay"
       title="SPORYSH Product Catalog"
@@ -1372,3 +1384,4 @@ window.addEventListener('load', () => {
 </script>
 </body>
 </html>
+
