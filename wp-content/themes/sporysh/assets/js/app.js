@@ -214,8 +214,46 @@ document.addEventListener('DOMContentLoaded', () => {
       const MAX = 6;
       let s = { x: VX, y: VY, w: VW, h: VH, z: 1 };
 
+      const overlay = svg.parentElement.querySelector('.location__map-overlay');
+      const R = overlay ? 100 / VW : 0;
+
       function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-      function apply() { svg.setAttribute('viewBox', `${s.x} ${s.y} ${s.w} ${s.h}`); }
+
+      function scaleOverlay() {
+        if (!overlay) return;
+        const inv = 1 / s.z;
+        overlay.setAttribute('viewBox', `${s.x * R} ${s.y * R} ${s.w * R} ${s.h * R}`);
+        overlay.querySelectorAll('line, path').forEach(el => {
+          // Cache original stroke-width (HTML attribute, constant)
+          if (!el.hasAttribute('data-sw')) {
+            const sw = el.getAttribute('stroke-width');
+            if (sw) el.setAttribute('data-sw', sw);
+          }
+          const origSW = el.getAttribute('data-sw');
+          if (origSW) el.setAttribute('stroke-width', parseFloat(origSW) * inv);
+          // Cache original dasharray (set by initMapDrawAnimation, retry until available)
+          if (!el.getAttribute('data-da')) {
+            const da = el.style.strokeDasharray || el.getAttribute('stroke-dasharray') || '';
+            if (da.trim()) el.setAttribute('data-da', da.trim());
+          }
+          const origDA = el.getAttribute('data-da');
+          if (origDA) el.style.strokeDasharray = origDA.replace(/[\d.]+/g, v => (parseFloat(v) * inv).toFixed(4));
+        });
+        overlay.querySelectorAll('circle').forEach(el => {
+          if (!el.hasAttribute('data-r')) el.setAttribute('data-r', el.getAttribute('r') || '0');
+          const origR = parseFloat(el.getAttribute('data-r'));
+          if (origR) el.setAttribute('r', origR * inv);
+        });
+        // Update march keyframes so dash cycle = 1 period at current zoom
+        let st = document.getElementById('map-march-dyn');
+        if (!st) { st = document.createElement('style'); st.id = 'map-march-dyn'; document.head.appendChild(st); }
+        st.textContent = `@keyframes map-march{to{stroke-dashoffset:${(-3 * inv).toFixed(4)}}}@keyframes map-march-path{to{stroke-dashoffset:${(-4 * inv).toFixed(4)}}}`;
+      }
+
+      function apply() {
+        svg.setAttribute('viewBox', `${s.x} ${s.y} ${s.w} ${s.h}`);
+        scaleOverlay();
+      }
 
       function zoomAt(cx, cy, factor) {
         const nw = clamp(s.w / factor, VW / MAX, VW);
