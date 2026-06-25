@@ -307,14 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const MAX = 6;
       let s = { x: VX, y: VY, w: VW, h: VH, z: 1 };
 
-      const overlay = svg.parentElement.querySelector('.location__map-overlay');
-      const R = overlay ? 100 / VW : 0;
-
       function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-      function apply() {
-        svg.setAttribute('viewBox', `${s.x} ${s.y} ${s.w} ${s.h}`);
-        if (overlay) overlay.setAttribute('viewBox', `${s.x * R} ${s.y * R} ${s.w * R} ${s.h * R}`);
-      }
+      function apply() { svg.setAttribute('viewBox', `${s.x} ${s.y} ${s.w} ${s.h}`); }
 
       function zoomAt(cx, cy, factor) {
         const nw = clamp(s.w / factor, VW / MAX, VW);
