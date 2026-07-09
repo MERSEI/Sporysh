@@ -1271,7 +1271,7 @@ function initHeroStats() {
 // URL param filter (e.g. products.html?filter=herbs)
 function applyUrlFilter() {
   const params = new URLSearchParams(window.location.search);
-  const f = params.get('filter');
+  const f = params.get('filter') || params.get('cat') || params.get('category');
   if (f) filterCatalog(f);
 }
 
@@ -1346,6 +1346,10 @@ window.addEventListener('load', () => {
       });
       inner.appendChild(groupEl);
     });
+    // Re-apply any active filter/search now that the full catalog groups exist —
+    // otherwise a filter set before this ran (e.g. via ?filter= URL param) never
+    // reaches these groups since they didn't exist yet when _applyFilters() ran.
+    if (typeof _applyFilters === 'function') _applyFilters();
   }
   document.addEventListener('DOMContentLoaded', buildFullCatalog);
 })();
