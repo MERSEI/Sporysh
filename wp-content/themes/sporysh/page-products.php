@@ -433,6 +433,7 @@ function _applyFilters() {
   });
 
   // Full catalog fc-items
+  const isFiltered = category !== 'all' || !!term;
   document.querySelectorAll('.full-catalog__group').forEach(group => {
     let groupVisible = 0;
     group.querySelectorAll('.fc-item:not(.fc-item--header)').forEach(item => {
@@ -445,6 +446,15 @@ function _applyFilters() {
     group.style.display = groupVisible === 0 ? 'none' : '';
     const countEl = group.querySelector('.full-catalog__cat-count');
     if (countEl) countEl.textContent = groupVisible;
+    // Auto-open/close body based on filter state
+    const body = group.querySelector('.full-catalog__cat-body');
+    if (body) {
+      if (isFiltered && groupVisible > 0) {
+        body.classList.add('open');
+      } else if (isFiltered && groupVisible === 0) {
+        body.classList.remove('open');
+      }
+    }
   });
 
   const empty = document.getElementById('catalogEmpty');
@@ -557,6 +567,11 @@ window.addEventListener('load', () => {
       });
       inner.appendChild(groupEl);
     });
+    // Re-apply current filter state after catalog is built
+    // (fixes race: applyUrlFilter runs before buildFullCatalog)
+    if (typeof _applyFilters === 'function') {
+      _applyFilters();
+    }
   }
   document.addEventListener('DOMContentLoaded', buildFullCatalog);
 })();
