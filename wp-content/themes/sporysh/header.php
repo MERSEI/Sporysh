@@ -86,3 +86,21 @@
     <a href="<?php echo esc_url( home_url( '/' ) ); ?>#contacts"  class="mobile-nav__link" data-section="contacts"><?php echo esc_html( sporysh_t( 'nav-contacts', 'Contacts' ) ); ?></a>
   </div>
 </header>
+<script>
+(function(){
+  var t = document.getElementById('mobileToggle');
+  var n = document.getElementById('mobileNav');
+  if (!t || !n) return;
+  t.addEventListener('click', function(){
+    var open = t.getAttribute('aria-expanded') === 'true';
+    t.setAttribute('aria-expanded', open ? 'false' : 'true');
+    n.classList.toggle('open', !open);
+  });
+  n.querySelectorAll('.mobile-nav__link').forEach(function(l){
+    l.addEventListener('click', function(){
+      t.setAttribute('aria-expanded','false');
+      n.classList.remove('open');
+    });
+  });
+})();
+</script>

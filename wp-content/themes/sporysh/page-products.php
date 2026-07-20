@@ -398,8 +398,10 @@ get_header();
 <script>
 // Filter
 function filterCatalog(category) {
-  document.querySelectorAll('.filter-btn').forEach(b =>
-    b.classList.toggle('active', b.dataset.filter === category)
+  // normalize alias: 'other' -> 'others' (data-category on cards uses 'others')
+  if (category === 'other') category = 'others';
+  document.querySelectorAll('.filter-btn, .cat-filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.filter === category || b.dataset.slug === category)
   );
   _applyFilters();
 }
@@ -410,7 +412,9 @@ function searchCatalog(value) {
 }
 
 function _applyFilters() {
-  const category = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+  const category = document.querySelector('.filter-btn.active, .cat-filter-btn.active')?.dataset.filter
+                || document.querySelector('.cat-filter-btn.active')?.dataset.slug
+                || 'all';
   const term = (document.getElementById('catalogSearch')?.value || '').toLowerCase().trim();
   let showIndex = 0;
 
@@ -490,10 +494,10 @@ function initHeroStats() {
   });
 }
 
-// URL param filter (e.g. products.html?filter=herbs)
+// URL param filter — supports ?filter=herbs AND ?cat=herbs
 function applyUrlFilter() {
   const params = new URLSearchParams(window.location.search);
-  const f = params.get('filter');
+  const f = params.get('filter') || params.get('cat');
   if (f) filterCatalog(f);
 }
 

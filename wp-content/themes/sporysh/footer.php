@@ -19,12 +19,12 @@
         </div>
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-categories-title', 'Categories' ) ); ?></h4>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=herbs' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-herbs', 'Herbs' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=leaves' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-leaves', 'Leaves' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=flowers' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=roots' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-roots', 'Roots' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=berries' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></a>
-          <a href="<?php echo esc_url( home_url( '/products/?filter=others' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-others', 'Others' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=herbs' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-herbs', 'Herbs' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=leaves' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-leaves', 'Leaves' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=flowers' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-flowers', 'Flowers' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=roots' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-roots', 'Roots' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=berries' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-berries', 'Berries' ) ); ?></a>
+          <a href="<?php echo esc_url( home_url( '/product-catalog/?cat=others' ) ); ?>"><?php echo esc_html( sporysh_t( 'filter-others', 'Others' ) ); ?></a>
         </div>
         <div class="footer__col">
           <h4><?php echo esc_html( sporysh_t( 'footer-contacts-title', 'Contacts' ) ); ?></h4>
