@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>SPORYSH — Geographic Network v13</title>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       LEAFLET 1.9.4 — подключение с jsDelivr CDN
+       Для WordPress: при желании можно перенести в wp_enqueue_style()
+       ═══════════════════════════════════════════════════════════════ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       CSS VARIABLES — меняй цвета здесь
+       ═══════════════════════════════════════════════════════════════ */
+    :root {
+      --color-bg:          #F3DDBF;   /* тёплый бежевый фон карты     */
+      --color-olive:       #899472;   /* оливковый — линии сборов      */
+      --color-green:       #314C11;   /* тёмно-зелёный — экспорт / акцент */
+      --color-green-light: #4a7019;   /* более светлый зелёный для hover  */
+      --color-green-dim:   rgba(49, 76, 17, 0.45); /* приглушённый зелёный  */
+      --color-olive-dim:   rgba(137, 148, 114, 0.5);
+      --color-text:        #2a3318;   /* тёмный текст                  */
+      --color-border:      rgba(49, 76, 17, 0.14);
+      --radius-map:        14px;
+    }
+
+    /* ── Сброс и базовые стили ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--color-bg);
+      font-family: 'Syne', 'Inter', 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       КОНТЕЙНЕР КАРТЫ
+       ═══════════════════════════════════════════════════════════════ */
+    #sporysh-map {
+      width: 100%;
+      height: 100vh;
+      min-height: 420px;
+      background: var(--color-bg);
+      border-radius: var(--radius-map);
+      isolation: isolate;
+    }
+
+    /* Если карта встроена в iframe → полная высота окна */
+    @media (max-width: 640px) {
+      #sporysh-map { min-height: 340px; }
+    }
+
+    /* ── Переопределение стилей Leaflet под палитру ── */
+    .leaflet-container {
+      background: #e8d8b0 !important; /* цвет пока тайлы грузятся */
+      font-family: inherit;
+    }
+
+    /* Скрываем стандартный attribution (оставляем минимальным) */
+    .leaflet-control-attribution {
+      font-size: 9px !important;
+      opacity: 0.55;
+      background: rgba(243, 221, 191, 0.85) !important;
+      color: var(--color-green) !important;
+      border-radius: 4px 0 0 0;
+    }
+    .leaflet-control-attribution a { color: var(--color-green) !important; }
+
+    /* Кнопки zoom */
+    .leaflet-control-zoom a {
+      background: rgba(243, 221, 191, 0.95) !important;
+      color: var(--color-green) !important;
+      border-color: var(--color-border) !important;
+      font-weight: 700;
+      transition: background 0.2s ease;
+    }
+    .leaflet-control-zoom a:hover {
+      background: var(--color-green) !important;
+      color: var(--color-bg) !important;
+    }
+    .leaflet-bar {
+      border-radius: 8px !important;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(49, 76, 17, 0.15) !important;
+      border: 1px solid var(--color-border) !important;
+    }
+    .leaflet-bar a:first-child { border-radius: 7px 7px 0 0 !important; }
+    .leaflet-bar a:last-child  { border-radius: 0 0 7px 7px !important; }
+
+    /* Плавный переход opacity для линий */
+    .leaflet-overlay-pane path,
+    .leaflet-overlay-pane line {
+      transition: opacity 0.45s ease, stroke-opacity 0.45s ease;
+    }
+    .leaflet-marker-pane .leaflet-marker-icon {
+      transition: opacity 0.45s ease, transform 0.3s ease;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       МАРКЕР ЖИТОМИРА — пульсирующий источник
+       ═══════════════════════════════════════════════════════════════ */
+    .sporysh-origin {
+      position: relative;
+      width: 18px; height: 18px;
+      pointer-events: none;
+    }
+    .sporysh-origin__dot {
+      position: absolute;
+      inset: 0;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--color-green);
+      border: 2.5px solid var(--color-bg);
+      box-shadow: 0 0 0 2px var(--color-green-dim);
+      z-index: 2;
+    }
+    .sporysh-origin__ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 18px; height: 18px;
+      margin-left: -9px; margin-top: -9px;
+      border-radius: 50%;
+      background: rgba(49, 76, 17, 0.22);
+      animation: sporysh-ripple 2.4s ease-out infinite;
+    }
+    .sporysh-origin__ring:nth-child(3) {
+      animation-delay: 0.8s;
+      background: rgba(49, 76, 17, 0.12);
+    }
+
+    /* Маркер города-коллектора */
+    .sporysh-city-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--color-olive);
+      border: 1.5px solid rgba(243, 221, 191, 0.9);
+      box-shadow: 0 1px 4px rgba(49, 76, 17, 0.2);
+      transition: opacity 0.45s ease;
+    }
+
+    /* Маркер пункта экспорта */
+    .sporysh-dest-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--color-green);
+      border: 1.5px solid rgba(243, 221, 191, 0.85);
+      box-shadow: 0 1px 4px rgba(49, 76, 17, 0.2);
+      transition: opacity 0.45s ease;
+    }
+    .sporysh-dest-dot.overseas {
+      background: var(--color-olive);
+      width: 8px; height: 8px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       TOOLTIPS
+       ═══════════════════════════════════════════════════════════════ */
+    .sporysh-tooltip {
+      background: rgba(243, 221, 191, 0.97) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: 7px !important;
+      color: var(--color-text) !important;
+      font-size: 12px !important;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 5px 10px !important;
+      box-shadow: 0 3px 14px rgba(49, 76, 17, 0.14) !important;
+      white-space: nowrap;
+    }
+    .sporysh-tooltip::before { display: none; }
+
+    /* Arrow marker (collection → Zhytomyr) */
+    .sporysh-arrow {
+      width: 10px;
+      height: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: center center;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));
+    }
+
+    /* Лейблы городов-коллекторов и областных центров */
+    .sporysh-city-label {
+      background: rgba(243, 221, 191, 0.92) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: 5px !important;
+      color: var(--color-text) !important;
+      font-size: 11px !important;
+      font-weight: 600;
+      padding: 2px 7px !important;
+      box-shadow: 0 1px 6px rgba(49, 76, 17, 0.12) !important;
+      white-space: nowrap;
+    }
+    .sporysh-city-label::before { display: none; }
+
+    .sporysh-capital-label {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      color: var(--color-green) !important;
+      font-size: 10.5px !important;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0 !important;
+      text-shadow: 0 0 3px rgba(243, 221, 191, 0.9), 0 0 3px rgba(243, 221, 191, 0.9);
+    }
+    .sporysh-capital-label::before { display: none; }
+
+    .sporysh-oblast-tooltip {
+      background: rgba(243, 221, 191, 0.95) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: 6px !important;
+      color: var(--color-text) !important;
+      font-size: 11px !important;
+      font-weight: 500;
+      padding: 3px 8px !important;
+      box-shadow: 0 2px 8px rgba(49, 76, 17, 0.10) !important;
+    }
+    .sporysh-oblast-tooltip::before { display: none; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       АНИМАЦИИ
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* Пульсация маркера Житомира */
+    @keyframes sporysh-ripple {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      100% { transform: scale(3.2); opacity: 0;   }
+    }
+
+    /* Движение пунктира по линиям экспорта */
+    @keyframes sporysh-march-export {
+      to { stroke-dashoffset: -14; }
+    }
+
+    /* Движение пунктира по линиям сбора */
+    @keyframes sporysh-march-collect {
+      to { stroke-dashoffset: -8; }
+    }
+
+    /* ── prefers-reduced-motion — отключаем все анимации ── */
+    @media (prefers-reduced-motion: reduce) {
+      .sporysh-origin__ring,
+      .leaflet-overlay-pane path {
+        animation: none !important;
+      }
+      .leaflet-overlay-pane path,
+      .leaflet-marker-pane .leaflet-marker-icon {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       КОНТЕЙНЕР КАРТЫ
+       При встраивании в WordPress как iframe — этот div заполняет окно.
+       При встраивании напрямую в HTML — задай нужную высоту через CSS
+       на родительском контейнере.
+       ═══════════════════════════════════════════════════════════════ -->
+  <div id="sporysh-map" role="application" aria-label="SPORYSH — interactive map of geographic network"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       LEAFLET 1.9.4 JS
+       ═══════════════════════════════════════════════════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+
+  <script>
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 1 — CONFIG
+     Все настройки в одном месте. Меняй здесь.
+     ═══════════════════════════════════════════════════════════════════ */
+  // ── View mode (from ?view=collection|export) ─────────────────────
+  const _urlParams = new URLSearchParams(window.location.search);
+  const VIEW = (_urlParams.get('view') === 'export') ? 'export' : 'collection';
+
+  const CFG = {
+    // Начальный вид карты
+    CENTER:       VIEW === 'export' ? [30, 20] : [49.5, 28.6],
+    ZOOM_INIT:    VIEW === 'export' ? 2 : 6,
+    ZOOM_MIN:     2,
+    ZOOM_MAX:     11,
+
+    // Пороги переключения слоёв
+    // Level 1 (Global):  zoom ≤ THRESH_UKRAINE
+    // Level 2 (Ukraine): THRESH_UKRAINE < zoom ≤ THRESH_DETAIL
+    // Level 3 (Detail):  zoom >  THRESH_DETAIL
+    THRESH_UKRAINE: 5,
+    THRESH_DETAIL:  7,
+
+    // Цвета (дублируют CSS-переменные для использования в JS)
+    // ↓ Меняй цвета здесь или через CSS :root переменные выше ↓
+    C_GREEN:       '#314C11',
+    C_GREEN_SOFT:  '#4a7019',
+    C_OLIVE:       '#899472',
+    C_OLIVE_SOFT:  '#a8b48c',
+    C_BG:          '#F3DDBF',
+
+    // Тайловые слои CartoDB Voyager (тёплые приглушённые тона, без API ключа)
+    // Для collection — БЕЗ подписей (чтобы не показывать названия городов/регионов РФ),
+    // подписи украинских городов даются вручную через tooltips.
+    // Для export — стандартная карта с подписями стран.
+    TILE_URL:          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    TILE_URL_NOLABELS: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png',
+    TILE_ATTR: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+
+    // GeoJSON Ukraine (области) — точные границы из репозитория ukraine_geojson
+    // Замени URL на свой хостинг если нужна автономная работа
+    GEOJSON_UKRAINE: 'https://cdn.jsdelivr.net/gh/EugeneBorshch/ukraine_geojson@master/UA_FULL_Ukraine.geojson',
+    // TopoJSON стран мира (world-atlas v2) + topojson-client для конвертації
+    GEOJSON_WORLD:   'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json',
+    TOPOJSON_CLIENT: 'https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js',
+  };
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 2 — DATA
+     Маршруты экспорта и сборов. Меняй координаты / названия здесь.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  // Источник всех линий — всегда Житомир, независимо от VIEW
+  const ORIGIN = [50.2547, 28.6587];
+
+  // ── Маршруты экспорта (Житомир → страна) ──────────────────────────
+  // coords: координаты столицы (или условной точки страны)
+  // overseas: true — рисовать дугу большого круга (для дальних маршрутов)
+  const EXPORT_ROUTES = [
+    // Европа
+    { name: 'Польща',       nameEn: 'Poland',         coords: [52.2297,  21.0122] },
+    { name: 'Литва',        nameEn: 'Lithuania',       coords: [54.6872,  25.2797] },
+    { name: 'Чехія',        nameEn: 'Czech Republic',  coords: [50.0755,  14.4378] },
+    { name: 'Німеччина',    nameEn: 'Germany',         coords: [52.5200,  13.4050] },
+    { name: 'Франція',      nameEn: 'France',          coords: [48.8566,   2.3522] },
+    { name: 'Велика Британія', nameEn: 'UK',           coords: [51.5074,  -0.1278] },
+    { name: 'Іспанія',      nameEn: 'Spain',           coords: [40.4168,  -3.7038] },
+    { name: 'Хорватія',     nameEn: 'Croatia',         coords: [45.8150,  15.9819] },
+    { name: 'Італія',       nameEn: 'Italy',           coords: [41.9028,  12.4964] },
+    { name: 'Болгарія',     nameEn: 'Bulgaria',        coords: [42.6977,  23.3219] },
+    { name: 'Австрія',      nameEn: 'Austria',         coords: [48.2082,  16.3738] },
+    { name: 'Албанія',      nameEn: 'Albania',         coords: [41.3275,  19.8189] },
+    { name: 'Португалія',   nameEn: 'Portugal',        coords: [38.7169,  -9.1399] },
+    { name: 'Швейцарія',    nameEn: 'Switzerland',     coords: [46.9480,   7.4474] },
+    { name: 'Сербія',       nameEn: 'Serbia',          coords: [44.8176,  20.4633] },
+    { name: 'Македонія',    nameEn: 'N. Macedonia',    coords: [41.9981,  21.4254] },
+    { name: 'Угорщина',     nameEn: 'Hungary',         coords: [47.4979,  19.0402] },
+    { name: 'Словенія',     nameEn: 'Slovenia',        coords: [46.0569,  14.5058] },
+    // Заокеанские (overseas: true → дуга большого круга)
+    { name: 'США',          nameEn: 'USA',             coords: [38.9072, -77.0369], overseas: true },
+    { name: 'Китай',        nameEn: 'China',           coords: [39.9042, 116.4074], overseas: true },
+    { name: 'Індія',        nameEn: 'India',           coords: [28.6139,  77.2090], overseas: true },
+  ];
+
+  // ── Областные центры Украины (подписи на collection-карте) ───────
+  // Берутся вручную, т.к. тайлы без подписей скрывают все названия.
+  const UA_CAPITALS = [
+    { name: 'Київ',            coords: [50.4501, 30.5234] },
+    { name: 'Харків',          coords: [49.9935, 36.2304] },
+    { name: 'Одеса',           coords: [46.4825, 30.7233] },
+    { name: 'Дніпро',          coords: [48.4647, 35.0462] },
+    { name: 'Запоріжжя',       coords: [47.8388, 35.1396] },
+    { name: 'Вінниця',         coords: [49.2331, 28.4682] },
+    { name: 'Полтава',         coords: [49.5883, 34.5514] },
+    { name: 'Чернігів',        coords: [51.4982, 31.2893] },
+    { name: 'Черкаси',         coords: [49.4444, 32.0598] },
+    { name: 'Суми',            coords: [50.9077, 34.7981] },
+    { name: 'Чернівці',        coords: [48.2921, 25.9358] },
+    { name: 'Ужгород',         coords: [48.6208, 22.2879] },
+    { name: 'Івано-Франківськ',coords: [48.9226, 24.7111] },
+    { name: 'Тернопіль',       coords: [49.5535, 25.5948] },
+    { name: 'Рівне',           coords: [50.6199, 26.2516] },
+    { name: 'Житомир',         coords: [50.2547, 28.6587] },
+    { name: 'Миколаїв',        coords: [46.9750, 31.9946] },
+    { name: 'Херсон',          coords: [46.6354, 32.6169] },
+    // Сімферополь, Донецьк, Луганськ — тимчасово окуповані, не підписуємо
+  ];
+
+  // ── Маршруты сборов (город → Житомир) ────────────────────────────
+  // Отображаются только при zoom > THRESH_DETAIL
+  const COLLECTION_ROUTES = [
+    { name: 'Сарни',           coords: [51.3393, 26.6147] },
+    { name: 'Луцьк',           coords: [50.7472, 25.3254] },
+    { name: 'Львів',           coords: [49.8397, 24.0297] },
+    { name: 'Мукачево',        coords: [48.4410, 22.7210] },
+    { name: 'Коломия',         coords: [48.5254, 25.0394] },
+    { name: 'Збараж',          coords: [49.6683, 25.7839] },
+    { name: 'Сторожинець',     coords: [48.1661, 25.7189] },
+    { name: 'Хмельницький',    coords: [49.4229, 26.9870] },
+    { name: 'Гайсин',          coords: [48.8106, 29.3893] },
+    { name: 'Сміла',           coords: [49.2252, 31.8667] },
+    { name: 'Кропивницький',   coords: [48.5132, 32.2597] },
+  ];
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 3 — UTILS
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /**
+   * Вычисляет точки дуги большого круга между двумя LatLng.
+   * Используется для заокеанских маршрутов (США, Китай, Индия).
+   * @param {number[]} from  - [lat, lng]
+   * @param {number[]} to    - [lat, lng]
+   * @param {number}   steps - количество промежуточных точек
+   * @returns {number[][]}    - массив [lat, lng]
+   */
+  function greatCirclePoints(from, to, steps = 60) {
+    const toRad = x => x * Math.PI / 180;
+    const toDeg = x => x * 180 / Math.PI;
+
+    const lat1 = toRad(from[0]), lng1 = toRad(from[1]);
+    const lat2 = toRad(to[0]),   lng2 = toRad(to[1]);
+
+    // Угловое расстояние
+    const d = 2 * Math.asin(Math.sqrt(
+      Math.pow(Math.sin((lat2 - lat1) / 2), 2) +
+      Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((lng2 - lng1) / 2), 2)
+    ));
+    if (d < 1e-10) return [from, to];
+
+    const pts = [];
+    for (let i = 0; i <= steps; i++) {
+      const f = i / steps;
+      const A = Math.sin((1 - f) * d) / Math.sin(d);
+      const B = Math.sin(f * d) / Math.sin(d);
+      const x = A * Math.cos(lat1) * Math.cos(lng1) + B * Math.cos(lat2) * Math.cos(lng2);
+      const y = A * Math.cos(lat1) * Math.sin(lng1) + B * Math.cos(lat2) * Math.sin(lng2);
+      const z = A * Math.sin(lat1) + B * Math.sin(lat2);
+      pts.push([toDeg(Math.atan2(z, Math.sqrt(x * x + y * y))), toDeg(Math.atan2(y, x))]);
+    }
+    return pts;
+  }
+
+  /**
+   * Применяет анимацию "марширующего пунктира" к SVG path-элементу Leaflet.
+   * Вызывается после добавления линии на карту.
+   * @param {L.Polyline} leafletLine
+   * @param {'export'|'collect'} type
+   * @param {number} delayMs
+   */
+  function animateLine(leafletLine, type, delayMs = 0) {
+    // requestAnimationFrame гарантирует, что SVG path уже в DOM
+    requestAnimationFrame(function() {
+      const el = leafletLine.getElement();
+      if (!el) return;
+
+      if (type === 'export') {
+        el.style.strokeDasharray  = '6 8';
+        el.style.strokeDashoffset = '0';
+        el.style.animationDelay   = delayMs + 'ms';
+        el.classList.add('sporysh-line-export');
+      } else {
+        el.style.strokeDasharray  = '3 5';
+        el.style.strokeDashoffset = '0';
+        el.style.animationDelay   = delayMs + 'ms';
+        el.classList.add('sporysh-line-collect');
+      }
+    });
+  }
+
+  /**
+   * Устанавливает opacity для элемента Leaflet (линии или маркера).
+   * SVG lines управляются через style.opacity,
+   * divIcon-маркеры — через el.style.opacity на обёртке.
+   */
+  function setLayerOpacity(layer, opacity) {
+    layer.eachLayer(function(l) {
+      const el = l.getElement ? l.getElement() : null;
+      if (el) el.style.opacity = opacity;
+    });
+  }
+
+  /**
+   * Немедленно устанавливает opacity (без CSS transition).
+   */
+  function setLayerOpacityImmediate(layer, opacity) {
+    layer.eachLayer(function(l) {
+      const el = l.getElement ? l.getElement() : null;
+      if (el) {
+        el.style.transition = 'none';
+        el.style.opacity    = opacity;
+        // Восстанавливаем transition в следующем кадре
+        requestAnimationFrame(() => { el.style.transition = ''; });
+      }
+    });
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 4 — MAP INIT
+     ═══════════════════════════════════════════════════════════════════ */
+
+  const map = L.map('sporysh-map', {
+    center:           CFG.CENTER,
+    zoom:             CFG.ZOOM_INIT,
+    minZoom:          CFG.ZOOM_MIN,
+    maxZoom:          CFG.ZOOM_MAX,
+    zoomControl:      true,
+    scrollWheelZoom:  false,   // отключаем scroll-hijack внутри iframe
+    attributionControl: true,
+  });
+
+  // ── Включаем scroll-zoom только когда карта в фокусе ──────────────
+  map.getContainer().addEventListener('focus', () => map.scrollWheelZoom.enable());
+  map.getContainer().addEventListener('blur',  () => map.scrollWheelZoom.disable());
+  // На touch-устройствах также по tap
+  map.getContainer().addEventListener('click', () => {
+    map.getContainer().focus();
+    map.scrollWheelZoom.enable();
+  });
+
+  // ── Тайловый слой ──────────────────────────────────────────────────
+  // CartoDB Voyager — тёплые тона, без API ключа.
+  // Для смены стиля — замени URL на любой другой Leaflet tile provider.
+  L.tileLayer(VIEW === 'collection' ? CFG.TILE_URL_NOLABELS : CFG.TILE_URL, {
+    attribution:  CFG.TILE_ATTR,
+    maxZoom:      19,
+    crossOrigin:  true,
+  }).addTo(map);
+
+  // ── Перемещаем zoom control в правый верхний угол ─────────────────
+  map.zoomControl.setPosition('topright');
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 5 — СЛОИ (Layer Groups)
+     ═══════════════════════════════════════════════════════════════════ */
+
+  // Группы слоёв (добавляются/скрываются по zoom)
+  const layers = {
+    exportLines:    L.layerGroup().addTo(map),  // экспортные линии
+    exportMarkers:  L.layerGroup().addTo(map),  // маркеры экспорта
+    collectLines:   L.layerGroup().addTo(map),  // линии сборов
+    collectMarkers: L.layerGroup().addTo(map),  // маркеры сборов
+    // oblastLayer будет добавлен после загрузки GeoJSON
+  };
+
+  // Маркер Житомира (всегда виден — добавляем напрямую на карту)
+  const zhytomyrIcon = L.divIcon({
+    className: '',
+    html: `<div class="sporysh-origin">
+             <div class="sporysh-origin__ring"></div>
+             <div class="sporysh-origin__ring"></div>
+             <div class="sporysh-origin__dot"></div>
+           </div>`,
+    iconSize:   [18, 18],
+    iconAnchor: [9, 9],
+  });
+
+  L.marker(ORIGIN, { icon: zhytomyrIcon, zIndexOffset: 1000 })
+    .bindTooltip('Zhytomyr — shipping hub', {
+      className:   'sporysh-tooltip',
+      permanent:   VIEW === 'collection',
+      direction:   'top',
+      offset:      [0, -12],
+    })
+    .addTo(map);
+
+
+  // Підписи обласних центрів не показуємо — карта лише з маршрутами
+
+
+  /* ── Экспорт: страны-получатели выделяются обводкой (без стрелок/линий) ─ */
+  // ISO 3166-1 числові коди країн-одержувачів експорту
+  // Джерело: world-atlas@2 countries-50m.json → feature.id
+  const UKRAINE_ISO_ID  = 804; // Україна — джерело, виділяємо окремо
+  const EXPORT_ISO_IDS = new Set([
+    616,  // Poland
+    440,  // Lithuania
+    203,  // Czech Republic / Czechia
+    276,  // Germany
+    250,  // France
+    826,  // United Kingdom
+    724,  // Spain
+    191,  // Croatia
+    380,  // Italy
+    100,  // Bulgaria
+     40,  // Austria
+      8,  // Albania
+    620,  // Portugal
+    756,  // Switzerland
+    688,  // Serbia
+    807,  // North Macedonia
+    348,  // Hungary
+    705,  // Slovenia
+    840,  // USA
+    156,  // China
+    356,  // India
+  ]);
+
+  const EXPORT_COUNTRY_STYLE = {
+    color:       CFG.C_GREEN,
+    weight:      2,
+    opacity:     0.95,
+    fillColor:   CFG.C_OLIVE,
+    fillOpacity: 0.18,
+  };
+  const EXPORT_COUNTRY_HOVER = {
+    weight:      2.6,
+    fillOpacity: 0.32,
+  };
+
+  let exportCountriesLayer = null;
+  let ukraineExportLayer   = null;
+
+  // Стиль для України (джерело) — золотисто-жовтий, з Кримом
+  const UKRAINE_STYLE = {
+    color:       '#C8A84B',
+    weight:      2.5,
+    opacity:     1,
+    fillColor:   '#F5D77E',
+    fillOpacity: 0.28,
+  };
+  const UKRAINE_HOVER = { fillOpacity: 0.45, weight: 3 };
+
+  async function fetchWorldCountries() {
+    try {
+      // ── 1. Завантажуємо topojson-client ───────────────────────────
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = CFG.TOPOJSON_CLIENT;
+        s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+
+      // ── 2. Країни-одержувачі з world-atlas (без України) ──────────
+      const resp = await fetch(CFG.GEOJSON_WORLD, { cache: 'force-cache' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const topo = await resp.json();
+      const geo  = window.topojson.feature(topo, topo.objects.countries);
+
+      exportCountriesLayer = L.geoJSON(geo, {
+        filter: function(feature) {
+          return EXPORT_ISO_IDS.has(parseInt(feature.id, 10));
+        },
+        style: () => ({ ...EXPORT_COUNTRY_STYLE }),
+        onEachFeature: function(feature, layer) {
+          layer.on({
+            mouseover: e => e.target.setStyle(EXPORT_COUNTRY_HOVER),
+            mouseout:  e => exportCountriesLayer.resetStyle(e.target),
+          });
+        },
+      });
+
+      if (VIEW === 'export') exportCountriesLayer.addTo(map);
+
+      // ── 3. Україна (включно з Кримом) — окремий шар ──────────────
+      // GEOJSON_UKRAINE — повний GeoJSON всіх областей, включає Крим
+      const uaResp = await fetch(CFG.GEOJSON_UKRAINE, { cache: 'force-cache' });
+      if (!uaResp.ok) throw new Error('Ukraine GeoJSON HTTP ' + uaResp.status);
+      const uaData = await uaResp.json();
+
+      ukraineExportLayer = L.geoJSON(uaData, {
+        style: () => ({ ...UKRAINE_STYLE }),
+        onEachFeature: function(feature, layer) {
+          layer.on({
+            mouseover: e => e.target.setStyle(UKRAINE_HOVER),
+            mouseout:  e => ukraineExportLayer.resetStyle(e.target),
+          });
+        },
+      });
+
+      if (VIEW === 'export') ukraineExportLayer.addTo(map);
+
+    } catch (err) {
+      console.warn('[SporyshMap] fetchWorldCountries failed:', err.message);
+    }
+  }
+
+  if (VIEW === 'export') fetchWorldCountries();
+
+
+  /* ── Строим линии сборов (город → Житомир) ───────────────────────── */
+  COLLECTION_ROUTES.forEach(function(city, i) {
+    const delay = i * 60;
+
+    const line = L.polyline([city.coords, ORIGIN], {
+      color:       CFG.C_OLIVE,
+      weight:      1.4,
+      opacity:     0.8,
+      smoothFactor: 1,
+    });
+    line.addTo(layers.collectLines);
+
+    line.on('add', function() {
+      animateLine(line, 'collect', delay);
+    });
+
+    // Маркер міста-коллектора — тільки точка без підпису
+    const cityIcon = L.divIcon({
+      className: '',
+      html: `<div class="sporysh-city-dot"></div>`,
+      iconSize:   [9, 9],
+      iconAnchor: [4.5, 4.5],
+    });
+    L.marker(city.coords, { icon: cityIcon })
+      .addTo(layers.collectMarkers);
+
+    // Стрелка-указатель рядом с Житомиром (t≈0.88 от города к ORIGIN)
+    const arrowLat = city.coords[0] + (ORIGIN[0] - city.coords[0]) * 0.88;
+    const arrowLng = city.coords[1] + (ORIGIN[1] - city.coords[1]) * 0.88;
+    const dy = ORIGIN[0] - city.coords[0];
+    const dx = ORIGIN[1] - city.coords[1];
+    // Угол для SVG (0° = вверх в CSS), корректируем для Leaflet (X растёт вправо, Y вниз)
+    const angleDeg = Math.atan2(dx, dy) * 180 / Math.PI; // 0° = north
+
+    const arrowIcon = L.divIcon({
+      className: '',
+      html: `<div class="sporysh-arrow" style="transform:rotate(${angleDeg}deg)">` +
+              `<svg viewBox="0 0 10 10" width="10" height="10"><polygon points="5,0 10,10 5,7 0,10" fill="${CFG.C_GREEN}"/></svg>` +
+            `</div>`,
+      iconSize:   [10, 10],
+      iconAnchor: [5, 5],
+    });
+    L.marker([arrowLat, arrowLng], { icon: arrowIcon, interactive: false })
+      .addTo(layers.collectMarkers);
+  });
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 6 — GEOJSON: Области Украины
+     ═══════════════════════════════════════════════════════════════════ */
+
+  // Минимальный fallback: упрощённый контур Украины (на случай отказа fetch)
+  // Используется если CDN недоступен
+  const UKRAINE_FALLBACK_GEOJSON = {
+    "type": "FeatureCollection",
+    "features": [{
+      "type": "Feature",
+      "properties": { "name": "Україна" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [22.15,48.62],[22.08,49.00],[22.56,49.08],[22.70,50.10],[23.00,50.30],
+          [23.70,51.75],[24.10,52.10],[26.00,51.87],[27.20,51.75],[28.15,51.55],
+          [29.05,51.52],[30.90,51.95],[33.32,52.38],[34.35,52.00],[35.00,51.70],
+          [36.08,50.55],[37.40,50.34],[38.00,49.93],[39.20,49.00],[40.08,47.82],
+          [39.32,47.10],[38.40,47.05],[37.45,46.82],[36.60,46.58],[36.22,45.45],
+          [35.80,45.30],[34.80,44.92],[33.60,44.50],[33.00,44.38],[32.48,45.33],
+          [31.15,45.80],[30.00,45.80],[29.10,45.40],[28.30,45.55],[28.20,46.00],
+          [26.80,46.20],[25.40,45.92],[24.70,45.92],[23.70,46.52],[22.65,47.20],
+          [22.10,48.42],[22.15,48.62]
+        ]]
+      }
+    }]
+  };
+
+  let oblastLayer = null;
+
+  // Стиль области при наведении
+  const OBLAST_STYLE_DEFAULT = {
+    fillColor:   CFG.C_OLIVE,
+    fillOpacity: 0.10,
+    color:       CFG.C_GREEN,
+    weight:      0.8,
+    opacity:     0.45,
+  };
+  const OBLAST_STYLE_HOVER = {
+    fillOpacity: 0.22,
+    weight:      1.2,
+    opacity:     0.7,
+  };
+
+  function buildOblastLayer(geoData) {
+    return L.geoJSON(geoData, {
+      style: () => ({ ...OBLAST_STYLE_DEFAULT }),
+      onEachFeature: function(feature, featureLayer) {
+        // Підписи областей не показуємо
+        featureLayer.on({
+          mouseover: function(e) {
+            e.target.setStyle(OBLAST_STYLE_HOVER);
+          },
+          mouseout: function(e) {
+            oblastLayer.resetStyle(e.target);
+          },
+        });
+      },
+    });
+  }
+
+  // ── Загружаем GeoJSON асинхронно ──────────────────────────────────
+  async function fetchUkraineGeoJSON() {
+    try {
+      const resp = await fetch(CFG.GEOJSON_UKRAINE, { cache: 'force-cache' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      oblastLayer = buildOblastLayer(data);
+    } catch (err) {
+      console.warn('[SporyshMap] Oblast GeoJSON fetch failed, using fallback:', err.message);
+      oblastLayer = buildOblastLayer(UKRAINE_FALLBACK_GEOJSON);
+    }
+    // Показываем слой если текущий zoom уже в диапазоне Level 2/3
+    applyZoomState(map.getZoom(), true);
+  }
+
+  fetchUkraineGeoJSON();
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 7 — ZOOM LOGIC
+     Переключение слоёв по уровням детализации.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  /**
+   * Применяет состояние видимости слоёв в зависимости от zoom.
+   * @param {number}  zoom
+   * @param {boolean} immediate - пропустить CSS transition (для инициализации)
+   */
+  function applyZoomState(zoom, immediate) {
+    const setOp = immediate ? setLayerOpacityImmediate : setLayerOpacity;
+
+    const showExport  = VIEW === 'export';
+    const showCollect = VIEW === 'collection';
+
+    // Export layers
+    setOp(layers.exportLines,   showExport  ? '1' : '0');
+    setOp(layers.exportMarkers, showExport  ? '1' : '0');
+
+    // Collection layers
+    setOp(layers.collectLines,   showCollect ? '1' : '0');
+    setOp(layers.collectMarkers, showCollect ? '1' : '0');
+
+    // Oblast outline — только в режиме collection
+    if (oblastLayer) {
+      if (showCollect) {
+        if (!map.hasLayer(oblastLayer)) oblastLayer.addTo(map);
+        oblastLayer.bringToBack();
+      } else {
+        if (map.hasLayer(oblastLayer)) map.removeLayer(oblastLayer);
+      }
+    }
+
+    // Анимированные грузы — синхронизированы с соответствующим шаром
+    MovingCargo.setExportVisible(showExport);
+    MovingCargo.setCollectVisible(showCollect);
+  }
+
+  map.on('zoomend', function() {
+    applyZoomState(map.getZoom(), false);
+  });
+
+  // Применяем начальное состояние немедленно (без анимации)
+  // Двойной вызов: сразу и после рендера — чтобы не было мигания
+  applyZoomState(CFG.ZOOM_INIT, true);
+  map.once('load', function() { applyZoomState(map.getZoom(), true); });
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     SECTION 8 — MOVING CARGO ANIMATION
+     Анимированные «грузы» вдоль маршрутов экспорта и сбора.
+     Экспорт: светящийся зелёный шар с хвостом, движется от Житомира.
+     Сбор:    оливковый шар, движется к Житомиру.
+     ═══════════════════════════════════════════════════════════════════ */
+
+  const MovingCargo = (function () {
+
+    let _map, _container, _raf;
+    const _items = [];
+
+    /* ── Линейная интерполяция ─────────────────────────────────────── */
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    /* ── Позиция вдоль массива координат при t ∈ [0,1] ───────────── */
+    function interpCoords(coords, t) {
+      const n = coords.length - 1;
+      const s = t * n;
+      const i = Math.min(Math.floor(s), n - 1);
+      const f = s - i;
+      const A = coords[i], B = coords[i + 1] || coords[i];
+      return [lerp(A[0], B[0], f), lerp(A[1], B[1], f)];
+    }
+
+    /* ── Угол движения в данной точке ─────────────────────────────── */
+    function getAngle(coords, t) {
+      const t2  = Math.min(t + 0.01, 0.999);
+      const p1  = _map.latLngToContainerPoint(interpCoords(coords, t));
+      const p2  = _map.latLngToContainerPoint(interpCoords(coords, t2));
+      return Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+    }
+
+    /* ── DOM-элемент «груза» ──────────────────────────────────────── */
+    function makeEl(isExport, isOverseas) {
+      const sz   = isExport ? (isOverseas ? 5 : 7) : 5;
+      const col  = isExport ? '#5a8a1e'             : '#a89060';
+      const glow = isExport ? 'rgba(90,138,30,0.7)' : 'rgba(168,144,96,0.55)';
+      const t1   = isExport ? 'rgba(49,76,17,0)'    : 'rgba(137,148,114,0)';
+      const t2   = isExport ? 'rgba(49,76,17,0.18)' : 'rgba(137,148,114,0.18)';
+      const t3   = isExport ? 'rgba(49,76,17,0.52)' : 'rgba(137,148,114,0.42)';
+      const tl   = sz * 6;
+
+      const wrap = document.createElement('div');
+      wrap.style.cssText =
+        'position:absolute;pointer-events:none;will-change:transform,left,top;';
+
+      // Хвост-комета (тянется влево — затем поворачивается с wrapper)
+      const tail = document.createElement('div');
+      tail.style.cssText =
+        `position:absolute;` +
+        `width:${tl}px;height:${sz * 0.55}px;` +
+        `background:linear-gradient(to right,${t1},${t2},${t3});` +
+        `border-radius:${sz}px;` +
+        `transform:translate(-${tl + sz * 0.5}px,-${sz * 0.275}px);`;
+
+      // Ореол
+      const halo = document.createElement('div');
+      const hs = sz * 2.6;
+      halo.style.cssText =
+        `position:absolute;` +
+        `width:${hs}px;height:${hs}px;border-radius:50%;` +
+        `background:${glow};filter:blur(${sz}px);` +
+        `transform:translate(-${hs / 2}px,-${hs / 2}px);`;
+
+      // Точка
+      const dot = document.createElement('div');
+      dot.style.cssText =
+        `position:absolute;` +
+        `width:${sz}px;height:${sz}px;border-radius:50%;` +
+        `background:radial-gradient(circle at 33% 33%,` +
+          `${isExport ? '#9fd43e' : '#d4b87a'},${col});` +
+        `box-shadow:0 0 ${sz}px ${sz / 2}px ${glow},` +
+          `inset 0 0 ${sz * 0.4}px rgba(255,255,255,0.3);` +
+        `transform:translate(-${sz / 2}px,-${sz / 2}px);`;
+
+      wrap.appendChild(tail);
+      wrap.appendChild(halo);
+      wrap.appendChild(dot);
+      return wrap;
+    }
+
+    /* ── Инициализация ────────────────────────────────────────────── */
+    function init(mapInstance) {
+      if (_map) return;
+      _map = mapInstance;
+
+      _container = document.createElement('div');
+      _container.style.cssText =
+        'position:absolute;top:0;left:0;width:100%;height:100%;' +
+        'pointer-events:none;z-index:450;overflow:visible;';
+      mapInstance.getContainer().appendChild(_container);
+
+      // — Экспортные грузы (Житомир → пункт назначения)
+      EXPORT_ROUTES.forEach(function (route, i) {
+        const coords = route.overseas
+          ? greatCirclePoints(ORIGIN, route.coords, 60)
+          : [ORIGIN, route.coords];
+        const el = makeEl(true, !!route.overseas);
+        _container.appendChild(el);
+        _items.push({
+          el, coords,
+          t:     (i * 0.047) % 1,
+          speed: route.overseas ? 0.000088 : 0.000115,
+          type:  'export',
+          on:    true,
+        });
+      });
+
+      // — Сборочные грузы (город → Житомир)
+      COLLECTION_ROUTES.forEach(function (city, i) {
+        const coords = [city.coords, ORIGIN];
+        const el = makeEl(false, false);
+        _container.appendChild(el);
+        _items.push({
+          el, coords,
+          t:     (i * 0.091) % 1,
+          speed: 0.000135,
+          type:  'collect',
+          on:    false,
+        });
+      });
+
+      /* ── Анимационный цикл ──────────────────────────────────────── */
+      const W = mapInstance.getContainer().clientWidth;
+      const H = mapInstance.getContainer().clientHeight;
+      let last = 0;
+
+      function tick(ts) {
+        _raf = requestAnimationFrame(tick);
+        const dt = Math.min(ts - last || 16, 50);
+        last = ts;
+
+        _items.forEach(function (item) {
+          if (!item.on) {
+            if (item.el.style.display !== 'none') item.el.style.display = 'none';
+            return;
+          }
+          item.t = (item.t + item.speed * dt) % 1;
+
+          const latLng = interpCoords(item.coords, item.t);
+          const pt     = _map.latLngToContainerPoint(latLng);
+
+          // Скрываем если за пределами видимой области (заокеанские маршруты)
+          if (pt.x < -40 || pt.x > W + 40 || pt.y < -40 || pt.y > H + 40) {
+            item.el.style.display = 'none';
+            return;
+          }
+          item.el.style.display = '';
+          item.el.style.left    = pt.x + 'px';
+          item.el.style.top     = pt.y + 'px';
+          item.el.style.transform =
+            'rotate(' + getAngle(item.coords, item.t) + 'deg)';
+        });
+      }
+      _raf = requestAnimationFrame(tick);
+    }
+
+    function setExportVisible(v) {
+      _items.forEach(function (it) { if (it.type === 'export')  it.on = v; });
+    }
+    function setCollectVisible(v) {
+      _items.forEach(function (it) { if (it.type === 'collect') it.on = v; });
+    }
+
+    return { init, setExportVisible, setCollectVisible };
+  })();
+
+  // Запускаем после первого рендера
+  setTimeout(function () { MovingCargo.init(map); }, 300);
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     CSS для анимации линий — инжектируем в <style> динамически,
+     чтобы браузер применил их к SVG path элементам Leaflet.
+     ═══════════════════════════════════════════════════════════════════ */
+  (function injectLineAnimCSS() {
+    const style = document.createElement('style');
+    style.textContent = `
+      /* Экспортные линии */
+      path.sporysh-line-export {
+        stroke-dasharray: 6 8;
+        animation: sporysh-march-export 2.2s linear infinite;
+        will-change: stroke-dashoffset;
+      }
+      /* Линии сборов */
+      path.sporysh-line-collect {
+        stroke-dasharray: 3 5;
+        animation: sporysh-march-collect 1.6s linear infinite;
+        will-change: stroke-dashoffset;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        path.sporysh-line-export,
+        path.sporysh-line-collect {
+          animation: none !important;
+          stroke-dasharray: 4 4 !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  })();
+
+
+  /* ═══════════════════════════════════════════════════════════════════
+     WORDPRESS INTEGRATION NOTE
+     ═══════════════════════════════════════════════════════════════════
+
+     Этот файл предназначен для встраивания в WordPress через iframe.
+
+     1. Скопируй файл в папку темы:
+        /wp-content/themes/sporysh/map-interactive.html
+
+     2. В нужном месте шаблона (например, вместо .location__maps-grid
+        в template-parts/about.php или contacts.php) вставь:
+
+        PHP-версия:
+        <iframe
+          src="<?php echo esc_url( get_template_directory_uri() . '/map-interactive.html' ); ?>"
+          width="100%" height="560"
+          style="border:none; border-radius:16px; display:block;"
+          loading="lazy"
+          title="SPORYSH — Geographic Export Network"
+        ></iframe>
+
+        Gutenberg Custom HTML блок:
+        <iframe
+          src="/wp-content/themes/ТВОЯ_ТЕМА/map-interactive.html"
+          width="100%" height="560"
+          style="border:none; border-radius:16px; display:block;"
+          loading="lazy"
+          title="SPORYSH — Geographic Export Network"
+        ></iframe>
+
+     3. functions.php менять НЕ нужно — файл статичен.
+
+     4. Если нужна адаптивная высота iframe:
+        Добавь в style.css темы:
+        .location__leaflet-wrap { position: relative; padding-bottom: 45%; }
+        .location__leaflet-wrap iframe { position: absolute; inset: 0; height: 100%; }
+
+     ═══════════════════════════════════════════════════════════════════ */
+
+  </script>
+</body>
+</html>
